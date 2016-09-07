@@ -1,0 +1,13 @@
+{
+  "name": "ext-provisu",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "sanitize-html": "^1.11.4",
+    "url": "*"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  }
+}

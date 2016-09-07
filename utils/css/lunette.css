@@ -1,0 +1,302 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ************************************************************************** */
+/* EXT-PROVISU-* */
+/* ************************************************************************** */
+#ext-provisu-inner {
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  border: solid 1px rgba(0,0,0,0.3);
+  width: 90%;
+  margin: 20px auto;
+}
+
+/* ************************************************************************** */
+/* EXT-PROVISU-NORMAL */
+/* ************************************************************************** */
+
+.ext-provisu-normal {
+  background-color: rgba(255,254,251,0.5);
+}
+.ext-provisu-normal #ext-provisu-inner {
+  background-color: rgb(255,254,251);
+  color: black;
+}
+
+.ext-provisu-normal a:link,
+.ext-provisu-normal a:visited {
+  color: rgb(50,125,255);
+}
+
+.ext-provisu-normal a:hover {
+  color: rgb(250,125,55);
+}
+
+/* ************************************************************************** */
+/* EXT-PROVISU-BLACK */
+/* ************************************************************************** */
+
+.ext-provisu-black {
+  background-color: rgba(0,0,0,0.7);
+}
+.ext-provisu-black #ext-provisu-inner {
+  background-color: black;
+  color: rgb(255,254,251);
+}
+
+.ext-provisu-black a:link,
+.ext-provisu-black a:visited {
+  color: rgb(255,255,25);
+}
+
+.ext-provisu-black a:hover {
+  color: rgb(250,25,25);
+}
+
+/* ************************************************************************** */
+/* EXT-PROVISU-BLUE */
+/* ************************************************************************** */
+
+.ext-provisu-blue {
+  background-color: rgba(0,0,255,0.7);
+}
+.ext-provisu-blue #ext-provisu-inner {
+  background-color: blue;
+  color: yellow;
+}
+
+.ext-provisu-blue a:link,
+.ext-provisu-blue a:visited {
+  color: white;
+}
+
+.ext-provisu-blue a:hover {
+  color: rgb(250,25,25);
+}
+
+/* ************************************************************************** */
+/* EXT-PROVISU-CYAN */
+/* ************************************************************************** */
+
+.ext-provisu-cyan #ext-provisu-inner {
+  background-color: rgba(210, 239, 233, 0.5);
+}
+.ext-provisu-cyan {
+  background-color: rgb(210, 239, 233);
+  color: black;
+}
+
+.ext-provisu-cyan a:link,
+.ext-provisu-cyan a:visited {
+  color: red;
+}
+
+.ext-provisu-cyan a:hover {
+  color: rgb(250,25,25);
+}
+
+/* ************************************************************************** */
+.item-normal, .item-black, .item-blue, .item-cyan {
+  font-size: 24pt;
+}
+.item-black {
+  background-color: black;
+  color: white;
+}
+.item-blue {
+  background-color: blue;
+  color: yellow;
+}
+.item-cyan {
+  background-color: rgb(210, 239, 233);
+  color: black;
+}
+
+.form {
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+}
+
+input, select {
+  font: inherit;
+}
+
+input[type=text], select {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px auto;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 50%;
+    display: block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px auto;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.top-h1 {
+  text-align: center;
+  padding: 20px;
+}
+
+/* ************************************************************************** */
+/* LINE-BOX */
+/* ************************************************************************** */
+
+.line-box {
+  width: 100%;
+  border: black solid 1px;
+}
+
+/* ************************************************************************** */
+/* SIDEBOX */
+/* ************************************************************************** */
+
+
+#sidebox {
+  position: fixed;
+  top: 100px;
+  left: 90%;
+}
+
+#sidebox ul {
+  border: rgba(0,0,0,0.5) solid 1px;
+  box-shadow: 5px 0 5px 1px rgba(0,0,0,0.5);
+  background-color: white;
+}
+
+#sidebox li {
+  display: block;
+  margin: 5px;
+}
+
+#sidebox li a {
+  display: block;
+  height: 60px;
+  width: 60px;
+}
+
+#sidebox li a div {
+  padding: 10px;
+  border-radius: 100%;
+  border: solid 1px rgba(0,0,0,0.5);
+}
+
+#sidebox li a:link div.item-normal {
+  background-color: rgba(0,0,0,0);
+  color: black;
+}
+
+#sidebox li a:hover div.item-normal {
+  background-color: rgba(0,0,0,0.1);
+  color: blue;
+}
+
+#sidebox li a:link div.item-black {
+  background-color: rgba(0,0,0,1);
+  color: white;
+}
+
+#sidebox li a:hover div.item-black {
+  background-color: rgba(0,0,0,0.9);
+  color: yellow;
+}
+
+#sidebox li a:link div.item-blue {
+  background-color: rgba(0,0,255,1);
+  color: yellow;
+}
+
+#sidebox li a:hover div.item-blue {
+  background-color: rgba(0,0,255,0.8);
+  color: red;
+}
+
+#sidebox li a:link div.item-cyan {
+  background-color: rgb(210, 239, 233);
+  color: black;
+}
+
+#sidebox li a:hover div.item-cyan {
+  background-color: rgba(210, 239, 233, 0.8);
+  color: red;
+}
+
+/* ************************************************************************** */
+/* EXT-PROVISU-INNER STYLE */
+/* ************************************************************************** */
+
+#ext-provisu-inner {
+  position: relative;
+  padding: 20px 40px;
+}
+
+#ext-provisu-inner ul,
+#ext-provisu-inner li {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+#ext-provisu-inner h1,
+#ext-provisu-inner h2,
+#ext-provisu-inner h3,
+#ext-provisu-inner h4,
+#ext-provisu-inner h5,
+#ext-provisu-inner h6 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+  display: block;
+}
+
+#ext-provisu-inner p {
+  text-align: justify;
+  margin: 1em 0;
+}
+
+#ext-provisu-inner img {
+  max-width: 100%;
+  display: block;
+  margin: 1em 0;
+}
+
+#ext-provisu-inner ul {
+  columns: 3;
+  display: block;
+  width: 100%;
+}
+
+#ext-provisu-inner li {
+  display: inline-block;
+}

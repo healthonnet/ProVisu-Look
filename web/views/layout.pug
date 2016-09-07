@@ -1,0 +1,36 @@
+doctype html
+html(lang='fr')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Test Lunette Provisu
+    link(rel='stylesheet', href='css/lunette.css', type='text/css')
+  body
+    h1.top-h1 Test Lunette Provisu
+    #sidebox
+      ul
+        li
+          a(href=external, target="_blank")
+            .item.item-normal De
+        li
+          a(href='javascript: toNormal();')
+            .item.item-normal  Aa
+        li
+          a(href='javascript: toBlack();')
+            .item.item-black  Aa
+        li
+          a(href='javascript: toBlue();')
+            .item.item-blue  Aa
+        li
+          a(href='javascript: toCyan();')
+            .item.item-cyan  Aa
+        li
+          a(href='javascript: toSmallest();')
+            .item.item-normal  A-
+        li
+          a(href='javascript: toBigger();')
+            .item.item-normal  A+
+    #remove.content
+      block content
+    script(src=localUrl + "/js/lunette.js", type="text/javascript")
