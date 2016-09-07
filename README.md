@@ -17,7 +17,7 @@ Run
 ### web
 
 ```bash
-$ npm start
+$ gulp web
 ```
 
 A server will be launched on http://localhost:3000
@@ -30,6 +30,13 @@ from google Chrome:
 * Enable Developer mode
 * load unpacked extension...
 * select `/dist`
+
+Documentation
+-------------
+
+```bash
+$ gulp doc
+```
 
 TODO
 ----
