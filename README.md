@@ -44,6 +44,7 @@ TODO
 * **app**
   * ~~move utils files when `gulp build`.~~
   * store preferences.
+  * revert to normal output.
 * **web**
   * move utils files when building `web`.
   * ~~link utils files to web structure (old format is in use).~~
