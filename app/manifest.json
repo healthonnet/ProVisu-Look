@@ -25,9 +25,9 @@
   },
   "permissions": [
     "tabs",
-    "notifications",
     "http://*/",
-    "https://*/"
+    "https://*/",
+    "storage"
   ],
   "page_action": {
     "default_icon": {

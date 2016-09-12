@@ -41,10 +41,14 @@ $ gulp doc
 TODO
 ----
 
+* **lunette**
+  * fix small images to twice their size.
 * **app**
   * ~~move utils files when `gulp build`.~~
   * store preferences.
   * revert to normal output.
+  * rewrite `<title>`.
+  * better behavior for popup window on click.
 * **web**
   * move utils files when building `web`.
   * ~~link utils files to web structure (old format is in use).~~
