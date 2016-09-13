@@ -15,8 +15,34 @@ if (document.getElementsByTagName('header').length > 0) {
     });
 }
 
-if (window.localStorage.getItem('altered')) {
-  alter(document);
+window.localStorage.setItem('hash', document.documentElement.innerHTML);
+var alterStyle = window.localStorage.getItem('alter-style');
+if (alterStyle) {
+  switch (alterStyle) {
+    case 'default': {
+      break;
+    }
+    case 'normal': {
+      alter(document);
+      toNormal(document);
+      break;
+    }
+    case 'black': {
+      alter(document);
+      toBlack(document);
+      break;
+    }
+    case 'blue': {
+      alter(document);
+      toBlue(document);
+      break;
+    }
+    case 'cyan': {
+      alter(document);
+      toCyan(document);
+      break;
+    }
+  }
 }
 
 /**
@@ -27,6 +53,7 @@ function toNormal() {
   document.body.classList.remove('ext-provisu-black');
   document.body.classList.remove('ext-provisu-blue');
   document.body.classList.remove('ext-provisu-cyan');
+  window.localStorage.setItem('alter-style', 'normal');
 }
 
 function toBlack() {
@@ -34,6 +61,7 @@ function toBlack() {
   document.body.classList.remove('ext-provisu-normal');
   document.body.classList.remove('ext-provisu-blue');
   document.body.classList.remove('ext-provisu-cyan');
+  window.localStorage.setItem('alter-style', 'black');
 }
 
 function toBlue() {
@@ -41,6 +69,7 @@ function toBlue() {
   document.body.classList.remove('ext-provisu-black');
   document.body.classList.remove('ext-provisu-normal');
   document.body.classList.remove('ext-provisu-cyan');
+  window.localStorage.setItem('alter-style', 'blue');
 }
 
 function toCyan() {
@@ -48,6 +77,7 @@ function toCyan() {
   document.body.classList.remove('ext-provisu-black');
   document.body.classList.remove('ext-provisu-blue');
   document.body.classList.remove('ext-provisu-normal');
+  window.localStorage.setItem('alter-style', 'cyan');
 }
 
 function toSmallest() {
@@ -76,7 +106,20 @@ function alter(document) {
     ],
     allowedAttributes: {
       a: [ 'href' ],
-      img: [ 'src' ],
+      img: [ 'src', 'alt' ],
+    },
+    nonTextTags: [
+      'style', 'script', 'textarea', 'noscript', 'head',
+    ],
+    transformTags: {
+      img: function(tagName, attribs) {
+        var alt = (attribs.alt) ? 'alt: ' + attribs.alt : '';
+        return {
+          tagName: 'p',
+          text: '<img src="' + attribs.src + '" alt="' + attribs.alt + '" />' +
+            alt,
+        };
+      },
     },
   });
 
@@ -84,17 +127,18 @@ function alter(document) {
     '<html>' +
     '<head>' +
     '<meta charset="utf-8">' +
-    '<title></title>' +
+    '<title>' + document.getElementsByTagName('title')[0].innerHTML +
+    '</title>' +
     '</head>' +
     '<body>' +
     '<div id="ext-provisu-inner">' +
     clean + '</div>' +
     '</body>' +
     '</html>';
-  window.localStorage.setItem('hash', document.documentElement.innerHTML);
   document.documentElement.innerHTML = foo;
 }
 
 function unalter(document) {
   document.documentElement.innerHTML = window.localStorage.getItem('hash');
+  window.localStorage.setItem('alter-style', '');
 }

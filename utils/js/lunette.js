@@ -1,22 +1,34 @@
 'use strict';
 
 /**
- * Add click layers
+ * Storage behaviour.
+ * If the user has selected any style, it will be reported on all pages.
  */
-var box = '<div class="line-box">' +
-  'Header' +
-  '</div>';
-if (document.getElementsByTagName('header').length > 0) {
-  var header = document.getElementsByTagName('header')[0].innerHTML;
-  document.getElementsByTagName('header')[0].innerHTML = box;
-  document.getElementsByTagName('header')[0].addEventListener('click',
-    function() {
-      document.getElementsByTagName('header')[0].innerHTML = header;
-    });
-}
-
-if (window.localStorage.getItem('altered')) {
-  alter(document);
+window.localStorage.setItem('hash', document.documentElement.innerHTML);
+var alterStyle = window.localStorage.getItem('alter-style');
+if (alterStyle) {
+  switch (alterStyle) {
+    case 'normal': {
+      alter(document);
+      toNormal(document);
+      break;
+    }
+    case 'black': {
+      alter(document);
+      toBlack(document);
+      break;
+    }
+    case 'blue': {
+      alter(document);
+      toBlue(document);
+      break;
+    }
+    case 'cyan': {
+      alter(document);
+      toCyan(document);
+      break;
+    }
+  }
 }
 
 /**
@@ -27,6 +39,7 @@ function toNormal() {
   document.body.classList.remove('ext-provisu-black');
   document.body.classList.remove('ext-provisu-blue');
   document.body.classList.remove('ext-provisu-cyan');
+  window.localStorage.setItem('alter-style', 'normal');
 }
 
 function toBlack() {
@@ -34,6 +47,7 @@ function toBlack() {
   document.body.classList.remove('ext-provisu-normal');
   document.body.classList.remove('ext-provisu-blue');
   document.body.classList.remove('ext-provisu-cyan');
+  window.localStorage.setItem('alter-style', 'black');
 }
 
 function toBlue() {
@@ -41,6 +55,7 @@ function toBlue() {
   document.body.classList.remove('ext-provisu-black');
   document.body.classList.remove('ext-provisu-normal');
   document.body.classList.remove('ext-provisu-cyan');
+  window.localStorage.setItem('alter-style', 'blue');
 }
 
 function toCyan() {
@@ -48,6 +63,7 @@ function toCyan() {
   document.body.classList.remove('ext-provisu-black');
   document.body.classList.remove('ext-provisu-blue');
   document.body.classList.remove('ext-provisu-normal');
+  window.localStorage.setItem('alter-style', 'cyan');
 }
 
 function toSmallest() {
@@ -83,7 +99,7 @@ function alter(document) {
     ],
     transformTags: {
       img: function(tagName, attribs) {
-        var alt = (attribs.alt) ? 'alt: ' + attribs.alt : '';
+        var alt = (attribs.alt !== undefined) ? 'alt: ' + attribs.alt : '';
         return {
           tagName: 'p',
           text: '<img src="' + attribs.src + '" alt="' + attribs.alt + '" />' +
@@ -105,10 +121,27 @@ function alter(document) {
     clean + '</div>' +
     '</body>' +
     '</html>';
-  window.localStorage.setItem('hash', document.documentElement.innerHTML);
   document.documentElement.innerHTML = foo;
 }
 
 function unalter(document) {
   document.documentElement.innerHTML = window.localStorage.getItem('hash');
+  window.localStorage.setItem('alter-style', '');
+}
+
+/**
+ * Add click layers
+ */
+function boxify(document) {
+  var box = '<div class="line-box">' +
+    'Header' +
+    '</div>';
+  if (document.getElementsByTagName('header').length > 0) {
+    var header = document.getElementsByTagName('header')[0].innerHTML;
+    document.getElementsByTagName('header')[0].innerHTML = box;
+    document.getElementsByTagName('header')[0].addEventListener('click',
+      function() {
+        document.getElementsByTagName('header')[0].innerHTML = header;
+      });
+  }
 }

@@ -1,7 +1,7 @@
 hon-provisu-extension
 =====================
 
-**Look Provisu**: the provisu extension for visual impaired people.
+**Look Provisu**: the provisu extension for visually impaired people.
 
 Install
 -------

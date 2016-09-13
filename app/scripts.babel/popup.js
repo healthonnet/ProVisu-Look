@@ -1,5 +1,8 @@
 'use strict';
 
+document.getElementsByTagName('h1')[0].innerHTML =
+  chrome.i18n.getMessage('appName');
+
 function click(name) {
   var code;
   chrome.storage.local.get('altered', function(altered) {
