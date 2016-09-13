@@ -9,3 +9,4 @@ package
 app/scripts
 app/utils
 doc/provisu.pdf
+web/public

@@ -1,7 +1,7 @@
 hon-provisu-extension
 =====================
 
-Provisu extension for visual impaired people.
+**Look Provisu**: the provisu extension for visual impaired people.
 
 Install
 -------
@@ -42,7 +42,9 @@ TODO
 ----
 
 * **lunette**
-  * fix small images to twice their size.
+  * ~~fix small images to twice their size.~~
+  * display alt for images.
+  * change name to **Look Provisu**.
 * **app**
   * ~~move utils files when `gulp build`.~~
   * store preferences.

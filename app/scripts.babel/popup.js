@@ -2,72 +2,53 @@
 
 function click(name) {
   var code;
-  switch (name) {
-    case 'default': {
-      code = {
-        code: 'document.body.classList.remove(\'\')',
-      };
-      break;
+  chrome.storage.local.get('altered', function(altered) {
+    switch (name) {
+      case 'default': {
+        chrome.tabs.executeScript(null, {
+          code: 'unalter(document);',
+        });
+        break;
+      }
+      case 'normal': {
+        chrome.tabs.executeScript(null, {
+          code: 'alter(document);toNormal();',
+        });
+        break;
+      }
+      case 'black': {
+        chrome.tabs.executeScript(null, {
+          code: 'alter(document);toBlack();',
+        });
+        break;
+      }
+      case 'blue': {
+        chrome.tabs.executeScript(null, {
+          code: 'alter(document);toBlue();',
+        });
+        break;
+      }
+      case 'cyan': {
+        chrome.tabs.executeScript(null, {
+          code: 'alter(document);toCyan();',
+        });
+        break;
+      }
+      case 'small': {
+        chrome.tabs.executeScript(null, {
+          code: 'alter(document);toSmallest();',
+        });
+        break;
+      }
+      case 'big': {
+        chrome.tabs.executeScript(null, {
+          code: 'alter(document);toBigger();',
+        });
+        break;
+      }
     }
-    case 'normal': {
-      code = {
-        code: 'document.body.classList.add(\'ext-provisu-normal\');' +
-          'document.body.classList.remove(\'ext-provisu-black\');' +
-          'document.body.classList.remove(\'ext-provisu-blue\');' +
-          'document.body.classList.remove(\'ext-provisu-cyan\');',
-      };
-      break;
-    }
-    case 'black': {
-      code = {
-        code: 'document.body.classList.add(\'ext-provisu-black\');' +
-          'document.body.classList.remove(\'ext-provisu-normal\');' +
-          'document.body.classList.remove(\'ext-provisu-blue\');' +
-          'document.body.classList.remove(\'ext-provisu-cyan\');',
-      };
-      break;
-    }
-    case 'blue': {
-      code = {
-        code: 'document.body.classList.add(\'ext-provisu-blue\');' +
-          'document.body.classList.remove(\'ext-provisu-black\');' +
-          'document.body.classList.remove(\'ext-provisu-normal\');' +
-          'document.body.classList.remove(\'ext-provisu-cyan\');',
-      };
-      break;
-    }
-    case 'cyan': {
-      code = {
-        code: 'document.body.classList.add(\'ext-provisu-cyan\');' +
-          'document.body.classList.remove(\'ext-provisu-black\');' +
-          'document.body.classList.remove(\'ext-provisu-blue\');' +
-          'document.body.classList.remove(\'ext-provisu-normal\');',
-      };
-      break;
-    }
-    case 'small': {
-      code = {
-        code: 'var el = document.getElementById(\'ext-provisu-inner\');' +
-          'var style = ' +
-          'window.getComputedStyle(el, null).getPropertyValue(\'font-size\');' +
-          'var fontSize = parseFloat(style);' +
-          'el.style.fontSize = (fontSize - 5) + \'px\';',
-      };
-      break;
-    }
-    case 'big': {
-      code = {
-        code: 'var el = document.getElementById(\'ext-provisu-inner\');' +
-          'var style = ' +
-          'window.getComputedStyle(el, null).getPropertyValue(\'font-size\');' +
-          'var fontSize = parseFloat(style);' +
-          'el.style.fontSize = (fontSize + 5) + \'px\';',
-      };
-      break;
-    }
-  }
-  chrome.tabs.executeScript(null, code);
-  window.close();
+    window.close();
+  });
 }
 
 document.addEventListener('DOMContentLoaded', function() {

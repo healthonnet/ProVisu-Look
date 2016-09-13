@@ -16,9 +16,9 @@
   "globals": {
     "describe": true,
     "it": true,
-    "angular": true,
     "ui": true,
-    "chrome": true
+    "chrome": true,
+    "sanitizeHtml": true
   },
   "devel": {
     "console" : false

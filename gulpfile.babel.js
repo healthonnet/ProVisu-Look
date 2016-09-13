@@ -152,8 +152,12 @@ gulp.task('build', (cb) => {
     'size', cb);
 });
 
-gulp.task('web', (cb) => {
+gulp.task('server', (cb) => {
   $.express.run(['web/bin/www']);
+});
+
+gulp.task('web', (cb) => {
+  runSequence('web-assets', 'server', cb);
 });
 
 gulp.task('doc', function() {

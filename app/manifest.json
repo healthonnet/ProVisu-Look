@@ -15,13 +15,15 @@
       "js": [
         "bower_components/url/url.js",
         "utils/js/sanitize-html.min.js",
-        "utils/js/lunette.js",
-        "scripts/insert.js"
+        "utils/js/lunette.js"
       ]
     }
   ],
   "background": {
-    "scripts": ["scripts/background.js"]
+    "scripts": [
+      "scripts/background.js",
+      "utils/js/lunette.js"
+    ]
   },
   "permissions": [
     "tabs",
