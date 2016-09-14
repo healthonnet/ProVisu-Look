@@ -50,7 +50,7 @@ function click(name) {
         break;
       }
     }
-    window.close();
+    // window.close();
   });
 }
 
