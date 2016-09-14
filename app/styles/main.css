@@ -1,9 +1,29 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 370px;
+}
+
+h1 {
+  text-align: center;
+}
+
 a {
   text-decoration: none;
+  border: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 li {
   list-style-type: none;
+}
+
+.sidebox-horizontal {
+  display: inline-block;
 }
 
 .sidebox li {

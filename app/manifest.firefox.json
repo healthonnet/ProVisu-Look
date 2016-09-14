@@ -8,11 +8,18 @@
     "128": "images/icon-128.png"
   },
   "default_locale": "en",
+  "applications": {
+    "gecko": {
+      "id": "provisu_extension@healthonnet.org",
+      "strict_min_version": "46.0.0"
+    }
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "css": ["utils/css/lunette.css"],
       "js": [
+        "bower_components/url/url.js",
         "utils/js/sanitize-html.min.js",
         "utils/js/lunette.js"
       ]
