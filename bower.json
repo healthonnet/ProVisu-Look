@@ -1,10 +1,9 @@
 {
-  "name": "ext-provisu",
+  "name": "hon-provisu-extension",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
-    "sanitize-html": "^1.11.4",
-    "url": "*"
+    "components-font-awesome": "^4.6.3"
   },
   "devDependencies": {
     "chai": "^3.5.0",

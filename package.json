@@ -11,8 +11,7 @@
     "jstransformer-verbatim": "^1.0.0",
     "morgan": "~1.6.1",
     "pug": "^2.0.0-beta5",
-    "request": "^2.74.0",
-    "sanitize-html": "^1.13.0"
+    "request": "^2.74.0"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
