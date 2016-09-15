@@ -1,79 +1,55 @@
 'use strict';
 
+/**
+ * Set popup's title
+ */
 document.getElementsByTagName('h1')[0].innerHTML =
   chrome.i18n.getMessage('appName');
 
-function click(name) {
-  var code;
-  chrome.storage.local.get('altered', function(altered) {
-    switch (name) {
-      case 'default': {
-        chrome.tabs.executeScript(null, {
-          code: 'unalter(document);',
-        });
-        break;
-      }
-      case 'normal': {
-        chrome.tabs.executeScript(null, {
-          code: 'alter(document);toNormal();',
-        });
-        break;
-      }
-      case 'black': {
-        chrome.tabs.executeScript(null, {
-          code: 'alter(document);toBlack();',
-        });
-        break;
-      }
-      case 'blue': {
-        chrome.tabs.executeScript(null, {
-          code: 'alter(document);toBlue();',
-        });
-        break;
-      }
-      case 'cyan': {
-        chrome.tabs.executeScript(null, {
-          code: 'alter(document);toCyan();',
-        });
-        break;
-      }
-      case 'small': {
-        chrome.tabs.executeScript(null, {
-          code: 'alter(document);toSmallest();',
-        });
-        break;
-      }
-      case 'big': {
-        chrome.tabs.executeScript(null, {
-          code: 'alter(document);toBigger();',
-        });
-        break;
-      }
-    }
-    // window.close();
-  });
-}
-
+/**
+ * Listen to clicks inside popup
+ */
 document.addEventListener('DOMContentLoaded', function() {
+
   document.getElementById('default').addEventListener('click', function() {
-    click('default');
+    chrome.tabs.executeScript(null, {
+      code: 'unalter(document);',
+    });
   });
+
   document.getElementById('normal').addEventListener('click', function() {
-    click('normal');
+    chrome.tabs.executeScript(null, {
+      code: 'alter(document, \'normal\');',
+    });
   });
+
   document.getElementById('black').addEventListener('click', function() {
-    click('black');
+    chrome.tabs.executeScript(null, {
+      code: 'alter(document, \'black\');',
+    });
   });
+
   document.getElementById('blue').addEventListener('click', function() {
-    click('blue');
+    chrome.tabs.executeScript(null, {
+      code: 'alter(document, \'blue\');',
+    });
   });
+
   document.getElementById('cyan').addEventListener('click', function() {
-    click('cyan');
+    chrome.tabs.executeScript(null, {
+      code: 'alter(document, \'cyan\');',
+    });
   });
-  document.getElementById('small').addEventListener('click', function() {
-    click('small');
+
+  document.getElementById('smaller').addEventListener('click', function() {
+    chrome.tabs.executeScript(null, {
+      code: 'alter(document, \'smaller\');',
+    });
   });
-  document.getElementById('big').addEventListener('click', function() {
-    click('big');
+
+  document.getElementById('bigger').addEventListener('click', function() {
+    chrome.tabs.executeScript(null, {
+      code: 'alter(document, \'bigger\');',
+    });
   });
 });

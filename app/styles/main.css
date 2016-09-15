@@ -85,6 +85,7 @@ li {
 
 .item-normal, .item-black, .item-blue, .item-cyan {
   font-size: 24pt;
+  text-align: center;
 }
 .item-black {
   background-color: black;
