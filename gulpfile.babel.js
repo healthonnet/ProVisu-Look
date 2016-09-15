@@ -22,6 +22,12 @@ gulp.task('extras', () => {
   }).pipe(gulp.dest('dist'));
 });
 
+gulp.task('font-awesome', () => {
+  return gulp.src([
+    'app/bower_components/components-font-awesome/**'
+  ]).pipe(gulp.dest('dist/bower_components/components-font-awesome'));
+});
+
 gulp.task('assets', () => {
   return gulp.src([
     'utils/**/*.js',
@@ -94,7 +100,6 @@ gulp.task('html',  () => {
 gulp.task('chromeManifest', () => {
   return gulp.src('app/manifest.json')
     .pipe($.chromeManifest({
-      buildnumber: true,
       background: {
         target: 'scripts/background.js',
         exclude: [
@@ -148,13 +153,13 @@ gulp.task('wiredep', () => {
 gulp.task('package', function() {
   var manifest = require('./dist/manifest.json');
   return gulp.src('dist/**')
-      .pipe($.zip('ext provisu-' + manifest.version + '.zip'))
+      .pipe($.zip('look-provisu-' + manifest.version + '.zip'))
       .pipe(gulp.dest('package'));
 });
 
 gulp.task('build', (cb) => {
   runSequence(
-    'lint', 'babel', 'assets', 'lang', 'chromeManifest',
+    'lint', 'babel', 'assets', 'font-awesome', 'chromeManifest',
     ['html', 'images', 'extras'],
     'size', cb);
 });

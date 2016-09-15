@@ -1,0 +1,11 @@
+sudo: true
+language: node_js
+node_js:
+  - "4.4.3"
+  - "6.5.0"
+install:
+  - npm install
+  - npm install -g bower
+  - npm install -g gulp
+  - bower install
+  - gulp

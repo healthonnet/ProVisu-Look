@@ -1,79 +1,125 @@
 'use strict';
 
+/**
+ * Set popup's title
+ */
 document.getElementsByTagName('h1')[0].innerHTML =
   chrome.i18n.getMessage('appName');
 
-function click(name) {
-  var code;
-  chrome.storage.local.get('altered', function(altered) {
-    switch (name) {
-      case 'default': {
-        chrome.tabs.executeScript(null, {
-          code: 'unalter(document);',
-        });
-        break;
-      }
-      case 'normal': {
-        chrome.tabs.executeScript(null, {
-          code: 'alter(document);toNormal();',
-        });
-        break;
-      }
-      case 'black': {
-        chrome.tabs.executeScript(null, {
-          code: 'alter(document);toBlack();',
-        });
-        break;
-      }
-      case 'blue': {
-        chrome.tabs.executeScript(null, {
-          code: 'alter(document);toBlue();',
-        });
-        break;
-      }
-      case 'cyan': {
-        chrome.tabs.executeScript(null, {
-          code: 'alter(document);toCyan();',
-        });
-        break;
-      }
-      case 'small': {
-        chrome.tabs.executeScript(null, {
-          code: 'alter(document);toSmallest();',
-        });
-        break;
-      }
-      case 'big': {
-        chrome.tabs.executeScript(null, {
-          code: 'alter(document);toBigger();',
-        });
-        break;
-      }
-    }
-    window.close();
-  });
-}
-
+/**
+ * Listen to clicks inside popup
+ */
 document.addEventListener('DOMContentLoaded', function() {
+
   document.getElementById('default').addEventListener('click', function() {
-    click('default');
+    chrome.tabs.executeScript(null, {
+      code: 'unalter(document);',
+    });
   });
+  document.getElementById('default').addEventListener('mouseover', function() {
+    document.getElementById('rollover').innerHTML =
+      chrome.i18n.getMessage('infoDefault');
+  });
+  document.getElementById('default').addEventListener('mouseout', function() {
+    document.getElementById('rollover').innerHTML = '';
+  });
+
   document.getElementById('normal').addEventListener('click', function() {
-    click('normal');
+    chrome.tabs.executeScript(null, {
+      code: 'alter(document, \'normal\');',
+    });
   });
+  document.getElementById('normal').addEventListener('mouseover', function() {
+    document.getElementById('rollover').innerHTML =
+      chrome.i18n.getMessage('infoNormal');
+  });
+  document.getElementById('normal').addEventListener('mouseout', function() {
+    document.getElementById('rollover').innerHTML = '';
+  });
+
   document.getElementById('black').addEventListener('click', function() {
-    click('black');
+    chrome.tabs.executeScript(null, {
+      code: 'alter(document, \'black\');',
+    });
   });
+  document.getElementById('black').addEventListener('mouseover', function() {
+    document.getElementById('rollover').innerHTML =
+      chrome.i18n.getMessage('infoBlack');
+  });
+  document.getElementById('black').addEventListener('mouseout', function() {
+    document.getElementById('rollover').innerHTML = '';
+  });
+
   document.getElementById('blue').addEventListener('click', function() {
-    click('blue');
+    chrome.tabs.executeScript(null, {
+      code: 'alter(document, \'blue\');',
+    });
   });
+  document.getElementById('blue').addEventListener('mouseover', function() {
+    document.getElementById('rollover').innerHTML =
+      chrome.i18n.getMessage('infoBlue');
+  });
+  document.getElementById('blue').addEventListener('mouseout', function() {
+    document.getElementById('rollover').innerHTML = '';
+  });
+
   document.getElementById('cyan').addEventListener('click', function() {
-    click('cyan');
+    chrome.tabs.executeScript(null, {
+      code: 'alter(document, \'cyan\');',
+    });
   });
-  document.getElementById('small').addEventListener('click', function() {
-    click('small');
+  document.getElementById('cyan').addEventListener('mouseover', function() {
+    document.getElementById('rollover').innerHTML =
+      chrome.i18n.getMessage('infoCyan');
   });
-  document.getElementById('big').addEventListener('click', function() {
-    click('big');
+  document.getElementById('cyan').addEventListener('mouseout', function() {
+    document.getElementById('rollover').innerHTML = '';
   });
+
+  document.getElementById('smaller').addEventListener('click', function() {
+    chrome.tabs.executeScript(null, {
+      code: 'alter(document, \'smaller\');',
+    });
+  });
+  document.getElementById('smaller').addEventListener('mouseover', function() {
+    document.getElementById('rollover').innerHTML =
+      chrome.i18n.getMessage('infoSmaller');
+  });
+  document.getElementById('smaller').addEventListener('mouseout', function() {
+    document.getElementById('rollover').innerHTML = '';
+  });
+
+  document.getElementById('bigger').addEventListener('click', function() {
+    chrome.tabs.executeScript(null, {
+      code: 'alter(document, \'bigger\');',
+    });
+  });
+  document.getElementById('bigger').addEventListener('mouseover', function() {
+    document.getElementById('rollover').innerHTML =
+      chrome.i18n.getMessage('infoBigger');
+  });
+  document.getElementById('bigger').addEventListener('mouseout', function() {
+    document.getElementById('rollover').innerHTML = '';
+  });
+
+  // TODO: fix image hiding.
+  // document.getElementById('toggleImages')
+  //   .addEventListener('click', function() {
+  //   chrome.tabs.executeScript(null, {
+  //     code: 'alter(document, \'toggle\');',
+  //   });
+  // });
 });
+
+/**
+ * Close window on mouseOut
+ */
+setTimeout(function() {
+  document.addEventListener('mouseout', function(e) {
+    e = e ? e : window.event;
+    var from = e.relatedTarget || e.toElement;
+    if (!from || from.nodeName === 'HTML') {
+      window.close();
+    }
+  });
+}, 800);
