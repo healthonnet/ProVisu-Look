@@ -21,6 +21,12 @@ gulp.task('extras', () => {
   }).pipe(gulp.dest('dist'));
 });
 
+gulp.task('font-awesome', () => {
+  return gulp.src([
+    'app/bower_components/components-font-awesome/**'
+  ]).pipe(gulp.dest('dist/bower_components/components-font-awesome'));
+});
+
 gulp.task('assets', () => {
   return gulp.src([
     'utils/**/*.js',
@@ -147,7 +153,7 @@ gulp.task('package', function() {
 
 gulp.task('build', (cb) => {
   runSequence(
-    'lint', 'babel', 'assets', 'chromeManifest',
+    'lint', 'babel', 'assets', 'font-awesome', 'chromeManifest',
     ['html', 'images', 'extras'],
     'size', cb);
 });
