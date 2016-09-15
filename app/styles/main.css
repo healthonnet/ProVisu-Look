@@ -99,3 +99,12 @@ li {
   background-color: rgb(210, 239, 233);
   color: black;
 }
+
+p {
+  margin: 0;
+  padding: 10px;
+  height: 30px;
+  font-size: 24pt;
+  border-top: rgb(215,215,215) solid 1px;
+  text-align: center;
+}

@@ -265,6 +265,10 @@ a {
   display: inline-block;
 }
 
+#ext-provisu-inner .hidden-xs {
+  visibility: hidden;
+}
+
 #ext-provisu-inner input,
 #ext-provisu-inner select {
   font: inherit;

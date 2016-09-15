@@ -37,6 +37,7 @@ switch (alterStyle) {
 function unalter(document) {
   document.documentElement.innerHTML = window.localStorage.getItem('hash');
   window.localStorage.removeItem('alter-style');
+  window.localStorage.removeItem('hideImage');
 }
 
 /**
@@ -179,7 +180,22 @@ function parse(document) {
     ],
     transformTags: {
       img: function(tagName, attribs) {
+        // TODO: fix hideImages
+        // var hideImages = window.localStorage.getItem('hideImages');
+        if (attribs.class && attribs.class.match(/hidden-xs/)) {
+          return {
+            tagName: 'span',
+            text: '',
+          };
+        }
         var alt = attribs.alt ? 'alt: ' + attribs.alt : '';
+        // TODO: fix hideImages
+        // if (hideImages) {
+        //   return {
+        //     tagName: 'p',
+        //     text: attribs.alt,
+        //   };
+        // }
         return {
           tagName: 'p',
           text: '<img src="' + attribs.src + '" alt="' + attribs.alt + '" />' +
