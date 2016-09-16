@@ -5,13 +5,14 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import del from 'del';
 import runSequence from 'run-sequence';
 import {stream as wiredep} from 'wiredep';
+import download from 'gulp-download';
+import decompress from 'gulp-decompress';
 
 const $ = gulpLoadPlugins();
 
 gulp.task('extras', () => {
   return gulp.src([
     'app/*.*',
-    '_locales/**',
     '!app/scripts.babel',
     '!app/*.json',
     '!app/*.html',
@@ -58,6 +59,13 @@ gulp.task('lint', lint('app/scripts.babel/**/*.js', {
     es6: true
   }
 }));
+
+gulp.task('lang', () => {
+  return download('https://localise.biz:443/api/export/archive/json.zip?' +
+    'key=dabd2dcd5915b93046701058e3a44a6c&format=chrome')
+    .pipe(decompress({strip: 1}))
+    .pipe(gulp.dest('dist'));
+});
 
 gulp.task('images', () => {
   return gulp.src('app/images/**/*')
@@ -124,7 +132,6 @@ gulp.task('watch', ['lint', 'babel', 'html'], () => {
     'app/scripts/**/*.js',
     'app/images/**/*',
     'app/styles/**/*',
-    '_locales/**/*.json',
   ]).on('change', $.livereload.reload);
 
   gulp.watch('app/scripts.babel/**/*.js', ['lint', 'babel']);
