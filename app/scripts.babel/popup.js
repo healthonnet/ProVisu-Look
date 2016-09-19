@@ -26,7 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('normal').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
-      code: 'alter(document, \'normal\');',
+      code: 'alter(document, \'normal\', { alt: \'' +
+        chrome.i18n.getMessage('imageAlt') + '\' });',
     });
   });
   document.getElementById('normal').addEventListener('mouseover', function() {
@@ -39,7 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('black').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
-      code: 'alter(document, \'black\');',
+      code: 'alter(document, \'black\', { alt: \'' +
+        chrome.i18n.getMessage('imageAlt') + '\' });',
     });
   });
   document.getElementById('black').addEventListener('mouseover', function() {
@@ -52,7 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('blue').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
-      code: 'alter(document, \'blue\');',
+      code: 'alter(document, \'blue\', { alt: \'' +
+        chrome.i18n.getMessage('imageAlt') + '\' });',
     });
   });
   document.getElementById('blue').addEventListener('mouseover', function() {
@@ -65,7 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('cyan').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
-      code: 'alter(document, \'cyan\');',
+      code: 'alter(document, \'cyan\', { alt: \'' +
+        chrome.i18n.getMessage('imageAlt') + '\' });',
     });
   });
   document.getElementById('cyan').addEventListener('mouseover', function() {
@@ -78,7 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('smaller').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
-      code: 'alter(document, \'smaller\');',
+      code: 'alter(document, \'smaller\', { alt: \'' +
+        chrome.i18n.getMessage('imageAlt') + '\' });',
     });
   });
   document.getElementById('smaller').addEventListener('mouseover', function() {
@@ -91,7 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('bigger').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
-      code: 'alter(document, \'bigger\');',
+      code: 'alter(document, \'bigger\', { alt: \'' +
+        chrome.i18n.getMessage('imageAlt') + '\' });',
     });
   });
   document.getElementById('bigger').addEventListener('mouseover', function() {

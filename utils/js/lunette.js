@@ -43,10 +43,10 @@ function unalter(document) {
 /**
  * Alter the layout toward visually impaired style
  */
-function alter(document, style) {
+function alter(document, style, options) {
   var alterStyle = window.localStorage.getItem('alter-style');
   if (!alterStyle) {
-    parse(document);
+    parse(document, options);
   }
   switch (style) {
     case 'normal': {
@@ -152,7 +152,11 @@ function setFontSize(size) {
   window.localStorage.setItem('font-size', size);
 }
 
-function parse(document) {
+function parse(document, options) {
+  options = options || {};
+  if (!options.alt) {
+    options.alt = 'alt:';
+  }
   var base = document.URL;
   var clean = sanitizeHtml(document.documentElement.innerHTML, {
     allowedTags: [
@@ -188,7 +192,7 @@ function parse(document) {
             text: '',
           };
         }
-        var alt = attribs.alt ? 'alt: ' + attribs.alt : '';
+        var alt = attribs.alt ? options.alt + ' ' + attribs.alt : '';
         // TODO: fix hideImages
         // if (hideImages) {
         //   return {
@@ -212,7 +216,7 @@ function parse(document) {
     '<title>' + document.getElementsByTagName('title')[0].innerHTML +
     '</title>' +
     '</head>' +
-    '<body>' +
+    '<body id="ext-provisu">' +
     '<div id="ext-provisu-inner">' +
     clean + '</div>' +
     '</body>' +

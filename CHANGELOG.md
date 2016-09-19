@@ -1,6 +1,13 @@
 HON-Provisu-Extension Changelog
 ===============================
 
+v0.0.3 - 2016-09-19
+-------------------
+
+* themed forms.
+* css no longer affects original tabs.
+* custom image alt.
+
 v0.0.2 - 2016-09-15
 -------------------
 
