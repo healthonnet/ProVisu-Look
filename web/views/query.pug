@@ -1,7 +1,16 @@
 extends layout
 
 block content
-  h1 Render a website
-  form(method="get", action="/", class="form")
-    input(type="text", name="url", placeholder="Enter an url...")
-    input(type="submit")
+  h2 #{renderWebsite}
+  //  form(method="get", action="/", class="form")
+  //    input(type="text", name="url", placeholder!=enterUrl)
+  //    input(type="submit")
+  iframe(id="frame", src="http://provisu.honservices.org/fr", style="width: 90%; height: 900px;")
+  script
+    | var doc = document.getElementById('frame').contentWindow.document;
+    //- doc.open();
+    | var script = doc.createElement('script');
+    | script.type = 'text/javascript';
+    | script.text = 'alert(\'w00t!\')';
+    //- doc.appendChild(script);
+    //- doc.close();

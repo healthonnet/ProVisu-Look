@@ -7,30 +7,32 @@ html
     title Test Lunette Provisu
     link(rel='stylesheet', href='css/lunette.css', type='text/css')
   body#ext-provisu
-    h1.top-h1 Look Provisu
+    #ext-provisu-inner
+      if i18n
+        h1 #{i18n.appName.message}
+      block content
     #sidebox
       ul
         li
           a(href=external, target="_blank")
             .item.item-normal De
         li
-          a(href='javascript: toNormal();')
+          a(href="javascript: alter(document, 'normal');")
             .item.item-normal  Aa
         li
-          a(href='javascript: toBlack();')
+          a(href="javascript: alter(document, 'black');")
             .item.item-black  Aa
         li
-          a(href='javascript: toBlue();')
+          a(href="javascript: alter(document, 'blue');")
             .item.item-blue  Aa
         li
-          a(href='javascript: toCyan();')
+          a(href="javascript: alter(document, 'cyan');")
             .item.item-cyan  Aa
         li
-          a(href='javascript: toSmallest();')
+          a(href="javascript: alter(document, 'smaller');")
             .item.item-normal  A-
         li
-          a(href='javascript: toBigger();')
+          a(href="javascript: alter(document, 'bigger');")
             .item.item-normal  A+
-    div
-      block content
-    script(src=localUrl + "/js/lunette.js", type="text/javascript")
+//    script(src!=sanitizeHtml, type="text/javascript")
+//    script(src!=lunette, type="text/javascript")

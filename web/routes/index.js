@@ -5,6 +5,7 @@ var request = require('request');
 var sanitizeHtml = require('sanitize-html');
 var url = require('url');
 var router = express.Router();
+var i18n = require('../_locales/en/messages.json');
 
 /**
  * GET /
@@ -73,10 +74,15 @@ router.get('/', function(req, res, next) {
          * Rendering
          */
         res.render('index', {
-          content: clean,
+          // content: clean,
+          content: body,
           baseUrl: base.protocol + '//' + base.host,
-          localUrl: 'http://' + req.headers.host,
+          sanitizeHtml: 'http://' + req.headers.host +
+            '/js/sanitize-html.min.js',
+          lunette: 'http://' + req.headers.host +
+            '/js/lunette.js',
           external: req.query.url,
+          i18n: i18n,
         });
       } else if (error) {
 
@@ -85,6 +91,11 @@ router.get('/', function(req, res, next) {
          */
         res.render('error', {
           error: error,
+          i18n: i18n,
+          sanitizeHtml: 'http://' + req.headers.host +
+            '/js/sanitize-html.min.js',
+          lunette: 'http://' + req.headers.host +
+            '/js/lunette.js',
         });
       } else {
 
@@ -96,6 +107,11 @@ router.get('/', function(req, res, next) {
             status: response.statusCode,
           },
           message: response.statusMessage,
+          i18n: i18n,
+          sanitizeHtml: 'http://' + req.headers.host +
+            '/js/sanitize-html.min.js',
+          lunette: 'http://' + req.headers.host +
+            '/js/lunette.js',
         });
       }
     });
@@ -104,7 +120,13 @@ router.get('/', function(req, res, next) {
     /**
      * Render basic form for website query
      */
-    res.render('query');
+    res.render('query', {
+      i18n: i18n,
+      sanitizeHtml: 'http://' + req.headers.host +
+        '/js/sanitize-html.min.js',
+      lunette: 'http://' + req.headers.host +
+        '/js/lunette.js',
+    });
   }
 });
 

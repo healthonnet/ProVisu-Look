@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('normal').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
       code: 'alter(document, \'normal\', { alt: \'' +
-        chrome.i18n.getMessage('imageAlt') + '\' });',
+        chrome.i18n.getMessage('imageAlt').replace(/'/, '\\\'') + '\' });',
     });
   });
   document.getElementById('normal').addEventListener('mouseover', function() {
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('black').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
       code: 'alter(document, \'black\', { alt: \'' +
-        chrome.i18n.getMessage('imageAlt') + '\' });',
+        chrome.i18n.getMessage('imageAlt').replace(/'/, '\\\'') + '\' });',
     });
   });
   document.getElementById('black').addEventListener('mouseover', function() {
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('blue').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
       code: 'alter(document, \'blue\', { alt: \'' +
-        chrome.i18n.getMessage('imageAlt') + '\' });',
+        chrome.i18n.getMessage('imageAlt').replace(/'/, '\\\'') + '\' });',
     });
   });
   document.getElementById('blue').addEventListener('mouseover', function() {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('cyan').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
       code: 'alter(document, \'cyan\', { alt: \'' +
-        chrome.i18n.getMessage('imageAlt') + '\' });',
+        chrome.i18n.getMessage('imageAlt').replace(/'/, '\\\'') + '\' });',
     });
   });
   document.getElementById('cyan').addEventListener('mouseover', function() {
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('smaller').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
       code: 'alter(document, \'smaller\', { alt: \'' +
-        chrome.i18n.getMessage('imageAlt') + '\' });',
+        chrome.i18n.getMessage('imageAlt').replace(/'/, '\\\'') + '\' });',
     });
   });
   document.getElementById('smaller').addEventListener('mouseover', function() {
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('bigger').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
       code: 'alter(document, \'bigger\', { alt: \'' +
-        chrome.i18n.getMessage('imageAlt') + '\' });',
+        chrome.i18n.getMessage('imageAlt').replace(/'/, '\\\'') + '\' });',
     });
   });
   document.getElementById('bigger').addEventListener('mouseover', function() {

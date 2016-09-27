@@ -1,6 +1,12 @@
 HON-Provisu-Extension Changelog
 ===============================
 
+v0.0.4 - 2016-09-19
+-------------------
+
+* fix quotes problems in translations.
+* fix css for service.
+
 v0.0.3 - 2016-09-19
 -------------------
 
@@ -18,4 +24,4 @@ v0.0.2 - 2016-09-15
 v0.0.1 - 2016-09-15
 -------------------
 
-* Initial release for test purposes
+* Initial release for test purposes.

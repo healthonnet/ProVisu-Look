@@ -1,45 +1,82 @@
 'use strict';
 
 /**
- * Add click layers
+ * Store the original layout.
  */
-var box = '<div class="line-box">' +
-  'Header' +
-  '</div>';
-if (document.getElementsByTagName('header').length > 0) {
-  var header = document.getElementsByTagName('header')[0].innerHTML;
-  document.getElementsByTagName('header')[0].innerHTML = box;
-  document.getElementsByTagName('header')[0].addEventListener('click',
-    function() {
-      document.getElementsByTagName('header')[0].innerHTML = header;
-    });
-}
-
 window.localStorage.setItem('hash', document.documentElement.innerHTML);
+
+/**
+ * Propagate preferences
+ */
 var alterStyle = window.localStorage.getItem('alter-style');
 if (alterStyle) {
-  switch (alterStyle) {
-    case 'default': {
-      break;
-    }
+  parse(document);
+}
+switch (alterStyle) {
+  case 'normal': {
+    toNormal(document);
+    break;
+  }
+  case 'black': {
+    toBlack(document);
+    break;
+  }
+  case 'blue': {
+    toBlue(document);
+    break;
+  }
+  case 'cyan': {
+    toCyan(document);
+    break;
+  }
+}
+
+/**
+ * Return the layout to its original style.
+ */
+function unalter(document) {
+  document.documentElement.innerHTML = window.localStorage.getItem('hash');
+  window.localStorage.removeItem('alter-style');
+  window.localStorage.removeItem('hideImage');
+}
+
+/**
+ * Alter the layout toward visually impaired style
+ */
+function alter(document, style, options) {
+  var alterStyle = window.localStorage.getItem('alter-style');
+  if (!alterStyle) {
+    parse(document, options);
+  }
+  switch (style) {
     case 'normal': {
-      alter(document);
       toNormal(document);
       break;
     }
     case 'black': {
-      alter(document);
       toBlack(document);
       break;
     }
     case 'blue': {
-      alter(document);
       toBlue(document);
       break;
     }
     case 'cyan': {
-      alter(document);
       toCyan(document);
+      break;
+    }
+    case 'smaller': {
+      if (!alterStyle) {
+        toNormal(document);
+      }
+      smaller(document);
+      break;
+    }
+    case 'bigger': {
+      if (!alterStyle) {
+        toNormal(document);
+      }
+      bigger(document);
       break;
     }
   }
@@ -54,6 +91,7 @@ function toNormal() {
   document.body.classList.remove('ext-provisu-blue');
   document.body.classList.remove('ext-provisu-cyan');
   window.localStorage.setItem('alter-style', 'normal');
+  setFontSize();
 }
 
 function toBlack() {
@@ -62,6 +100,7 @@ function toBlack() {
   document.body.classList.remove('ext-provisu-blue');
   document.body.classList.remove('ext-provisu-cyan');
   window.localStorage.setItem('alter-style', 'black');
+  setFontSize();
 }
 
 function toBlue() {
@@ -70,6 +109,7 @@ function toBlue() {
   document.body.classList.remove('ext-provisu-normal');
   document.body.classList.remove('ext-provisu-cyan');
   window.localStorage.setItem('alter-style', 'blue');
+  setFontSize();
 }
 
 function toCyan() {
@@ -78,23 +118,45 @@ function toCyan() {
   document.body.classList.remove('ext-provisu-blue');
   document.body.classList.remove('ext-provisu-normal');
   window.localStorage.setItem('alter-style', 'cyan');
+  setFontSize();
 }
 
-function toSmallest() {
+function smaller() {
   var el = document.body;
   var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
   var fontSize = parseFloat(style);
-  el.style.fontSize = (fontSize - 5) + 'px';
+  setFontSize(fontSize - 5);
 }
 
-function toBigger() {
+function bigger() {
   var el = document.body;
   var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
   var fontSize = parseFloat(style);
-  el.style.fontSize = (fontSize + 5) + 'px';
+  setFontSize(fontSize + 5);
 }
 
-function alter(document) {
+function setFontSize(size) {
+  var el = document.body;
+  var fontSize = window.localStorage.getItem('font-size');
+  if (size) {
+    el.style.fontSize = size + 'px';
+  } else if (fontSize) {
+    el.style.fontSize = fontSize + 'px';
+    size = fontSize;
+  } else {
+    var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
+    fontSize = parseFloat(style);
+    el.style.fontSize = fontSize + 'px';
+    size = fontSize;
+  }
+  window.localStorage.setItem('font-size', size);
+}
+
+function parse(document, options) {
+  options = options || {};
+  if (!options.alt) {
+    options.alt = 'alt:';
+  }
   var base = document.URL;
   var clean = sanitizeHtml(document.documentElement.innerHTML, {
     allowedTags: [
@@ -103,17 +165,41 @@ function alter(document) {
       'ul', 'ol', 'li',
       'b', 'strong', 'i', 'em',
       'header', 'footer',
+      'input', 'select', 'button',
+      'form',
     ],
     allowedAttributes: {
       a: [ 'href' ],
       img: [ 'src', 'alt' ],
+      input: [
+        'type', 'value', 'name', 'id', 'placeholder',
+      ],
+      button: [
+        'type',
+      ],
+      form: [ 'action', 'method' ],
     },
     nonTextTags: [
       'style', 'script', 'textarea', 'noscript', 'head',
     ],
     transformTags: {
       img: function(tagName, attribs) {
-        var alt = (attribs.alt) ? 'alt: ' + attribs.alt : '';
+        // TODO: fix hideImages
+        // var hideImages = window.localStorage.getItem('hideImages');
+        if (attribs.class && attribs.class.match(/hidden-xs/)) {
+          return {
+            tagName: 'span',
+            text: '',
+          };
+        }
+        var alt = attribs.alt ? options.alt + ' ' + attribs.alt : '';
+        // TODO: fix hideImages
+        // if (hideImages) {
+        //   return {
+        //     tagName: 'p',
+        //     text: attribs.alt,
+        //   };
+        // }
         return {
           tagName: 'p',
           text: '<img src="' + attribs.src + '" alt="' + attribs.alt + '" />' +
@@ -130,7 +216,7 @@ function alter(document) {
     '<title>' + document.getElementsByTagName('title')[0].innerHTML +
     '</title>' +
     '</head>' +
-    '<body>' +
+    '<body id="ext-provisu">' +
     '<div id="ext-provisu-inner">' +
     clean + '</div>' +
     '</body>' +
@@ -138,7 +224,19 @@ function alter(document) {
   document.documentElement.innerHTML = foo;
 }
 
-function unalter(document) {
-  document.documentElement.innerHTML = window.localStorage.getItem('hash');
-  window.localStorage.setItem('alter-style', '');
+/**
+ * Add click layers
+ */
+function boxify(document) {
+  var box = '<div class="line-box">' +
+    'Header' +
+    '</div>';
+  if (document.getElementsByTagName('header').length > 0) {
+    var header = document.getElementsByTagName('header')[0].innerHTML;
+    document.getElementsByTagName('header')[0].innerHTML = box;
+    document.getElementsByTagName('header')[0].addEventListener('click',
+      function() {
+        document.getElementsByTagName('header')[0].innerHTML = header;
+      });
+  }
 }

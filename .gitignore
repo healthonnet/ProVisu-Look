@@ -10,4 +10,5 @@ app/scripts
 app/utils
 doc/provisu.pdf
 web/public
+web/_locales
 app/_locales

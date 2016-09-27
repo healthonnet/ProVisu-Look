@@ -152,13 +152,38 @@ function setFontSize(size) {
   window.localStorage.setItem('font-size', size);
 }
 
-function parse(document, options) {
+/**
+ * Parse a document and sanitize it.
+ * options: {
+ *   document:
+ *   alt:
+ *   proxy:
+ * }
+ */
+function parse(options) {
   options = options || {};
-  if (!options.alt) {
-    options.alt = 'alt:';
+
+  // If no document is provided, we can't do anything.
+  if (!options.document) {
+    throw new Error('No document to parse.');
   }
-  var base = document.URL;
-  var clean = sanitizeHtml(document.documentElement.innerHTML, {
+
+  // If no output is provided, we can't print it anywhere.
+  if (!options.output) {
+    throw new Error('No output is provided.');
+  }
+
+  // Default alt title.
+  options.alt = options.alt || 'alt:';
+
+  // Proxy domain.
+  options.proxy = options.proxy || false;
+
+  // Dist server address.
+  options.dist =
+    options.dist || window.location.protocol + '//' + window.location.hostname;
+
+  var clean = sanitizeHtml(options.document, {
     allowedTags: [
       'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
       'p', 'a', 'img', 'hr', 'br',
@@ -192,6 +217,11 @@ function parse(document, options) {
             text: '',
           };
         }
+        var src = attribs.src;
+        if (options.proxy) {
+          var distSrc = url.parse(attribs.src);
+          src = options.proxy + distSrc.path;
+        }
         var alt = attribs.alt ? options.alt + ' ' + attribs.alt : '';
         // TODO: fix hideImages
         // if (hideImages) {
@@ -202,12 +232,15 @@ function parse(document, options) {
         // }
         return {
           tagName: 'p',
-          text: '<img src="' + attribs.src + '" alt="' + attribs.alt + '" />' +
+          text: '<img src="' + src + '" alt="' + attribs.alt + '" />' +
             alt,
         };
       },
     },
   });
+}
+
+function parse(document, options) {
 
   var foo = '<!DOCTYPE html>' +
     '<html>' +
