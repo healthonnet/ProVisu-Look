@@ -10,7 +10,11 @@ window.localStorage.setItem('hash', document.documentElement.innerHTML);
  */
 var alterStyle = window.localStorage.getItem('alter-style');
 if (alterStyle) {
-  parse(document);
+  var options = {
+    document: document,
+    output: 'smaug',
+  };
+  parse(options);
 }
 switch (alterStyle) {
   case 'normal': {
@@ -46,7 +50,9 @@ function unalter(document) {
 function alter(document, style, options) {
   var alterStyle = window.localStorage.getItem('alter-style');
   if (!alterStyle) {
-    parse(document, options);
+    options.document = document;
+    options.output = 'smaug';
+    parse(options);
   }
   switch (style) {
     case 'normal': {
@@ -183,7 +189,7 @@ function parse(options) {
   options.dist =
     options.dist || window.location.protocol + '//' + window.location.hostname;
 
-  var clean = sanitizeHtml(options.document, {
+  var clean = sanitizeHtml(options.document.documentElement.innerHTML, {
     allowedTags: [
       'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
       'p', 'a', 'img', 'hr', 'br',
@@ -218,10 +224,11 @@ function parse(options) {
           };
         }
         var src = attribs.src;
-        if (options.proxy) {
-          var distSrc = url.parse(attribs.src);
-          src = options.proxy + distSrc.path;
-        }
+        // PROXY IMG
+        // if (options.proxy) {
+        //   var distSrc = url.parse(attribs.src);
+        //   src = options.proxy + distSrc.path;
+        // }
         var alt = attribs.alt ? options.alt + ' ' + attribs.alt : '';
         // TODO: fix hideImages
         // if (hideImages) {
@@ -238,15 +245,12 @@ function parse(options) {
       },
     },
   });
-}
-
-function parse(document, options) {
 
   var foo = '<!DOCTYPE html>' +
     '<html>' +
     '<head>' +
     '<meta charset="utf-8">' +
-    '<title>' + document.getElementsByTagName('title')[0].innerHTML +
+    '<title>' + options.document.getElementsByTagName('title')[0].innerHTML +
     '</title>' +
     '</head>' +
     '<body id="ext-provisu">' +
@@ -254,8 +258,26 @@ function parse(document, options) {
     clean + '</div>' +
     '</body>' +
     '</html>';
-  document.documentElement.innerHTML = foo;
+  options.document.documentElement.innerHTML = foo;
 }
+
+// OLD STUFF
+// function parse(document, options) {
+//   var clean = parse();
+//   var foo = '<!DOCTYPE html>' +
+//     '<html>' +
+//     '<head>' +
+//     '<meta charset="utf-8">' +
+//     '<title>' + document.getElementsByTagName('title')[0].innerHTML +
+//     '</title>' +
+//     '</head>' +
+//     '<body id="ext-provisu">' +
+//     '<div id="ext-provisu-inner">' +
+//     clean + '</div>' +
+//     '</body>' +
+//     '</html>';
+//   document.documentElement.innerHTML = foo;
+// }
 
 /**
  * Add click layers
