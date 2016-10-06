@@ -18,11 +18,11 @@
 
 #ext-provisu-inner {
   position: relative;
-  padding: 20px 40px;
+  padding: 20px 0;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   border: solid 1px rgba(0,0,0,0.3);
   width: 90%;
-  margin: 20px auto;
+  margin: 20px 5%;
 }
 
 #ext-provisu-inner h1 {
@@ -287,14 +287,22 @@
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 90px;
   z-index: 1000;
+  background-color: white;
+}
+
+#sidebox ul {
+  width: 90%;
+  margin: 0 auto;
   font-size: 23pt;
   height: 80px;
-  width: 100%;
-  border-bottom: black solid 1px;
-  background-color: white;
-  margin: 0;
-  padding: 10px 0;
+  padding: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  border-left: solid 1px rgba(0,0,0,0.3);
+  border-right: solid 1px rgba(0,0,0,0.3);
+  border-bottom: solid 1px rgba(0,0,0,0.3);
 }
 
 #sidebox li a {
@@ -303,7 +311,7 @@
 
 #sidebox li {
   display: inline-block;
-  /*margin: 5px;*/
+  margin: 5px;
 }
 
 #sidebox li a {

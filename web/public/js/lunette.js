@@ -3,7 +3,10 @@
 /**
  * Store the original layout.
  */
-window.localStorage.setItem('hash', document.documentElement.innerHTML);
+var noParse = window.localStorage.getItem('noParse') || false;
+if (!noParse) {
+  window.localStorage.setItem('hash', document.documentElement.innerHTML);
+}
 
 /**
  * Propagate preferences
@@ -38,7 +41,7 @@ switch (alterStyle) {
  * Return the layout to its original style.
  */
 function unalter(document) {
-  var noParse = window.localStorage.getItem('noParse');
+  var noParse = window.localStorage.getItem('noParse') || false;
   if (!noParse) {
     document.documentElement.innerHTML = window.localStorage.getItem('hash');
   }
