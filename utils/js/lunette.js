@@ -12,7 +12,6 @@ var alterStyle = window.localStorage.getItem('alter-style');
 if (alterStyle) {
   var options = {
     document: document,
-    output: 'smaug',
   };
   parse(options);
 }
@@ -39,7 +38,10 @@ switch (alterStyle) {
  * Return the layout to its original style.
  */
 function unalter(document) {
-  document.documentElement.innerHTML = window.localStorage.getItem('hash');
+  var noParse = window.localStorage.getItem('noParse');
+  if (!noParse) {
+    document.documentElement.innerHTML = window.localStorage.getItem('hash');
+  }
   window.localStorage.removeItem('alter-style');
   window.localStorage.removeItem('hideImage');
 }
@@ -48,10 +50,14 @@ function unalter(document) {
  * Alter the layout toward visually impaired style
  */
 function alter(document, style, options) {
+  options = options || {};
+  options.noParse = options.noParse || false;
   var alterStyle = window.localStorage.getItem('alter-style');
-  if (!alterStyle) {
+  if (options.noParse) {
+    window.localStorage.setItem('noParse', true);
+  }
+  if (!options.noParse && !alterStyle) {
     options.document = document;
-    options.output = 'smaug';
     parse(options);
   }
   switch (style) {
@@ -174,16 +180,17 @@ function parse(options) {
     throw new Error('No document to parse.');
   }
 
-  // If no output is provided, we can't print it anywhere.
-  if (!options.output) {
-    throw new Error('No output is provided.');
-  }
+  // Insertion of lunette toolbar
+  options.toolbar = options.toolbar || false;
 
   // Default alt title.
   options.alt = options.alt || 'alt:';
 
   // Proxy domain.
   options.proxy = options.proxy || false;
+
+  // Full output
+  options.full = options.full || false;
 
   // Dist server address.
   options.dist =
@@ -246,38 +253,78 @@ function parse(options) {
     },
   });
 
-  var foo = '<!DOCTYPE html>' +
+  var toolbar = '';
+  if (options.toolbar) {
+    toolbar =
+      '<ul class="sidebox sidebox-horizontal">' +
+      '<li>' +
+      '<a href="#" id="default">' +
+      '<div class="item item-normal">' +
+      '<i class="fa fa-eye" aria-hidden="true"></i>' +
+      '</div>' +
+      '</a>' +
+      '</li>' +
+      '<li>' +
+      '<a href="#" id="normal">' +
+      '<div class="item item-normal">' +
+      '<i class="fa fa-low-vision" aria-hidden="true"></i>' +
+      '</div>' +
+      '</a>' +
+      '</li>' +
+      '<li>' +
+      '<a href="#" id="black">' +
+      '<div class="item item-black">' +
+      '<i class="fa fa-low-vision" aria-hidden="true"></i>' +
+      '</div>' +
+      '</a>' +
+      '</li>' +
+      '<li>' +
+      '<a href="#" id="blue">' +
+      '<div class="item item-blue">' +
+      '<i class="fa fa-low-vision" aria-hidden="true"></i>' +
+      '</div>' +
+      '</a>' +
+      '</li>' +
+      '<li>' +
+      '<a href="#" id="cyan">' +
+      '<div class="item item-cyan">' +
+      '<i class="fa fa-low-vision" aria-hidden="true"></i>' +
+      '</div>' +
+      '</a>' +
+      '</li>' +
+      '</ul>' +
+      '<ul class="sidebox sidebox-horizontal">' +
+      '<li>' +
+      '<a href="#" id="smaller">' +
+      '<div class="item item-normal">A-</div>' +
+      '</a>' +
+      '</li>' +
+      '<li>' +
+      '<a href="#" id="bigger">' +
+      '<div class="item item-normal">A+</div>' +
+      '</a>' +
+      '</li>' +
+      '</ul>';
+  }
+
+  var output = clean;
+  if (!options.full) {
+    output = '<!DOCTYPE html>' +
     '<html>' +
     '<head>' +
     '<meta charset="utf-8">' +
     '<title>' + options.document.getElementsByTagName('title')[0].innerHTML +
     '</title>' +
     '</head>' +
+    toolbar +
     '<body id="ext-provisu">' +
     '<div id="ext-provisu-inner">' +
     clean + '</div>' +
     '</body>' +
     '</html>';
-  options.document.documentElement.innerHTML = foo;
+  }
+  options.document.documentElement.innerHTML = output;
 }
-
-// OLD STUFF
-// function parse(document, options) {
-//   var clean = parse();
-//   var foo = '<!DOCTYPE html>' +
-//     '<html>' +
-//     '<head>' +
-//     '<meta charset="utf-8">' +
-//     '<title>' + document.getElementsByTagName('title')[0].innerHTML +
-//     '</title>' +
-//     '</head>' +
-//     '<body id="ext-provisu">' +
-//     '<div id="ext-provisu-inner">' +
-//     clean + '</div>' +
-//     '</body>' +
-//     '</html>';
-//   document.documentElement.innerHTML = foo;
-// }
 
 /**
  * Add click layers

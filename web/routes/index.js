@@ -74,8 +74,7 @@ router.get('/', function(req, res, next) {
          * Rendering
          */
         res.render('index', {
-          // content: clean,
-          content: body,
+          content: clean,
           baseUrl: base.protocol + '//' + base.host,
           sanitizeHtml: 'http://' + req.headers.host +
             '/js/sanitize-html.min.js',
