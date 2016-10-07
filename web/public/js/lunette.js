@@ -3,14 +3,20 @@
 /**
  * Store the original layout.
  */
-window.localStorage.setItem('hash', document.documentElement.innerHTML);
+var noParse = window.localStorage.getItem('noParse') || false;
+if (!noParse) {
+  window.localStorage.setItem('hash', document.documentElement.innerHTML);
+}
 
 /**
  * Propagate preferences
  */
 var alterStyle = window.localStorage.getItem('alter-style');
 if (alterStyle) {
-  parse(document);
+  var options = {
+    document: document,
+  };
+  parse(options);
 }
 switch (alterStyle) {
   case 'normal': {
@@ -35,7 +41,10 @@ switch (alterStyle) {
  * Return the layout to its original style.
  */
 function unalter(document) {
-  document.documentElement.innerHTML = window.localStorage.getItem('hash');
+  var noParse = window.localStorage.getItem('noParse') || false;
+  if (!noParse) {
+    document.documentElement.innerHTML = window.localStorage.getItem('hash');
+  }
   window.localStorage.removeItem('alter-style');
   window.localStorage.removeItem('hideImage');
 }
@@ -44,9 +53,15 @@ function unalter(document) {
  * Alter the layout toward visually impaired style
  */
 function alter(document, style, options) {
+  options = options || {};
+  options.noParse = options.noParse || false;
   var alterStyle = window.localStorage.getItem('alter-style');
-  if (!alterStyle) {
-    parse(document, options);
+  if (options.noParse) {
+    window.localStorage.setItem('noParse', true);
+  }
+  if (!options.noParse && !alterStyle) {
+    options.document = document;
+    parse(options);
   }
   switch (style) {
     case 'normal': {
@@ -152,13 +167,39 @@ function setFontSize(size) {
   window.localStorage.setItem('font-size', size);
 }
 
-function parse(document, options) {
+/**
+ * Parse a document and sanitize it.
+ * options: {
+ *   document:
+ *   alt:
+ *   proxy:
+ * }
+ */
+function parse(options) {
   options = options || {};
-  if (!options.alt) {
-    options.alt = 'alt:';
+
+  // If no document is provided, we can't do anything.
+  if (!options.document) {
+    throw new Error('No document to parse.');
   }
-  var base = document.URL;
-  var clean = sanitizeHtml(document.documentElement.innerHTML, {
+
+  // Insertion of lunette toolbar
+  options.toolbar = options.toolbar || false;
+
+  // Default alt title.
+  options.alt = options.alt || 'alt:';
+
+  // Proxy domain.
+  options.proxy = options.proxy || false;
+
+  // Full output
+  options.full = options.full || false;
+
+  // Dist server address.
+  options.dist =
+    options.dist || window.location.protocol + '//' + window.location.hostname;
+
+  var clean = sanitizeHtml(options.document.documentElement.innerHTML, {
     allowedTags: [
       'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
       'p', 'a', 'img', 'hr', 'br',
@@ -192,6 +233,12 @@ function parse(document, options) {
             text: '',
           };
         }
+        var src = attribs.src;
+        // PROXY IMG
+        // if (options.proxy) {
+        //   var distSrc = url.parse(attribs.src);
+        //   src = options.proxy + distSrc.path;
+        // }
         var alt = attribs.alt ? options.alt + ' ' + attribs.alt : '';
         // TODO: fix hideImages
         // if (hideImages) {
@@ -202,26 +249,84 @@ function parse(document, options) {
         // }
         return {
           tagName: 'p',
-          text: '<img src="' + attribs.src + '" alt="' + attribs.alt + '" />' +
+          text: '<img src="' + src + '" alt="' + attribs.alt + '" />' +
             alt,
         };
       },
     },
   });
 
-  var foo = '<!DOCTYPE html>' +
+  var toolbar = '';
+  if (options.toolbar) {
+    toolbar =
+      '<ul class="sidebox sidebox-horizontal">' +
+      '<li>' +
+      '<a href="#" id="default">' +
+      '<div class="item item-normal">' +
+      '<i class="fa fa-eye" aria-hidden="true"></i>' +
+      '</div>' +
+      '</a>' +
+      '</li>' +
+      '<li>' +
+      '<a href="#" id="normal">' +
+      '<div class="item item-normal">' +
+      '<i class="fa fa-low-vision" aria-hidden="true"></i>' +
+      '</div>' +
+      '</a>' +
+      '</li>' +
+      '<li>' +
+      '<a href="#" id="black">' +
+      '<div class="item item-black">' +
+      '<i class="fa fa-low-vision" aria-hidden="true"></i>' +
+      '</div>' +
+      '</a>' +
+      '</li>' +
+      '<li>' +
+      '<a href="#" id="blue">' +
+      '<div class="item item-blue">' +
+      '<i class="fa fa-low-vision" aria-hidden="true"></i>' +
+      '</div>' +
+      '</a>' +
+      '</li>' +
+      '<li>' +
+      '<a href="#" id="cyan">' +
+      '<div class="item item-cyan">' +
+      '<i class="fa fa-low-vision" aria-hidden="true"></i>' +
+      '</div>' +
+      '</a>' +
+      '</li>' +
+      '</ul>' +
+      '<ul class="sidebox sidebox-horizontal">' +
+      '<li>' +
+      '<a href="#" id="smaller">' +
+      '<div class="item item-normal">A-</div>' +
+      '</a>' +
+      '</li>' +
+      '<li>' +
+      '<a href="#" id="bigger">' +
+      '<div class="item item-normal">A+</div>' +
+      '</a>' +
+      '</li>' +
+      '</ul>';
+  }
+
+  var output = clean;
+  if (!options.full) {
+    output = '<!DOCTYPE html>' +
     '<html>' +
     '<head>' +
     '<meta charset="utf-8">' +
-    '<title>' + document.getElementsByTagName('title')[0].innerHTML +
+    '<title>' + options.document.getElementsByTagName('title')[0].innerHTML +
     '</title>' +
     '</head>' +
+    toolbar +
     '<body id="ext-provisu">' +
     '<div id="ext-provisu-inner">' +
     clean + '</div>' +
     '</body>' +
     '</html>';
-  document.documentElement.innerHTML = foo;
+  }
+  options.document.documentElement.innerHTML = output;
 }
 
 /**

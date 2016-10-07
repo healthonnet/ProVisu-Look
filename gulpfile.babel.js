@@ -7,6 +7,7 @@ import runSequence from 'run-sequence';
 import {stream as wiredep} from 'wiredep';
 import download from 'gulp-download';
 import decompress from 'gulp-decompress';
+import rename from 'gulp-rename';
 
 const $ = gulpLoadPlugins();
 
@@ -44,6 +45,22 @@ gulp.task('web-assets', () => {
   ], {
     dot: true,
   }).pipe(gulp.dest('web/public'));
+});
+
+gulp.task('web-font-awesome', () => {
+  return gulp.src([
+    'app/bower_components/components-font-awesome/**'
+  ]).pipe(gulp.dest('web/public/bower_components/components-font-awesome'));
+});
+
+gulp.task('favicon', () => {
+  return gulp.src([
+    'app/images/icon-38.png',
+  ], {
+    dot: true,
+  })
+  .pipe(rename('favicon.png'))
+  .pipe(gulp.dest('web/public'));
 });
 
 function lint(files, options) {
@@ -169,7 +186,7 @@ gulp.task('server', (cb) => {
 });
 
 gulp.task('web', (cb) => {
-  runSequence('web-assets', 'server', cb);
+  runSequence('web-assets', 'favicon', 'web-font-awesome', 'server', cb);
 });
 
 gulp.task('doc', function() {

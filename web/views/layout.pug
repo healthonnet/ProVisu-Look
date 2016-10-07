@@ -6,33 +6,43 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title Test Lunette Provisu
     link(rel='stylesheet', href='css/lunette.css', type='text/css')
+    link(rel="icon", type="image/png", href="favicon.png")
+    link(rel='stylesheet', href='bower_components/components-font-awesome/css/font-awesome.min.css')
   body#ext-provisu
-    #ext-provisu-inner
+    script(src!=sanitizeHtml, type="text/javascript")
+    script(src!=lunette, type="text/javascript")
+    #sidebox
+      ul
+        if redirect
+          li
+            a#default(href="#{redirect}")
+              .item.item-normal
+                i.fa.fa-eye(aria-hidden="true")
+        li
+          a#normal(href="javascript: alter(document, 'normal', { noParse: true });")
+            .item.item-normal
+              i.fa.fa-low-vision(aria-hidden="true")
+        li
+          a#black(href="javascript: alter(document, 'black', { noParse: true });")
+            .item.item-black
+              i.fa.fa-low-vision(aria-hidden="true")
+        li
+          a#blue(href="javascript: alter(document, 'blue', { noParse: true });")
+            .item.item-blue
+              i.fa.fa-low-vision(aria-hidden="true")
+        li
+          a#cyan(href="javascript: alter(document, 'cyan', { noParse: true });")
+            .item.item-cyan
+              i.fa.fa-low-vision(aria-hidden="true")
+        li
+          a#smaller(href="javascript: alter(document, 'smaller', { noParse: true });")
+            .item.item-normal
+              |A-
+        li
+          a#bigger(href="javascript: alter(document, 'bigger', { noParse: true });")
+            .item.item-normal
+              |A+
+    #ext-provisu-inner.ext-provisu-under
       if i18n
         h1 #{i18n.appName.message}
       block content
-    #sidebox
-      ul
-        li
-          a(href=external, target="_blank")
-            .item.item-normal De
-        li
-          a(href="javascript: alter(document, 'normal');")
-            .item.item-normal  Aa
-        li
-          a(href="javascript: alter(document, 'black');")
-            .item.item-black  Aa
-        li
-          a(href="javascript: alter(document, 'blue');")
-            .item.item-blue  Aa
-        li
-          a(href="javascript: alter(document, 'cyan');")
-            .item.item-cyan  Aa
-        li
-          a(href="javascript: alter(document, 'smaller');")
-            .item.item-normal  A-
-        li
-          a(href="javascript: alter(document, 'bigger');")
-            .item.item-normal  A+
-//    script(src!=sanitizeHtml, type="text/javascript")
-//    script(src!=lunette, type="text/javascript")

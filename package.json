@@ -12,7 +12,8 @@
     "morgan": "~1.6.1",
     "pug": "^2.0.0-beta5",
     "request": "^2.74.0",
-    "sanitize-html": "^1.13.0"
+    "sanitize-html": "^1.13.0",
+    "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
@@ -33,6 +34,7 @@
     "gulp-livereload": "^3.8.1",
     "gulp-load-plugins": "^1.2.0",
     "gulp-markdown-pdf": "^4.0.0",
+    "gulp-rename": "^1.2.2",
     "gulp-server": "^0.1.0",
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",

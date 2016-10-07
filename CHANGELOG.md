@@ -1,11 +1,12 @@
 HON-Provisu-Extension Changelog
 ===============================
 
-v0.0.4 - 2016-09-19
+v0.0.4 - 2016-10-07
 -------------------
 
 * fix quotes problems in translations.
 * fix css for service.
+* lists are in 1, 2 or 3 columns according to window width.
 
 v0.0.3 - 2016-09-19
 -------------------

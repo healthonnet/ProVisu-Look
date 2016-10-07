@@ -18,18 +18,15 @@
 
 #ext-provisu-inner {
   position: relative;
-  padding: 20px 40px;
+  padding: 20px 0;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   border: solid 1px rgba(0,0,0,0.3);
   width: 90%;
-  margin: 20px auto;
+  margin: 20px 5%;
 }
 
-#ext-provisu-inner ul,
-#ext-provisu-inner li {
-  padding: 10px;
-  margin: 0;
-  list-style-type: none;
+#ext-provisu-inner div {
+  padding: 40px;
 }
 
 #ext-provisu-inner h1 {
@@ -58,14 +55,49 @@
   margin: 0.6em 0;
 }
 
-#ext-provisu-inner ul {
-  columns: 3;
+#ext-provisu-inner ul,
+#ext-provisu-inner ol,
+#ext-provisu-inner li {
+  padding: 10px 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+#ext-provisu-inner ul,
+#ext-provisu-inner ol, {
   display: block;
   width: 100%;
 }
 
-#ext-provisu-inner li {
-  display: inline-block;
+@media(max-width:544px){
+  #ext-provisu-inner li {
+    display: inline-block;
+    width: 100%;
+  }
+}
+@media(max-width:992px){
+  #ext-provisu-inner li {
+    display: inline-block;
+    width: 50%;
+  }
+}
+@media(min-width: 993px) {
+  #ext-provisu-inner li {
+    display: inline-block;
+    width: 32%;
+  }
+}
+
+#ext-provisu-inner ul li ul,
+#ext-provisu-inner ul li ul li,
+#ext-provisu-inner ol li ul,
+#ext-provisu-inner ol li ul li,
+#ext-provisu-inner ul li ol,
+#ext-provisu-inner ul li ol li,
+#ext-provisu-inner ol li ol,
+#ext-provisu-inner ol li ol li {
+  display: block;
+  width: 100%;
 }
 
 #ext-provisu-inner .hidden-xs {
@@ -265,21 +297,38 @@
 /* SIDEBOX */
 /* ************************************************************************** */
 
+.ext-provisu-under {
+  margin-top: 120px !important;
+}
 
 #sidebox {
   position: fixed;
-  top: 100px;
-  left: 90%;
-}
-
-#sidebox ul {
-  border: rgba(0,0,0,0.5) solid 1px;
-  box-shadow: 5px 0 5px 1px rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  z-index: 1000;
   background-color: white;
 }
 
+#sidebox ul {
+  width: 90%;
+  margin: 0 auto;
+  font-size: 23pt;
+  height: 80px;
+  padding: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  border-left: solid 1px rgba(0,0,0,0.3);
+  border-right: solid 1px rgba(0,0,0,0.3);
+  border-bottom: solid 1px rgba(0,0,0,0.3);
+}
+
+#sidebox li a {
+  text-decoration: none;
+}
+
 #sidebox li {
-  display: block;
+  display: inline-block;
   margin: 5px;
 }
 
@@ -296,12 +345,12 @@
 }
 
 #sidebox li a:link div.item-normal {
-  background-color: rgba(0,0,0,0);
+  background-color: white;
   color: black;
 }
 
 #sidebox li a:hover div.item-normal {
-  background-color: rgba(0,0,0,0.1);
+  background-color: white;
   color: blue;
 }
 
