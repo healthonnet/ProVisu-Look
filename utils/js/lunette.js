@@ -321,8 +321,8 @@ function parse(options) {
     '</head>' +
     toolbar +
     '<body id="ext-provisu">' +
-    '<div id="ext-provisu-inner">' +
-    clean + '</div>' +
+    '<div id="ext-provisu-inner"><div>' +
+    clean + '</div></div>' +
     '</body>' +
     '</html>';
   }
