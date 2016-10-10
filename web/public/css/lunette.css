@@ -25,6 +25,10 @@
   margin: 20px 5%;
 }
 
+#ext-provisu-inner div {
+  padding: 40px;
+}
+
 #ext-provisu-inner h1 {
   margin-bottom: 0.6em;
   display: block;
@@ -65,9 +69,23 @@
   width: 100%;
 }
 
-#ext-provisu-inner li {
-  display: inline-block;
-  width: 32%;
+@media(max-width:544px){
+  #ext-provisu-inner li {
+    display: inline-block;
+    width: 100%;
+  }
+}
+@media(max-width:992px){
+  #ext-provisu-inner li {
+    display: inline-block;
+    width: 50%;
+  }
+}
+@media(min-width: 993px) {
+  #ext-provisu-inner li {
+    display: inline-block;
+    width: 32%;
+  }
 }
 
 #ext-provisu-inner ul li ul,

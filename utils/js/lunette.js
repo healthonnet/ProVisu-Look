@@ -225,8 +225,6 @@ function parse(options) {
     ],
     transformTags: {
       img: function(tagName, attribs) {
-        // TODO: fix hideImages
-        // var hideImages = window.localStorage.getItem('hideImages');
         if (attribs.class && attribs.class.match(/hidden-xs/)) {
           return {
             tagName: 'span',
@@ -234,19 +232,13 @@ function parse(options) {
           };
         }
         var src = attribs.src;
-        // PROXY IMG
-        // if (options.proxy) {
-        //   var distSrc = url.parse(attribs.src);
-        //   src = options.proxy + distSrc.path;
-        // }
         var alt = attribs.alt ? options.alt + ' ' + attribs.alt : '';
-        // TODO: fix hideImages
-        // if (hideImages) {
-        //   return {
-        //     tagName: 'p',
-        //     text: attribs.alt,
-        //   };
-        // }
+        if (src === '/images/nav_logo242_hr.png') {
+          return {
+            tagName: 'span',
+            text: '',
+          };
+        }
         return {
           tagName: 'p',
           text: '<img src="' + src + '" alt="' + attribs.alt + '" />' +

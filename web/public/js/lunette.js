@@ -234,11 +234,6 @@ function parse(options) {
           };
         }
         var src = attribs.src;
-        // PROXY IMG
-        // if (options.proxy) {
-        //   var distSrc = url.parse(attribs.src);
-        //   src = options.proxy + distSrc.path;
-        // }
         var alt = attribs.alt ? options.alt + ' ' + attribs.alt : '';
         // TODO: fix hideImages
         // if (hideImages) {
@@ -321,8 +316,8 @@ function parse(options) {
     '</head>' +
     toolbar +
     '<body id="ext-provisu">' +
-    '<div id="ext-provisu-inner">' +
-    clean + '</div>' +
+    '<div id="ext-provisu-inner"><div>' +
+    clean + '</div></div>' +
     '</body>' +
     '</html>';
   }
