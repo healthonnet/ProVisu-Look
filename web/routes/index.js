@@ -85,10 +85,9 @@ router.get('/', function(req, res, next) {
               var mProtocol = src.protocol || base.protocol;
               var mHost = src.host || base.host;
               return {
-                tagName: 'img',
-                attribs: {
-                  src: mProtocol + '//' + mHost + src.path,
-                },
+                tagName: 'p',
+                text: '<img src="' + mProtocol + '//' + mHost + src.path +
+                  '" alt="' + attribs.alt + '" />' + 'alt: ',
               };
             },
           },
