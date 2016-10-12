@@ -1,179 +1,160 @@
 'use strict';
 
+// Definition of key value for options
+var OPTIONS = 'hon-provisu-options';
+
+// Definition of font size span
+var FONT_SIZE_SPAN = 5;
+
+// Retrieve options
+var options =
+  JSON.parse(window.localStorage.getItem(OPTIONS)) || {};
+
+// Store document before parsing
+options.hash = document.documentElement.innerHTML;
+window.localStorage.setItem(OPTIONS, JSON.stringify(options));
+
+// Alter document
+alter(document);
+
 /**
- * Store the original layout.
+ * Function alterStyle
  */
-var noParse = window.localStorage.getItem('noParse') || false;
-if (!noParse) {
-  window.localStorage.setItem('hash', document.documentElement.innerHTML);
+function alterStyle(document, style) {
+  switch (style) {
+    case 'normal': {
+      return toNormal(document);
+    }
+    case 'black': {
+      return toBlack(document);
+    }
+    case 'blue': {
+      return toBlue(document);
+    }
+    case 'cyan': {
+      return toCyan(document);
+    }
+  }
 }
 
 /**
- * Propagate preferences
+ * Function alterFont
+ * Change font size
  */
-var alterStyle = window.localStorage.getItem('alter-style');
-if (alterStyle) {
-  var options = {
-    document: document,
-  };
-  parse(options);
-}
-switch (alterStyle) {
-  case 'normal': {
-    toNormal(document);
-    break;
+function alterFont(document, font) {
+  if (font === 'smaller') {
+    font = getFontSize(document) - FONT_SIZE_SPAN;
   }
-  case 'black': {
-    toBlack(document);
-    break;
+  if (font === 'bigger') {
+    font = getFontSize(document) + FONT_SIZE_SPAN;
   }
-  case 'blue': {
-    toBlue(document);
-    break;
-  }
-  case 'cyan': {
-    toCyan(document);
-    break;
-  }
+  return setFontSize(document, font);
 }
 
 /**
  * Return the layout to its original style.
  */
 function unalter(document) {
-  var noParse = window.localStorage.getItem('noParse') || false;
-  if (!noParse) {
-    document.documentElement.innerHTML = window.localStorage.getItem('hash');
+  // Fetch options
+  var options =
+    JSON.parse(window.localStorage.getItem(OPTIONS)) || {};
+
+  // If hash is defined, we revert to old style.
+  if (options.hash) {
+    document.documentElement.innerHTML = options.hash;
   }
-  window.localStorage.removeItem('alter-style');
-  window.localStorage.removeItem('hideImage');
+
+  // Remove options
+  window.localStorage.removeItem(OPTIONS);
 }
 
 /**
  * Alter the layout toward visually impaired style
  */
-function alter(document, style, options) {
-  options = options || {};
-  options.noParse = options.noParse || false;
-  var alterStyle = window.localStorage.getItem('alter-style');
-  if (options.noParse) {
-    window.localStorage.setItem('noParse', true);
+function alter(document, params) {
+
+  params = params || {};
+  var options =
+    JSON.parse(window.localStorage.getItem(OPTIONS)) || {};
+
+  // Option parse exists and set to true.
+  // We render the page with previous options.
+  if (params.parse || options.parse) {
+    // Parse document
+    parse({
+      document: document,
+    });
   }
-  if (!options.noParse && !alterStyle) {
-    options.document = document;
-    parse(options);
+
+  // Change style
+  params.style = params.style || options.style;
+  if (params.style) {
+    options.style = alterStyle(document, params.style);
   }
-  switch (style) {
-    case 'normal': {
-      toNormal(document);
-      break;
-    }
-    case 'black': {
-      toBlack(document);
-      break;
-    }
-    case 'blue': {
-      toBlue(document);
-      break;
-    }
-    case 'cyan': {
-      toCyan(document);
-      break;
-    }
-    case 'smaller': {
-      if (!alterStyle) {
-        toNormal(document);
-      }
-      smaller(document);
-      break;
-    }
-    case 'bigger': {
-      if (!alterStyle) {
-        toNormal(document);
-      }
-      bigger(document);
-      break;
-    }
+
+  // Change font
+  params.font = params.font || options.font;
+  if (params.font) {
+    options.font = alterFont(document, params.font);
   }
+
+  // Store options modifications
+  window.localStorage.setItem(OPTIONS, JSON.stringify(options));
 }
 
 /**
  * Styles functions
  */
-function toNormal() {
+function toNormal(document) {
   document.body.classList.add('ext-provisu-normal');
   document.body.classList.remove('ext-provisu-black');
   document.body.classList.remove('ext-provisu-blue');
   document.body.classList.remove('ext-provisu-cyan');
-  window.localStorage.setItem('alter-style', 'normal');
-  setFontSize();
+  return 'normal';
 }
 
-function toBlack() {
+function toBlack(document) {
   document.body.classList.add('ext-provisu-black');
   document.body.classList.remove('ext-provisu-normal');
   document.body.classList.remove('ext-provisu-blue');
   document.body.classList.remove('ext-provisu-cyan');
-  window.localStorage.setItem('alter-style', 'black');
-  setFontSize();
+  return 'black';
 }
 
-function toBlue() {
+function toBlue(document) {
   document.body.classList.add('ext-provisu-blue');
   document.body.classList.remove('ext-provisu-black');
   document.body.classList.remove('ext-provisu-normal');
   document.body.classList.remove('ext-provisu-cyan');
-  window.localStorage.setItem('alter-style', 'blue');
-  setFontSize();
+  return 'blue';
 }
 
-function toCyan() {
+function toCyan(document) {
   document.body.classList.add('ext-provisu-cyan');
   document.body.classList.remove('ext-provisu-black');
   document.body.classList.remove('ext-provisu-blue');
   document.body.classList.remove('ext-provisu-normal');
-  window.localStorage.setItem('alter-style', 'cyan');
-  setFontSize();
+  return 'cyan';
 }
 
-function smaller() {
+/**
+ * Function getFontSize
+ * calculate the fontsize of the document.
+ */
+function getFontSize(document) {
   var el = document.body;
   var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
-  var fontSize = parseFloat(style);
-  setFontSize(fontSize - 5);
+  return parseFloat(style);
 }
 
-function bigger() {
+function setFontSize(document, size) {
   var el = document.body;
-  var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
-  var fontSize = parseFloat(style);
-  setFontSize(fontSize + 5);
-}
-
-function setFontSize(size) {
-  var el = document.body;
-  var fontSize = window.localStorage.getItem('font-size');
-  if (size) {
-    el.style.fontSize = size + 'px';
-  } else if (fontSize) {
-    el.style.fontSize = fontSize + 'px';
-    size = fontSize;
-  } else {
-    var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
-    fontSize = parseFloat(style);
-    el.style.fontSize = fontSize + 'px';
-    size = fontSize;
-  }
-  window.localStorage.setItem('font-size', size);
+  el.style.fontSize = size + 'px';
+  return size;
 }
 
 /**
  * Parse a document and sanitize it.
- * options: {
- *   document:
- *   alt:
- *   proxy:
- * }
  */
 function parse(options) {
   options = options || {};
@@ -183,21 +164,8 @@ function parse(options) {
     throw new Error('No document to parse.');
   }
 
-  // Insertion of lunette toolbar
-  options.toolbar = options.toolbar || false;
-
   // Default alt title.
   options.alt = options.alt || 'alt:';
-
-  // Proxy domain.
-  options.proxy = options.proxy || false;
-
-  // Full output
-  options.full = options.full || false;
-
-  // Dist server address.
-  options.dist =
-    options.dist || window.location.protocol + '//' + window.location.hostname;
 
   var clean = sanitizeHtml(options.document.documentElement.innerHTML, {
     allowedTags: [
@@ -248,92 +216,16 @@ function parse(options) {
     },
   });
 
-  var toolbar = '';
-  if (options.toolbar) {
-    toolbar =
-      '<ul class="sidebox sidebox-horizontal">' +
-      '<li>' +
-      '<a href="#" id="default">' +
-      '<div class="item item-normal">' +
-      '<i class="fa fa-eye" aria-hidden="true"></i>' +
-      '</div>' +
-      '</a>' +
-      '</li>' +
-      '<li>' +
-      '<a href="#" id="normal">' +
-      '<div class="item item-normal">' +
-      '<i class="fa fa-low-vision" aria-hidden="true"></i>' +
-      '</div>' +
-      '</a>' +
-      '</li>' +
-      '<li>' +
-      '<a href="#" id="black">' +
-      '<div class="item item-black">' +
-      '<i class="fa fa-low-vision" aria-hidden="true"></i>' +
-      '</div>' +
-      '</a>' +
-      '</li>' +
-      '<li>' +
-      '<a href="#" id="blue">' +
-      '<div class="item item-blue">' +
-      '<i class="fa fa-low-vision" aria-hidden="true"></i>' +
-      '</div>' +
-      '</a>' +
-      '</li>' +
-      '<li>' +
-      '<a href="#" id="cyan">' +
-      '<div class="item item-cyan">' +
-      '<i class="fa fa-low-vision" aria-hidden="true"></i>' +
-      '</div>' +
-      '</a>' +
-      '</li>' +
-      '</ul>' +
-      '<ul class="sidebox sidebox-horizontal">' +
-      '<li>' +
-      '<a href="#" id="smaller">' +
-      '<div class="item item-normal">A-</div>' +
-      '</a>' +
-      '</li>' +
-      '<li>' +
-      '<a href="#" id="bigger">' +
-      '<div class="item item-normal">A+</div>' +
-      '</a>' +
-      '</li>' +
-      '</ul>';
-  }
-
-  var output = clean;
-  if (!options.full) {
-    output = '<!DOCTYPE html>' +
+  options.document.documentElement.innerHTML = '<!DOCTYPE html>' +
     '<html>' +
     '<head>' +
     '<meta charset="utf-8">' +
     '<title>' + options.document.getElementsByTagName('title')[0].innerHTML +
     '</title>' +
     '</head>' +
-    toolbar +
     '<body id="ext-provisu">' +
     '<div id="ext-provisu-inner"><div>' +
     clean + '</div></div>' +
     '</body>' +
     '</html>';
-  }
-  options.document.documentElement.innerHTML = output;
-}
-
-/**
- * Add click layers
- */
-function boxify(document) {
-  var box = '<div class="line-box">' +
-    'Header' +
-    '</div>';
-  if (document.getElementsByTagName('header').length > 0) {
-    var header = document.getElementsByTagName('header')[0].innerHTML;
-    document.getElementsByTagName('header')[0].innerHTML = box;
-    document.getElementsByTagName('header')[0].addEventListener('click',
-      function() {
-        document.getElementsByTagName('header')[0].innerHTML = header;
-      });
-  }
 }
