@@ -84,6 +84,13 @@ gulp.task('lang', () => {
     .pipe(gulp.dest('dist'));
 });
 
+gulp.task('lang-web', () => {
+  return download('https://localise.biz:443/api/export/archive/json.zip?' +
+    'key=dabd2dcd5915b93046701058e3a44a6c&format=chrome')
+    .pipe(decompress({strip: 1}))
+    .pipe(gulp.dest('web'));
+});
+
 gulp.task('images', () => {
   return gulp.src('app/images/**/*')
     .pipe($.if($.if.isFile, $.cache($.imagemin({
@@ -186,7 +193,8 @@ gulp.task('server', (cb) => {
 });
 
 gulp.task('web', (cb) => {
-  runSequence('web-assets', 'favicon', 'web-font-awesome', 'server', cb);
+  runSequence('web-assets', 'lang-web',
+    'favicon', 'web-font-awesome', 'server', cb);
 });
 
 gulp.task('doc', function() {

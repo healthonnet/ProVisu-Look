@@ -19,30 +19,31 @@ html
               .item.item-normal
                 i.fa.fa-eye(aria-hidden="true")
         li
-          a#normal(href="javascript: alter(document, 'normal', { noParse: true });")
+          a#normal(href="javascript: alter(document, {style: 'normal'});")
             .item.item-normal
               i.fa.fa-low-vision(aria-hidden="true")
         li
-          a#black(href="javascript: alter(document, 'black', { noParse: true });")
+          a#black(href="javascript: alter(document, {style: 'black'});")
             .item.item-black
               i.fa.fa-low-vision(aria-hidden="true")
         li
-          a#blue(href="javascript: alter(document, 'blue', { noParse: true });")
+          a#blue(href="javascript: alter(document, {style: 'blue'});")
             .item.item-blue
               i.fa.fa-low-vision(aria-hidden="true")
         li
-          a#cyan(href="javascript: alter(document, 'cyan', { noParse: true });")
+          a#cyan(href="javascript: alter(document, {style: 'cyan'});")
             .item.item-cyan
               i.fa.fa-low-vision(aria-hidden="true")
         li
-          a#smaller(href="javascript: alter(document, 'smaller', { noParse: true });")
+          a#smaller(href="javascript: alter(document, {font: 'smaller'});")
             .item.item-normal
               |A-
         li
-          a#bigger(href="javascript: alter(document, 'bigger', { noParse: true });")
+          a#bigger(href="javascript: alter(document, {font: 'bigger'});")
             .item.item-normal
               |A+
     #ext-provisu-inner.ext-provisu-under
-      if i18n
-        h1 #{i18n.appName.message}
-      block content
+      div
+        if i18n
+          h1 #{i18n.appName.message}
+        block content

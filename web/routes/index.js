@@ -31,11 +31,23 @@ router.get('/', function(req, res, next) {
             'ul', 'ol', 'li',
             'b', 'strong', 'i', 'em',
             'header', 'footer',
+            'input', 'select', 'button',
+            'form',
           ],
           allowedAttributes: {
             a: [ 'href' ],
-            img: [ 'src' ],
+            img: [ 'src', 'alt' ],
+            input: [
+              'type', 'value', 'name', 'id', 'placeholder',
+            ],
+            button: [
+              'type',
+            ],
+            form: [ 'action', 'method' ],
           },
+          nonTextTags: [
+            'style', 'script', 'textarea', 'noscript', 'head',
+          ],
 
           transformTags: {
             a: function(tagName, attribs) {
@@ -54,17 +66,29 @@ router.get('/', function(req, res, next) {
               };
             },
             img: function(tagName, attribs) {
+              if (attribs.class && attribs.class.match(/hidden-xs/)) {
+                return {
+                  tagName: 'span',
+                  text: '',
+                };
+              }
               var src = {};
               if (attribs.src) {
                 src = url.parse(attribs.src);
               }
+              if (attribs.src === '/images/nav_logo242_hr.png') {
+                return {
+                  tagName: 'span',
+                  text: '',
+                };
+              }
               var mProtocol = src.protocol || base.protocol;
               var mHost = src.host || base.host;
               return {
-                tagName: 'img',
-                attribs: {
-                  src: mProtocol + '//' + mHost + src.path,
-                },
+                tagName: 'p',
+                text: '<img src="' + mProtocol + '//' + mHost + src.path +
+                  '" alt="' + attribs.alt + '" />' + i18n.imageAlt.message +
+                  ' ' + attribs.alt,
               };
             },
           },
