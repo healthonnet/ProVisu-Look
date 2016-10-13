@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('normal').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
-      code: 'alter(document, \'normal\', { alt: \'' +
+      code: 'alter(document, { parse: true, style: \'normal\', alt: \'' +
         chrome.i18n.getMessage('imageAlt').replace(/'/, '\\\'') + '\' });',
     });
   });
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('black').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
-      code: 'alter(document, \'black\', { alt: \'' +
+      code: 'alter(document, { parse: true, style: \'black\', alt: \'' +
         chrome.i18n.getMessage('imageAlt').replace(/'/, '\\\'') + '\' });',
     });
   });
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('blue').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
-      code: 'alter(document, \'blue\', { alt: \'' +
+      code: 'alter(document, { parse: true, style: \'blue\', alt: \'' +
         chrome.i18n.getMessage('imageAlt').replace(/'/, '\\\'') + '\' });',
     });
   });
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('cyan').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
-      code: 'alter(document, \'cyan\', { alt: \'' +
+      code: 'alter(document, { parse: true, style: \'cyan\', alt: \'' +
         chrome.i18n.getMessage('imageAlt').replace(/'/, '\\\'') + '\' });',
     });
   });
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('smaller').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
-      code: 'alter(document, \'smaller\', { alt: \'' +
+      code: 'alter(document, { parse: true, font: \'smaller\', alt: \'' +
         chrome.i18n.getMessage('imageAlt').replace(/'/, '\\\'') + '\' });',
     });
   });
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('bigger').addEventListener('click', function() {
     chrome.tabs.executeScript(null, {
-      code: 'alter(document, \'bigger\', { alt: \'' +
+      code: 'alter(document, { parse: true, font: \'bigger\', alt: \'' +
         chrome.i18n.getMessage('imageAlt').replace(/'/, '\\\'') + '\' });',
     });
   });

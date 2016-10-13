@@ -87,7 +87,8 @@ router.get('/', function(req, res, next) {
               return {
                 tagName: 'p',
                 text: '<img src="' + mProtocol + '//' + mHost + src.path +
-                  '" alt="' + attribs.alt + '" />' + 'alt: ',
+                  '" alt="' + attribs.alt + '" />' + i18n.imageAlt.message +
+                  ' ' + attribs.alt,
               };
             },
           },

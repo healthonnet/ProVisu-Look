@@ -6,16 +6,8 @@ var OPTIONS = 'hon-provisu-options';
 // Definition of font size span
 var FONT_SIZE_SPAN = 5;
 
-// Retrieve options
-var options =
-  JSON.parse(window.localStorage.getItem(OPTIONS)) || {};
-
-// Store document before parsing
-options.hash = document.documentElement.innerHTML;
-window.localStorage.setItem(OPTIONS, JSON.stringify(options));
-
 // Alter document
-alter(document);
+alter(document, { toParse: true });
 
 /**
  * Function alterStyle
@@ -73,17 +65,30 @@ function unalter(document) {
  */
 function alter(document, params) {
 
+  // Fetch params and options
   params = params || {};
   var options =
     JSON.parse(window.localStorage.getItem(OPTIONS)) || {};
 
+  // Define alt text
+  params.alt = params.alt || 'alt: ';
+
+  // Store site before parsing if not parsed already
+  if (!options.parsed) {
+    options.hash = document.documentElement.innerHTML;
+  }
+
   // Option parse exists and set to true.
   // We render the page with previous options.
-  if (params.parse || options.parse) {
+  params.parse = params.parse || options.parse;
+  if (params.parse && (!options.parsed || params.toParse)) {
     // Parse document
     parse({
       document: document,
+      alt: params.alt,
     });
+    options.parse = true;
+    options.parsed = true;
   }
 
   // Change style
