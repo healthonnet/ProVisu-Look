@@ -93,6 +93,8 @@ function alter(document, params) {
 
   // Change style
   params.style = params.style || options.style;
+  params.style = (!params.style && (params.font || options.font)) ?
+    'normal' : params.style;
   if (params.style) {
     options.style = alterStyle(document, params.style);
   }
