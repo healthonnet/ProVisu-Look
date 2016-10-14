@@ -5,7 +5,6 @@ var request = require('request');
 var sanitizeHtml = require('sanitize-html');
 var url = require('url');
 var router = express.Router();
-var i18n = require('../_locales/en/messages.json');
 
 /**
  * GET /
@@ -14,6 +13,9 @@ var i18n = require('../_locales/en/messages.json');
  * a form otherwise.
  */
 router.get('/', function(req, res, next) {
+  var locale = require('locale');
+  console.log('user i18n: ' + req.locale);
+  var i18n = require('../_locales/' + req.locale + '/messages.json');
   if (req.query.url) {
     var base = url.parse(req.query.url);
     var cleanUrl =
