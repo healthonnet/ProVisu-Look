@@ -192,9 +192,9 @@ gulp.task('server', (cb) => {
   $.express.run(['web/bin/www']);
 });
 
-gulp.task('web', (cb) => {
+gulp.task('build-web', (cb) => {
   runSequence('web-assets', 'lang-web',
-    'favicon', 'web-font-awesome', 'server', cb);
+    'favicon', 'web-font-awesome', cb);
 });
 
 gulp.task('doc', function() {

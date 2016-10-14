@@ -10,6 +10,7 @@ Install
 $ npm install
 $ bower install
 $ gulp build
+$ gulp build-web
 ```
 
 Run
