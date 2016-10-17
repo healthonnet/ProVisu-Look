@@ -1,11 +1,12 @@
 HON-Provisu-Extension Changelog
 ===============================
 
-v0.0.5 - 2016-??-??
+v0.0.5 - 2016-10-17
 -------------------
 
 * remove google sprit for better navigation.
 * refactor lunette.js
+* filter routes
 
 v0.0.4 - 2016-10-07
 -------------------
