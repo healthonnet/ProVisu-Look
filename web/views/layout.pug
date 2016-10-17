@@ -11,6 +11,9 @@ html
   body#ext-provisu
     script(src!=sanitizeHtml, type="text/javascript")
     script(src!=lunette, type="text/javascript")
+    script(type="text/javascript").
+      alter(document, {style:'#{filter}'});
+
     #sidebox
       ul
         if redirect
