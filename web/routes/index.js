@@ -18,6 +18,7 @@ router.get('/', function(req, res, next) {
   var i18n = require('../_locales/' + req.locale + '/messages.json');
   if (req.query.url) {
     var base = url.parse(req.query.url);
+    var filter = req.query.filter;
     var cleanUrl =
       base.protocol + '//' + base.host + encodeURI(base.path);
     request(cleanUrl, function(error, response, body) {
@@ -107,6 +108,7 @@ router.get('/', function(req, res, next) {
           lunette: 'http://' + req.headers.host +
             '/js/lunette.js',
           external: req.query.url,
+          filter: filter,
           i18n: i18n,
         });
       } else if (error) {
