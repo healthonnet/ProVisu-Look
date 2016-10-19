@@ -1,6 +1,13 @@
 HON-Provisu-Extension Changelog
 ===============================
 
+v0.0.7 - 2016-10-19
+-------------------
+
+* use relative ressource path
+* refactor path definintion
+* add optional path prefix
+
 v0.0.6 - 2016-10-18
 -------------------
 
