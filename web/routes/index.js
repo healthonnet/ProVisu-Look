@@ -16,6 +16,12 @@ router.get('/', function(req, res, next) {
   var locale = require('locale');
   console.log('user i18n: ' + req.locale);
   var i18n = require('../_locales/' + req.locale + '/messages.json');
+
+  var sanitizeHtmlPath = 'http://' + req.headers.host +
+    '/js/sanitize-html.min.js';
+  var lunettePath = 'http://' + req.headers.host +
+    '/js/lunette.js';
+
   if (req.query.url) {
     var base = url.parse(req.query.url);
     var filter = req.query.filter;
@@ -103,10 +109,8 @@ router.get('/', function(req, res, next) {
         res.render('index', {
           content: clean,
           baseUrl: base.protocol + '//' + base.host,
-          sanitizeHtml: 'http://' + req.headers.host +
-            '/js/sanitize-html.min.js',
-          lunette: 'http://' + req.headers.host +
-            '/js/lunette.js',
+          sanitizeHtml: sanitizeHtmlPath,
+          lunette: lunettePath,
           external: req.query.url,
           filter: filter,
           i18n: i18n,
@@ -119,10 +123,8 @@ router.get('/', function(req, res, next) {
         res.render('error', {
           error: error,
           i18n: i18n,
-          sanitizeHtml: 'http://' + req.headers.host +
-            '/js/sanitize-html.min.js',
-          lunette: 'http://' + req.headers.host +
-            '/js/lunette.js',
+          sanitizeHtml: sanitizeHtmlPath,
+          lunette: lunettePath,
         });
       } else {
 
@@ -135,10 +137,8 @@ router.get('/', function(req, res, next) {
           },
           message: response.statusMessage,
           i18n: i18n,
-          sanitizeHtml: 'http://' + req.headers.host +
-            '/js/sanitize-html.min.js',
-          lunette: 'http://' + req.headers.host +
-            '/js/lunette.js',
+          sanitizeHtml: sanitizeHtmlPath,
+          lunette: lunettePath,
         });
       }
     });
@@ -149,10 +149,8 @@ router.get('/', function(req, res, next) {
      */
     res.render('query', {
       i18n: i18n,
-      sanitizeHtml: 'http://' + req.headers.host +
-        '/js/sanitize-html.min.js',
-      lunette: 'http://' + req.headers.host +
-        '/js/lunette.js',
+      sanitizeHtml: sanitizeHtmlPath,
+      lunette: lunettePath,
     });
   }
 });
