@@ -70,8 +70,7 @@ router.get('/', function(req, res, next) {
               return {
                 tagName: 'a',
                 attribs: {
-                  href: 'http://' + req.headers.host + '/?url=' +
-                    mProtocol + '//' + mHost + href.path,
+                  href: '?url=' + mProtocol + '//' + mHost + href.path,
                 },
               };
             },

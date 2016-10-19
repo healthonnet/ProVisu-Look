@@ -2,6 +2,6 @@ extends layout
 
 block content
   h2 #{renderWebsite}
-    form(method="get", action="/", class="form")
+    form(method="get", class="form")
       input(type="text", name="url", placeholder!=enterUrl)
       input(type="submit")
