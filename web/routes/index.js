@@ -5,6 +5,7 @@ var request = require('request');
 var sanitizeHtml = require('sanitize-html');
 var url = require('url');
 var router = express.Router();
+var prefix = process.env.PREFIX || '';
 
 /**
  * GET /
@@ -17,10 +18,10 @@ router.get('/', function(req, res, next) {
   console.log('user i18n: ' + req.locale);
   var i18n = require('../_locales/' + req.locale + '/messages.json');
 
-  var sanitizeHtmlPath = 'http://' + req.headers.host +
-    '/js/sanitize-html.min.js';
-  var lunettePath = 'http://' + req.headers.host +
-    '/js/lunette.js';
+  var lunetteStylePath = prefix + '/css/lunette.css';
+  var fontAwesomePath = prefix + '/bower_components/components-font-awesome/css/font-awesome.min.css';
+  var sanitizeHtmlPath = prefix + '/js/sanitize-html.min.js';
+  var lunettePath = prefix + '/js/lunette.js';
 
   if (req.query.url) {
     var base = url.parse(req.query.url);
@@ -110,6 +111,8 @@ router.get('/', function(req, res, next) {
           content: clean,
           baseUrl: base.protocol + '//' + base.host,
           sanitizeHtml: sanitizeHtmlPath,
+          lunetteStyle: lunetteStylePath,
+          fontAwesome: fontAwesomePath,
           lunette: lunettePath,
           external: req.query.url,
           filter: filter,
@@ -138,6 +141,8 @@ router.get('/', function(req, res, next) {
           message: response.statusMessage,
           i18n: i18n,
           sanitizeHtml: sanitizeHtmlPath,
+          lunetteStyle: lunetteStylePath,
+          fontAwesome: fontAwesomePath,
           lunette: lunettePath,
         });
       }
@@ -150,6 +155,8 @@ router.get('/', function(req, res, next) {
     res.render('query', {
       i18n: i18n,
       sanitizeHtml: sanitizeHtmlPath,
+      lunetteStyle: lunetteStylePath,
+      fontAwesome: fontAwesomePath,
       lunette: lunettePath,
     });
   }
