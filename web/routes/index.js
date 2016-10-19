@@ -5,6 +5,7 @@ var request = require('request');
 var sanitizeHtml = require('sanitize-html');
 var url = require('url');
 var router = express.Router();
+var prefix = process.env.PREFIX || '';
 
 /**
  * GET /
@@ -16,6 +17,12 @@ router.get('/', function(req, res, next) {
   var locale = require('locale');
   console.log('user i18n: ' + req.locale);
   var i18n = require('../_locales/' + req.locale + '/messages.json');
+
+  var lunetteStylePath = prefix + '/css/lunette.css';
+  var fontAwesomePath = prefix + '/bower_components/components-font-awesome/css/font-awesome.min.css';
+  var sanitizeHtmlPath = prefix + '/js/sanitize-html.min.js';
+  var lunettePath = prefix + '/js/lunette.js';
+
   if (req.query.url) {
     var base = url.parse(req.query.url);
     var filter = req.query.filter;
@@ -103,10 +110,10 @@ router.get('/', function(req, res, next) {
         res.render('index', {
           content: clean,
           baseUrl: base.protocol + '//' + base.host,
-          sanitizeHtml: 'http://' + req.headers.host +
-            '/js/sanitize-html.min.js',
-          lunette: 'http://' + req.headers.host +
-            '/js/lunette.js',
+          sanitizeHtml: sanitizeHtmlPath,
+          lunetteStyle: lunetteStylePath,
+          fontAwesome: fontAwesomePath,
+          lunette: lunettePath,
           external: req.query.url,
           filter: filter,
           i18n: i18n,
@@ -119,10 +126,8 @@ router.get('/', function(req, res, next) {
         res.render('error', {
           error: error,
           i18n: i18n,
-          sanitizeHtml: 'http://' + req.headers.host +
-            '/js/sanitize-html.min.js',
-          lunette: 'http://' + req.headers.host +
-            '/js/lunette.js',
+          sanitizeHtml: sanitizeHtmlPath,
+          lunette: lunettePath,
         });
       } else {
 
@@ -135,10 +140,10 @@ router.get('/', function(req, res, next) {
           },
           message: response.statusMessage,
           i18n: i18n,
-          sanitizeHtml: 'http://' + req.headers.host +
-            '/js/sanitize-html.min.js',
-          lunette: 'http://' + req.headers.host +
-            '/js/lunette.js',
+          sanitizeHtml: sanitizeHtmlPath,
+          lunetteStyle: lunetteStylePath,
+          fontAwesome: fontAwesomePath,
+          lunette: lunettePath,
         });
       }
     });
@@ -149,10 +154,10 @@ router.get('/', function(req, res, next) {
      */
     res.render('query', {
       i18n: i18n,
-      sanitizeHtml: 'http://' + req.headers.host +
-        '/js/sanitize-html.min.js',
-      lunette: 'http://' + req.headers.host +
-        '/js/lunette.js',
+      sanitizeHtml: sanitizeHtmlPath,
+      lunetteStyle: lunetteStylePath,
+      fontAwesome: fontAwesomePath,
+      lunette: lunettePath,
     });
   }
 });

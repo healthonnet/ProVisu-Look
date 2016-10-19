@@ -10,7 +10,8 @@
     "out_file"       : "./logs/out.log",
     "env": {
       "NODE_ENV": "prod",
-      "PORT": 8088
+      "PORT": 8088,
+      "PREFIX": ""
     }
   }]
 }

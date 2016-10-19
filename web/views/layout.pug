@@ -5,9 +5,9 @@ html
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title Test Lunette Provisu
-    link(rel='stylesheet', href='css/lunette.css', type='text/css')
+    link(rel='stylesheet', href!=lunetteStyle, type='text/css')
     link(rel="icon", type="image/png", href="favicon.png")
-    link(rel='stylesheet', href='bower_components/components-font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href!=fontAwesome)
   body#ext-provisu
     script(src!=sanitizeHtml, type="text/javascript")
     script(src!=lunette, type="text/javascript")
