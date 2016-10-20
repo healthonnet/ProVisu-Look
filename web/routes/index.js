@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
   var lunettePath = prefix + '/js/lunette.js';
 
   if (req.query.url) {
-    var base = url.parse(req.query.url);
+    var base = url.parse(req.query.url, false, true);
     var filter = req.query.filter;
     var cleanUrl =
       base.protocol + '//' + base.host + encodeURI(base.path);
@@ -63,7 +63,7 @@ router.get('/', function(req, res, next) {
             a: function(tagName, attribs) {
               var href = {};
               if (attribs.href) {
-                href = url.parse(attribs.href);
+                href = url.parse(attribs.href, false, true);
               }
               var mProtocol = href.protocol || base.protocol;
               var mHost = href.host || base.host;
@@ -83,7 +83,7 @@ router.get('/', function(req, res, next) {
               }
               var src = {};
               if (attribs.src) {
-                src = url.parse(attribs.src);
+                src = url.parse(attribs.src, false, true);
               }
               if (attribs.src === '/images/nav_logo242_hr.png') {
                 return {
