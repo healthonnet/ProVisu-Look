@@ -1,6 +1,43 @@
 'use strict';
 
-function loadProvisuToolbar(element, url, i18n) {
+function loadProvisuToolbar(element, url, file) {
+  var xobj = new XMLHttpRequest();
+  xobj.overrideMimeType('application/json');
+  xobj.open('GET', file, true);
+  xobj.addEventListener('load', complete);
+  xobj.addEventListener('error', failed);
+  xobj.send(null);
+
+  function failed(evt) {
+    generateHTML(element, url, {
+      infoNormal: {
+        message: 'normal',
+      },
+      infoBlack: {
+        message: 'black',
+      },
+      infoBlue: {
+        message: 'blue',
+      },
+      infoCyan: {
+        message: 'cyan',
+      },
+      infoSmaller: {
+        message: 'smaller',
+      },
+      infoBigger: {
+        message: 'bigger',
+      },
+    });
+  }
+
+  function complete(evt) {
+    var json = JSON.parse(evt.srcElement.responseText);
+    generateHTML(element, url, json);
+  }
+}
+
+function generateHTML(element, url, i18n) {
   var html = '<ul id="sidebox">' +
     '<li>' +
     '<a href="/service?url=' + url + '"><div class="item-normal low-vision">' +
