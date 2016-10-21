@@ -8,6 +8,7 @@ import {stream as wiredep} from 'wiredep';
 import download from 'gulp-download';
 import decompress from 'gulp-decompress';
 import rename from 'gulp-rename';
+import jshint from 'gulp-jshint';
 
 const $ = gulpLoadPlugins();
 
@@ -76,6 +77,24 @@ gulp.task('lint', lint('app/scripts.babel/**/*.js', {
     es6: true
   }
 }));
+
+gulp.task('lint-web', lint(['web/**/*.js', '!web/public/**/*.js'], {
+  env: {
+    es6: true
+  }
+}));
+
+gulp.task('jshint', () => {
+  return gulp.src('app/scripts.babel/**/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
+});
+
+gulp.task('jshint-web', () => {
+  return gulp.src(['web/**/*.js', '!web/public/**/*.js'])
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
+});
 
 gulp.task('lang', () => {
   return download('https://localise.biz:443/api/export/archive/json.zip?' +
@@ -190,7 +209,7 @@ gulp.task('package', function() {
 
 gulp.task('build', (cb) => {
   runSequence(
-    'lint', 'babel', 'assets', 'lang', 'font-awesome', 'chromeManifest',
+    'lint','jshint', 'babel', 'assets', 'lang', 'font-awesome', 'chromeManifest',
     ['html', 'images', 'extras'],
     'size', cb);
 });
@@ -200,7 +219,7 @@ gulp.task('server', (cb) => {
 });
 
 gulp.task('build-web', (cb) => {
-  runSequence('web-assets', 'lang-web',
+  runSequence('lint-web','jshint-web','web-assets', 'lang-web',
     'favicon', 'web-font-awesome', cb);
 });
 
