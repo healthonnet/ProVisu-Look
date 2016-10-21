@@ -13,3 +13,5 @@ web/public
 web/_locales
 web/README.txt
 app/_locales
+toolbar/_locales
+toolbar/README.txt

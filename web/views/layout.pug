@@ -14,37 +14,51 @@ html
     script(type="text/javascript").
       alter(document, {style:'#{filter}'});
 
-    #sidebox
+    #hon-provisu-sidebox
       ul
-        if redirect
+        if external
           li
-            a#default(href="#{redirect}")
+            a#default(href=external)
               .item.item-normal
                 i.fa.fa-eye(aria-hidden="true")
+              span.tooltip.tool-normal
+                |#{i18n.infoDefault.message}
         li
           a#normal(href="javascript: alter(document, {style: 'normal'});")
             .item.item-normal
               i.fa.fa-low-vision(aria-hidden="true")
+            span.tooltip.tool-normal
+              |#{i18n.infoNormal.message}
         li
           a#black(href="javascript: alter(document, {style: 'black'});")
             .item.item-black
               i.fa.fa-low-vision(aria-hidden="true")
+            span.tooltip.tool-black
+              |#{i18n.infoBlack.message}
         li
           a#blue(href="javascript: alter(document, {style: 'blue'});")
             .item.item-blue
               i.fa.fa-low-vision(aria-hidden="true")
+            span.tooltip.tool-blue
+              |#{i18n.infoBlue.message}
         li
           a#cyan(href="javascript: alter(document, {style: 'cyan'});")
             .item.item-cyan
               i.fa.fa-low-vision(aria-hidden="true")
+            span.tooltip.tool-cyan
+              |#{i18n.infoCyan.message}
         li
           a#smaller(href="javascript: alter(document, {font: 'smaller'});")
             .item.item-normal
               |A-
+            span.tooltip.tool-normal
+              |#{i18n.infoSmaller.message}
         li
           a#bigger(href="javascript: alter(document, {font: 'bigger'});")
             .item.item-normal
               |A+
+            span.tooltip.tool-normal
+              |#{i18n.infoBigger.message}
     #ext-provisu-inner.ext-provisu-under
       div
         if i18n
