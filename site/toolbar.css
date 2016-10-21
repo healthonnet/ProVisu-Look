@@ -1,0 +1,83 @@
+#provisu-toolbar {
+  margin-top: -50px;
+}
+
+#sidebox {
+  font-size: 22px;
+}
+
+#sidebox li {
+  display: inline-block;
+  margin: 5px;
+  list-style-type: none;
+  border-bottom: none;
+}
+
+#sidebox li a {
+  text-decoration: none;
+  display: block;
+  height: 50px;
+  width: 50px;
+  line-height: 27px;
+}
+
+#sidebox li a:before {
+  content: '';
+  margin: 0;
+}
+
+#sidebox li a div {
+  padding: 10px;
+  border-radius: 100%;
+  border: solid 1px rgba(0,0,0,0.5);
+}
+
+#sidebox li a:link div.item-normal,
+#sidebox li a:visited div.item-normal {
+  background-color: white;
+  color: black;
+}
+
+#sidebox li a:hover div.item-normal {
+  background-color: white;
+  color: blue;
+}
+
+#sidebox li a:link div.item-black,
+#sidebox li a:visited div.item-black {
+  background-color: rgba(0,0,0,1);
+  color: white;
+}
+
+#sidebox li a:hover div.item-black {
+  background-color: rgba(0,0,0,0.9);
+  color: yellow;
+}
+
+#sidebox li a:link div.item-blue,
+#sidebox li a:visited div.item-blue {
+  background-color: rgba(0,0,255,1);
+  color: yellow;
+}
+
+#sidebox li a:hover div.item-blue {
+  background-color: rgba(0,0,255,0.8);
+  color: red;
+}
+
+#sidebox li a:link div.item-cyan,
+#sidebox li a:visited div.item-cyan {
+  background-color: rgb(210, 239, 233);
+  color: black;
+}
+
+#sidebox li a:hover div.item-cyan {
+  background-color: rgba(210, 239, 233, 0.8);
+  color: red;
+}
+
+#sidebox div.low-vision:before {
+  font-family: FontAwesome;
+  content: '\f2a8';
+  margin-right: 22px;
+}
