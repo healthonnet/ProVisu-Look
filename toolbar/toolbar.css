@@ -90,7 +90,7 @@
   margin-right: 22px;
 }
 
-#sidebox li a .tooltip {
+#sidebox li a .provisu-tooltip {
   visibility: hidden;
   width: 250px;
   text-align: center;
@@ -101,6 +101,6 @@
   z-index: 1;
 }
 
-#sidebox li a:hover .tooltip {
+#sidebox li a:hover .provisu-tooltip {
   visibility: visible;
 }
