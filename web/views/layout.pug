@@ -16,9 +16,9 @@ html
 
     #hon-provisu-sidebox
       ul
-        if redirect
+        if external
           li
-            a#default(href="#{redirect}")
+            a#default(href=external)
               .item.item-normal
                 i.fa.fa-eye(aria-hidden="true")
               span.tooltip.tool-normal

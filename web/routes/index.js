@@ -19,7 +19,8 @@ router.get('/', function(req, res, next) {
   var i18n = require('../_locales/' + req.locale + '/messages.json');
 
   var lunetteStylePath = prefix + '/css/lunette.css';
-  var fontAwesomePath = prefix + '/bower_components/components-font-awesome/css/font-awesome.min.css';
+  var fontAwesomePath = prefix +
+    '/bower_components/components-font-awesome/css/font-awesome.min.css';
   var sanitizeHtmlPath = prefix + '/js/sanitize-html.min.js';
   var lunettePath = prefix + '/js/lunette.js';
 
