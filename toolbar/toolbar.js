@@ -46,7 +46,7 @@ function generateHTML(element, url, i18n) {
     '</span></a>' +
     '</li>' +
 
-    '<li class="hidden-sm hidden-xs">' +
+    '<li class="hidden-xs">' +
     '<a href="/service?url=' + url + '&filter=black">' +
     '<div class="item-black low-vision">' +
     '</div>' +
@@ -54,7 +54,7 @@ function generateHTML(element, url, i18n) {
     '</span></a>' +
     '</li>' +
 
-    '<li class="hidden-sm hidden-xs">' +
+    '<li class="hidden-xs">' +
     '<a href="/service?url=' + url + '&filter=blue">' +
     '<div class="item-blue low-vision">' +
     '</div>' +
@@ -62,7 +62,7 @@ function generateHTML(element, url, i18n) {
     '</span></a>' +
     '</li>' +
 
-    '<li class="hidden-sm hidden-xs">' +
+    '<li class="hidden-xs">' +
     '<a href="/service?url=' + url + '&filter=cyan">' +
     '<div class="item-cyan low-vision">' +
     '</div>' +
@@ -70,7 +70,7 @@ function generateHTML(element, url, i18n) {
     '</span></a>' +
     '</li>' +
 
-    '<li class="hidden-sm hidden-xs">' +
+    '<li class="hidden-xs">' +
     '<a href="/service?url=' + url + '&filter=smaller">' +
     '<div class="item-smaller">A-' +
     '</div>' +
@@ -78,7 +78,7 @@ function generateHTML(element, url, i18n) {
     '</span></a>' +
     '</li>' +
 
-    '<li class="hidden-xs">' +
+    '<li>' +
     '<a href="/service?url=' + url + '&filter=bigger">' +
     '<div class="item-bigger">A+' +
     '</div>' +
