@@ -1,6 +1,13 @@
 HON-Provisu-Extension Changelog
 ===============================
 
+v0.0.9 - 2016-10-21
+-------------------
+
+* feature add tooltip
+* feature add toolbar
+* fix icon link colors
+
 v0.0.8 - 2016-10-20
 -------------------
 
