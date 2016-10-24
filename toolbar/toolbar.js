@@ -32,7 +32,7 @@ function loadProvisuToolbar(element, url, file) {
   }
 
   function complete(evt) {
-    var json = JSON.parse(evt.srcElement.responseText);
+    var json = JSON.parse(evt.target.responseText);
     generateHTML(element, url, json);
   }
 }
