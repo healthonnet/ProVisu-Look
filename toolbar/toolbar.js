@@ -45,10 +45,10 @@ function loadProvisuToolbar(element, url, file, extra) {
           '<div class="tooltip-inner tooltip-wide"></div></div>',
       });
       $('#toolbar-smaller').click(function() {
-        setFontSize(getFontSize() - 4);
+        setFontSize(-4);
       });
       $('#toolbar-bigger').click(function() {
-        setFontSize(getFontSize() + 4);
+        setFontSize(4);
       });
     });
   }
@@ -60,10 +60,25 @@ function getFontSize() {
   return parseFloat(style);
 }
 
-function setFontSize(size) {
-  var el = document.body;
-  el.style.fontSize = size + 'px';
-  return size;
+function setFontSize(variant) {
+  var tags = ['div', 'a', 'p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+  var elements = [document.body];
+  var tmp;
+  var currentFontSize;
+  var newSize;
+  for (var i = 0; i < tags.length; i++) {
+    tmp = Array.prototype.slice.call(
+      document.body.getElementsByTagName(tags[i]), 0
+    );
+    elements = elements.concat(tmp);
+  }
+  for (i = 0; i < elements.length; i++) {
+    currentFontSize = parseFloat(
+      window.getComputedStyle(elements[i], null).getPropertyValue('font-size')
+    );
+    newSize = currentFontSize + variant;
+    elements[i].style.fontSize = newSize + 'px';
+  }
 }
 
 function generateHTML(element, url, i18n, extra) {
@@ -124,17 +139,16 @@ function generateHTML(element, url, i18n, extra) {
       'title="' + i18n.toolbarDescription.message + '">' +
       '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
       '</a>' +
-      // Remove font-size buttons
-      // '<button type="button" class="btn btn-default" id="toolbar-smaller" ' +
-      // 'data-toggle="tooltip" data-placement="bottom" ' +
-      // 'title="' + i18n.infoSmaller.message + '">' +
-      // '<i class="fa fa-minus fa-2x" aria-hidden="true"></i>' +
-      // '</button>' +
-      // '<button type="button" class="btn btn-default" id="toolbar-bigger" ' +
-      // 'data-toggle="tooltip" data-placement="bottom" ' +
-      // 'title="' + i18n.infoBigger.message + '">' +
-      // '<i class="fa fa-plus fa-2x" aria-hidden="true"></i>' +
-      // '</button>' +
+      '<button type="button" class="btn btn-default" id="toolbar-smaller" ' +
+      'data-toggle="tooltip" data-placement="bottom" ' +
+      'title="' + i18n.infoSmaller.message + '">' +
+      '<i class="fa fa-minus fa-2x" aria-hidden="true"></i>' +
+      '</button>' +
+      '<button type="button" class="btn btn-default" id="toolbar-bigger" ' +
+      'data-toggle="tooltip" data-placement="bottom" ' +
+      'title="' + i18n.infoBigger.message + '">' +
+      '<i class="fa fa-plus fa-2x" aria-hidden="true"></i>' +
+      '</button>' +
       '</div>';
   }
   document.getElementById(element).innerHTML = html;
