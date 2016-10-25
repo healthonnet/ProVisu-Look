@@ -18,7 +18,8 @@
     "it": true,
     "ui": true,
     "chrome": true,
-    "sanitizeHtml": true
+    "sanitizeHtml": true,
+    "$": true
   },
   "devel": {
     "console" : false

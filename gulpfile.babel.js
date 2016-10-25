@@ -9,6 +9,7 @@ import download from 'gulp-download';
 import decompress from 'gulp-decompress';
 import rename from 'gulp-rename';
 import jshint from 'gulp-jshint';
+import webserver from 'gulp-webserver';
 
 const $ = gulpLoadPlugins();
 
@@ -87,13 +88,13 @@ gulp.task('lint-web', lint(['web/**/*.js', '!web/public/**/*.js'], {
 gulp.task('jshint', () => {
   return gulp.src('app/scripts.babel/**/*.js')
     .pipe(jshint())
-    .pipe(jshint.reporter('default'))
+    .pipe(jshint.reporter('default'));
 });
 
 gulp.task('jshint-web', () => {
   return gulp.src(['web/**/*.js', '!web/public/**/*.js'])
     .pipe(jshint())
-    .pipe(jshint.reporter('default'))
+    .pipe(jshint.reporter('default'));
 });
 
 gulp.task('lang', () => {
@@ -209,7 +210,8 @@ gulp.task('package', function() {
 
 gulp.task('build', (cb) => {
   runSequence(
-    'lint','jshint', 'babel', 'assets', 'lang', 'font-awesome', 'chromeManifest',
+    'lint','jshint', 'babel', 'assets', 'lang', 'font-awesome',
+    'chromeManifest',
     ['html', 'images', 'extras'],
     'size', cb);
 });
@@ -225,6 +227,14 @@ gulp.task('build-web', (cb) => {
 
 gulp.task('build-toolbar', (cb) => {
   runSequence('lang-toolbar');
+});
+
+gulp.task('serve-toolbar', (cb) => {
+  gulp.src('toolbar')
+    .pipe(webserver({
+      livereload: true,
+      fallback: 'test.html',
+    }));
 });
 
 gulp.task('doc', function() {
