@@ -54,18 +54,14 @@ function loadProvisuToolbar(element, url, file, extra) {
   }
 }
 
-function getFontSize() {
-  var el = document.body;
-  var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
-  return parseFloat(style);
-}
-
 function setFontSize(variant) {
-  var tags = ['div', 'a', 'p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+  var tags = ['span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
   var elements = [document.body];
   var tmp;
   var currentFontSize;
+  var currentLineHeight;
   var newSize;
+  var newHeight;
   for (var i = 0; i < tags.length; i++) {
     tmp = Array.prototype.slice.call(
       document.body.getElementsByTagName(tags[i]), 0
@@ -76,8 +72,13 @@ function setFontSize(variant) {
     currentFontSize = parseFloat(
       window.getComputedStyle(elements[i], null).getPropertyValue('font-size')
     );
+    currentLineHeight = parseFloat(
+      window.getComputedStyle(elements[i], null).getPropertyValue('line-height')
+    );
     newSize = currentFontSize + variant;
+    newHeight = currentLineHeight + variant;
     elements[i].style.fontSize = newSize + 'px';
+    elements[i].style.lineHeight = newHeight + 'px';
   }
 }
 
