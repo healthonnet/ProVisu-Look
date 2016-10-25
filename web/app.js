@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 var locale = require('locale');
-var supported = ['en', 'fr'];
+var supported = ['en', 'fr', 'es'];
 
 var routes = require('./routes/index');
 
