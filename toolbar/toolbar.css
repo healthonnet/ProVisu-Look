@@ -1,7 +1,3 @@
-#provisu-toolbar {
-  margin-top: -50px;
-}
-
 #sidebox {
   font-size: 22px;
 }
@@ -103,4 +99,12 @@
 
 #sidebox li a:hover .provisu-tooltip {
   visibility: visible;
+}
+
+.tooltip-big {
+  font-size: 30px;
+}
+
+.tooltip-wide {
+  max-width: 420px;
 }
