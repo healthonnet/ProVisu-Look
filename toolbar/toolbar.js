@@ -50,6 +50,12 @@ function loadProvisuToolbar(element, url, file, extra) {
           '<div class="tooltip-arrow"></div>' +
           '<div class="tooltip-inner tooltip-wide"></div></div>',
       });
+      $('#toolbar-smaller').click(function() {
+        setFontSize(-4);
+      });
+      $('#toolbar-bigger').click(function() {
+        setFontSize(4);
+      });
     });
   }
 }
