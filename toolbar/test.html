@@ -37,16 +37,37 @@
   <div id="provisu-toolbar"></div>
   <h2>Simple buttons</h2>
   <div id="provisu-toolbar-extra"></div>
+  <h2>Static content</h2>
+  <div class="btn-group" role="group" aria-label="...">
+    <a href="/service?url=http://localhost:8000/&filter=normal" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Voir la page optimisée pour les personnes ayant des problèmes de vision - Style Noir sur Blanc">
+      <i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>
+    </a>
+    <a href="/service?url=http://localhost:8000/&filter=black" class="btn btn-default tooltip-bk hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Voir la page optimisée pour les personnes ayant des problèmes de vision - Style Blanc sur Noir">
+      <i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>
+    </a>
+    <a href="/service?url=http://localhost:8000/&filter=blue" class="btn btn-default tooltip-bl hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Voir la page optimisée pour les personnes ayant des problèmes de vision - Style Jaune sur Bleu">
+      <i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>
+    </a>
+    <a href="/service?url=http://localhost:8000/&filter=cyan" class="btn btn-default tooltip-cy hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Voir la page optimisée pour les personnes ayant des problèmes de vision - Style Noir sur Bleu clair">
+      <i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>
+    </a>
+    <button type="button" class="btn btn-default" id="toolbar-smaller" data-toggle="tooltip" data-placement="bottom" title="Diminuer la taille du texte">
+      <i class="fa fa-minus fa-2x" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-default" id="toolbar-bigger" data-toggle="tooltip" data-placement="bottom" title="Augmenter la taille du texte">
+      <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+    </button>
+  </div>
   <script>
     loadProvisuToolbar(
       'provisu-toolbar',
       document.URL,
-      '/_locales/fr/messages.json'
+      '/_locales/en/messages.json'
     );
     loadProvisuToolbar(
       'provisu-toolbar-extra',
       document.URL,
-      '/_locales/fr/messages.json',
+      '/_locales/es/messages.json',
       true
     );
   </script>

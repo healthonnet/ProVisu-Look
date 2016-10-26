@@ -44,17 +44,13 @@ function loadProvisuToolbar(element, url, file, extra) {
       $('#toolbar-bigger').click(function() {
         setFontSize(4);
       });
-      $('[data-toggle="tooltip"]').tooltip({
-        container: 'body',
-        template: '<div class="tooltip tooltip-big" role="tooltip">' +
-          '<div class="tooltip-arrow"></div>' +
-          '<div class="tooltip-inner tooltip-wide"></div></div>',
-      });
-      $('#toolbar-smaller').click(function() {
-        setFontSize(-4);
-      });
-      $('#toolbar-bigger').click(function() {
-        setFontSize(4);
+      $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip({
+          container: 'body',
+          template: '<div class="tooltip tooltip-big" role="tooltip">' +
+            '<div class="tooltip-arrow"></div>' +
+            '<div class="tooltip-inner tooltip-wide"></div></div>',
+        });
       });
     });
   }
@@ -182,12 +178,3 @@ function generateHTML(element, url, i18n, extra) {
   }
   document.getElementById(element).innerHTML = html;
 }
-
-$(function() {
-  $('[data-toggle="tooltip"]').tooltip({
-    container: 'body',
-    template: '<div class="tooltip tooltip-big" role="tooltip">' +
-      '<div class="tooltip-arrow"></div>' +
-      '<div class="tooltip-inner tooltip-wide"></div></div>',
-  });
-});
