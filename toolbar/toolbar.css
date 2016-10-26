@@ -101,11 +101,11 @@
   visibility: visible;
 }
 
-.tooltip-big {
+.tooltip {
   font-size: 30px;
 }
 
-.tooltip-wide {
+.tooltip-inner {
   max-width: 420px;
 }
 
