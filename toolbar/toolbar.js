@@ -137,7 +137,29 @@ function generateHTML(element, url, i18n, extra) {
     html = '<div class="btn-group" role="group" aria-label="...">' +
       '<a href="/service?url=' + url + '" class="btn btn-default" ' +
       'data-toggle="tooltip" data-placement="bottom" ' +
-      'title="' + i18n.toolbarDescription.message + '">' +
+      'title="' + i18n.toolbarDescription.message + ' - ' +
+      i18n.infoNormal.message + '">' +
+      '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
+      '</a>' +
+      '<a href="/service?url=' + url + '" class="btn btn-default tooltip-bk ' +
+      'hidden-xs" ' +
+      'data-toggle="tooltip" data-placement="bottom" ' +
+      'title="' + i18n.toolbarDescription.message + ' - ' +
+      i18n.infoBlack.message + '">' +
+      '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
+      '</a>' +
+      '<a href="/service?url=' + url + '" class="btn btn-default tooltip-bl ' +
+      'hidden-xs" ' +
+      'data-toggle="tooltip" data-placement="bottom" ' +
+      'title="' + i18n.toolbarDescription.message + ' - ' +
+      i18n.infoBlue.message + '">' +
+      '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
+      '</a>' +
+      '<a href="/service?url=' + url + '" class="btn btn-default tooltip-cy ' +
+      'hidden-xs" ' +
+      'data-toggle="tooltip" data-placement="bottom" ' +
+      'title="' + i18n.toolbarDescription.message + ' - ' +
+      i18n.infoCyan.message + '">' +
       '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
       '</a>' +
       '<button type="button" class="btn btn-default" id="toolbar-smaller" ' +
