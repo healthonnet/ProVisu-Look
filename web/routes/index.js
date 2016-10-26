@@ -15,7 +15,6 @@ var prefix = process.env.PREFIX || '';
  */
 router.get('/', function(req, res, next) {
   var locale = require('locale');
-  console.log('user i18n: ' + req.locale);
   var i18n = require('../_locales/' + req.locale + '/messages.json');
 
   var lunetteStylePath = prefix + '/css/lunette.css';

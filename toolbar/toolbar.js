@@ -38,6 +38,12 @@ function loadProvisuToolbar(element, url, file, extra) {
     var json = JSON.parse(evt.target.responseText);
     generateHTML(element, url, json, extra);
     $(function() {
+      $('#toolbar-smaller').click(function() {
+        setFontSize(-4);
+      });
+      $('#toolbar-bigger').click(function() {
+        setFontSize(4);
+      });
       $('[data-toggle="tooltip"]').tooltip({
         container: 'body',
         template: '<div class="tooltip tooltip-big" role="tooltip">' +
@@ -135,9 +141,31 @@ function generateHTML(element, url, i18n, extra) {
 
   if (extra) {
     html = '<div class="btn-group" role="group" aria-label="...">' +
-      '<a href="/service?url=' + url + '" class="btn btn-default" ' +
+      '<a href="/service?url=' + url + '&filter=normal" ' +
+      'class="btn btn-default" data-toggle="tooltip" data-placement="bottom" ' +
+      'title="' + i18n.toolbarDescription.message + ' - ' +
+      i18n.infoNormal.message + '">' +
+      '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
+      '</a>' +
+      '<a href="/service?url=' + url + '&filter=black" ' +
+      'class="btn btn-default tooltip-bk hidden-xs" ' +
       'data-toggle="tooltip" data-placement="bottom" ' +
-      'title="' + i18n.toolbarDescription.message + '">' +
+      'title="' + i18n.toolbarDescription.message + ' - ' +
+      i18n.infoBlack.message + '">' +
+      '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
+      '</a>' +
+      '<a href="/service?url=' + url + '&filter=blue" ' +
+      'class="btn btn-default tooltip-bl hidden-xs" ' +
+      'data-toggle="tooltip" data-placement="bottom" ' +
+      'title="' + i18n.toolbarDescription.message + ' - ' +
+      i18n.infoBlue.message + '">' +
+      '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
+      '</a>' +
+      '<a href="/service?url=' + url + '&filter=cyan" ' +
+      'class="btn btn-default tooltip-cy hidden-xs" ' +
+      'data-toggle="tooltip" data-placement="bottom" ' +
+      'title="' + i18n.toolbarDescription.message + ' - ' +
+      i18n.infoCyan.message + '">' +
       '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
       '</a>' +
       '<button type="button" class="btn btn-default" id="toolbar-smaller" ' +
@@ -154,3 +182,12 @@ function generateHTML(element, url, i18n, extra) {
   }
   document.getElementById(element).innerHTML = html;
 }
+
+$(function() {
+  $('[data-toggle="tooltip"]').tooltip({
+    container: 'body',
+    template: '<div class="tooltip tooltip-big" role="tooltip">' +
+      '<div class="tooltip-arrow"></div>' +
+      '<div class="tooltip-inner tooltip-wide"></div></div>',
+  });
+});

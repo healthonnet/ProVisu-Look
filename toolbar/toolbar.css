@@ -108,3 +108,39 @@
 .tooltip-wide {
   max-width: 420px;
 }
+
+.tooltip-bk:link {
+  color: #ffffff;
+  background-color: black;
+}
+
+.tooltip-bk:hover,
+.tooltip-bk:focus,
+.tooltip-bk:active,
+.tooltip-bk.active {
+  color: yellow;
+}
+
+.tooltip-bl:link {
+  color: yellow;
+  background-color: blue;
+}
+
+.tooltip-bl:hover,
+.tooltip-bl:focus,
+.tooltip-bl:active,
+.tooltip-bl.active {
+  color: red;
+}
+
+.tooltip-cy:link {
+  color: black;
+  background-color: rgb(210, 239, 233);
+}
+
+.tooltip-cy:hover,
+.tooltip-cy:focus,
+.tooltip-cy:active,
+.tooltip-cy.active {
+  color: red;
+}
