@@ -1,6 +1,12 @@
 HON-Provisu-Extension Changelog
 ===============================
 
+v0.0.12 - 2016-10-26
+--------------------
+
+* change toolbar buttons shape
+* add toolbar buttons responsive
+
 v0.0.11 - 2016-10-24
 --------------------
 
