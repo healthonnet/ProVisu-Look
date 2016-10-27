@@ -18,7 +18,7 @@
 
 #ext-provisu-inner {
   position: relative;
-  padding: 20px 0;
+  padding: 0;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   border: solid 1px rgba(0,0,0,0.3);
   width: 90%;
@@ -26,7 +26,7 @@
 }
 
 #ext-provisu-inner div {
-  padding: 40px;
+  padding: 10px 20px;
 }
 
 #ext-provisu-inner h1 {
@@ -74,8 +74,16 @@
     display: inline-block;
     width: 100%;
   }
+  #ext-provisu-inner {
+    position: relative;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+    width: 100%;
+    margin: 0;
+  }
 }
-@media(max-width:992px){
+@media(min-width:545px) and (max-width:992px){
   #ext-provisu-inner li {
     display: inline-block;
     width: 50%;
@@ -137,14 +145,6 @@
     font: inherit;
 }
 
-/*
-#ext-provisu-inner input[type=submit]:hover,
-#ext-provisu-inner input[type=button]:hover,
-#ext-provisu-inner button[type=submit]:hover {
-    background-color: #45a049;
-}
-*/
-
 /* ************************************************************************** */
 /* EXT-PROVISU-NORMAL */
 /* ************************************************************************** */
@@ -180,6 +180,14 @@
 .ext-provisu-normal button[type=submit]:hover {
   background-color: rgb(250,125,55);
   color: white;
+}
+
+.ext-provisu-normal #ext-provisu-top h1 {
+  color: black;
+}
+
+.ext-provisu-normal #ext-provisu-top h1 .text-muted {
+  color: #777;
 }
 
 /* ************************************************************************** */
@@ -219,6 +227,14 @@
   color: black;
 }
 
+.ext-provisu-black #ext-provisu-top h1 {
+  color: white;
+}
+
+.ext-provisu-black #ext-provisu-top h1 .text-muted {
+  color: #ccc;
+}
+
 /* ************************************************************************** */
 /* EXT-PROVISU-BLUE */
 /* ************************************************************************** */
@@ -254,6 +270,14 @@
 .ext-provisu-blue button[type=submit]:hover {
   background-color: rgb(250,25,25);
   color: black;
+}
+
+.ext-provisu-blue #ext-provisu-top h1 {
+  color: white;
+}
+
+.ext-provisu-blue #ext-provisu-top h1 .text-muted {
+  color: #ccc;
 }
 
 /* ************************************************************************** */
@@ -293,13 +317,17 @@
   color: black;
 }
 
+.ext-provisu-cyan #ext-provisu-top h1 {
+  color: black;
+}
+
+.ext-provisu-cyan #ext-provisu-top h1 .text-muted {
+  color: #777;
+}
+
 /* ************************************************************************** */
 /* SIDEBOX */
 /* ************************************************************************** */
-
-.ext-provisu-under {
-  margin-top: 120px !important;
-}
 
 #hon-provisu-sidebox {
   position: fixed;
@@ -345,7 +373,8 @@
 }
 
 #hon-provisu-sidebox li a:link div.item-normal,
-#hon-provisu-sidebox li a:visited div.item-normal {
+#hon-provisu-sidebox li a:visited div.item-normal,
+#ext-provisu-top .tooltip-nm:link, #ext-provisu-top .tooltip-nm:visited {
   background-color: white;
   color: black;
 }
@@ -355,43 +384,50 @@
   color: blue;
 }
 
-#hon-provisu-sidebox .tool-normal {
+#hon-provisu-sidebox .tool-normal,
+#ext-provisu-top .tooltip-nm:hover, #ext-provisu-top .tooltip-nm:active  {
   background-color: rgb(215,215,215);
   color: black;
 }
 
 #hon-provisu-sidebox li a:link div.item-black,
 #hon-provisu-sidebox li a:visited div.item-black,
-#hon-provisu-sidebox .tool-black {
+#hon-provisu-sidebox .tool-black,
+#ext-provisu-top .tooltip-bk:link, #ext-provisu-top .tooltip-bk:visited {
   background-color: rgba(0,0,0,1);
   color: white;
 }
 
-#hon-provisu-sidebox li a:hover div.item-black {
+#hon-provisu-sidebox li a:hover div.item-black,
+#ext-provisu-top .tooltip-bk:hover, #ext-provisu-top .tooltip-bk:active  {
   background-color: rgba(0,0,0,0.9);
   color: yellow;
 }
 
 #hon-provisu-sidebox li a:link div.item-blue,
 #hon-provisu-sidebox li a:visited div.item-blue,
-#hon-provisu-sidebox .tool-blue {
+#hon-provisu-sidebox .tool-blue,
+#ext-provisu-top .tooltip-bl:link, #ext-provisu-top .tooltip-bl:visited {
   background-color: rgba(0,0,255,1);
   color: yellow;
 }
 
-#hon-provisu-sidebox li a:hover div.item-blue {
+#hon-provisu-sidebox li a:hover div.item-blue,
+#ext-provisu-top .tooltip-bl:hover, #ext-provisu-top .tooltip-bl:active  {
   background-color: rgba(0,0,255,0.8);
   color: red;
 }
 
 #hon-provisu-sidebox li a:link div.item-cyan,
 #hon-provisu-sidebox li a:visited div.item-cyan,
-#hon-provisu-sidebox .tool-cyan  {
+#hon-provisu-sidebox .tool-cyan,
+#ext-provisu-top .tooltip-cy:link, #ext-provisu-top .tooltip-cy:visited  {
   background-color: rgb(210, 239, 233);
   color: black;
 }
 
-#hon-provisu-sidebox li a:hover div.item-cyan {
+#hon-provisu-sidebox li a:hover div.item-cyan,
+#ext-provisu-top .tooltip-cy:hover, #ext-provisu-top .tooltip-cy:active {
   background-color: rgba(210, 239, 233, 0.8);
   color: red;
 }

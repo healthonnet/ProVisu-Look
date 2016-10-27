@@ -8,6 +8,9 @@ html
     link(rel='stylesheet', href!=lunetteStyle, type='text/css')
     link(rel="icon", type="image/png", href="favicon.png")
     link(rel='stylesheet', href!=fontAwesome)
+    link(rel='stylesheet', href!=bootstrap)
+    script(src!=jquery, type="text/javascript")
+    script(src!=bootstrapJs, type="text/javascript")
   body#ext-provisu
     script(src!=sanitizeHtml, type="text/javascript")
     script(src!=lunette, type="text/javascript")
@@ -21,54 +24,25 @@ html
         ga('create', 'UA-17123283-1', 'auto');
         ga('send', 'pageview');
 
+    #ext-provisu-top.text-center
+      h1= i18n.appName.message
+        br
+        small.text-muted= i18n.appDescription.message
+      .btn-group(role='group', aria-label='...')
+        a.btn.btn-default.tooltip-nm(href=external, data-toggle='tooltip', data-placement='bottom', title='Voir la page optimisée pour les personnes ayant des problèmes de vision - Style Noir sur Blanc')
+          i.fa.fa-eye.fa-2x(aria-hidden='true')
+        a.btn.btn-default.tooltip-nm(href='javascript: alter(document, {style: \'normal\'});', data-toggle='tooltip', data-placement='bottom', title='Voir la page optimisée pour les personnes ayant des problèmes de vision - Style Noir sur Blanc')
+          i.fa.fa-low-vision.fa-2x(aria-hidden='true')
+        a.btn.btn-default.tooltip-bk(href='javascript: alter(document, {style: \'black\'});', data-toggle='tooltip', data-placement='bottom', title='Voir la page optimisée pour les personnes ayant des problèmes de vision - Style Blanc sur Noir')
+          i.fa.fa-low-vision.fa-2x(aria-hidden='true')
+        a.btn.btn-default.tooltip-bl(href='javascript: alter(document, {style: \'blue\'});', data-toggle='tooltip', data-placement='bottom', title='Voir la page optimisée pour les personnes ayant des problèmes de vision - Style Jaune sur Bleu')
+          i.fa.fa-low-vision.fa-2x(aria-hidden='true')
+        a.btn.btn-default.tooltip-cy(href='javascript: alter(document, {style: \'cyan\'});', data-toggle='tooltip', data-placement='bottom', title='Voir la page optimisée pour les personnes ayant des problèmes de vision - Style Noir sur Bleu clair')
+          i.fa.fa-low-vision.fa-2x(aria-hidden='true')
+        a.btn.btn-default.tooltip-nm(href='javascript: alter(document, {font: \'smaller\'});', data-toggle='tooltip', data-placement='bottom', title='Diminuer la taille du texte')
+          i.fa.fa-minus.fa-2x(aria-hidden='true')
+        a.btn.btn-default.tooltip-nm(href='javascript: alter(document, {font: \'bigger\'});', data-toggle='tooltip', data-placement='bottom', title='Augmenter la taille du texte')
+          i.fa.fa-plus.fa-2x(aria-hidden='true')
 
-    #hon-provisu-sidebox
-      ul
-        if external
-          li
-            a#default(href=external)
-              .item.item-normal
-                i.fa.fa-eye(aria-hidden="true")
-              span.tooltip.tool-normal
-                |#{i18n.infoDefault.message}
-        li
-          a#normal(href="javascript: alter(document, {style: 'normal'});")
-            .item.item-normal
-              i.fa.fa-low-vision(aria-hidden="true")
-            span.tooltip.tool-normal
-              |#{i18n.infoNormal.message}
-        li
-          a#black(href="javascript: alter(document, {style: 'black'});")
-            .item.item-black
-              i.fa.fa-low-vision(aria-hidden="true")
-            span.tooltip.tool-black
-              |#{i18n.infoBlack.message}
-        li
-          a#blue(href="javascript: alter(document, {style: 'blue'});")
-            .item.item-blue
-              i.fa.fa-low-vision(aria-hidden="true")
-            span.tooltip.tool-blue
-              |#{i18n.infoBlue.message}
-        li
-          a#cyan(href="javascript: alter(document, {style: 'cyan'});")
-            .item.item-cyan
-              i.fa.fa-low-vision(aria-hidden="true")
-            span.tooltip.tool-cyan
-              |#{i18n.infoCyan.message}
-        li
-          a#smaller(href="javascript: alter(document, {font: 'smaller'});")
-            .item.item-normal
-              |A-
-            span.tooltip.tool-normal
-              |#{i18n.infoSmaller.message}
-        li
-          a#bigger(href="javascript: alter(document, {font: 'bigger'});")
-            .item.item-normal
-              |A+
-            span.tooltip.tool-normal
-              |#{i18n.infoBigger.message}
-    #ext-provisu-inner.ext-provisu-under
-      div
-        if i18n
-          h1 #{i18n.appName.message}
-        block content
+    #ext-provisu-inner
+      block content

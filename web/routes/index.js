@@ -22,6 +22,11 @@ router.get('/', function(req, res, next) {
     '/bower_components/components-font-awesome/css/font-awesome.min.css';
   var sanitizeHtmlPath = prefix + '/js/sanitize-html.min.js';
   var lunettePath = prefix + '/js/lunette.js';
+  var jqueryPath = prefix + '/bower_components/jquery/dist/jquery.min.js';
+  var bootstrapPath = prefix +
+    '/bower_components/bootstrap/dist/css/bootstrap.min.css';
+  var bootstrapJsPath = prefix +
+    '/bower_components/bootstrap/dist/js/bootstrap.min.js';
 
   if (req.query.url) {
     var base = url.parse(req.query.url, false, true);
@@ -113,6 +118,9 @@ router.get('/', function(req, res, next) {
           lunetteStyle: lunetteStylePath,
           fontAwesome: fontAwesomePath,
           lunette: lunettePath,
+          jquery: jqueryPath,
+          bootstrap: bootstrapPath,
+          bootstrapJs: bootstrapJsPath,
           external: req.query.url,
           filter: filter,
           i18n: i18n,
@@ -127,6 +135,9 @@ router.get('/', function(req, res, next) {
           i18n: i18n,
           sanitizeHtml: sanitizeHtmlPath,
           lunette: lunettePath,
+          jquery: jqueryPath,
+          bootstrap: bootstrapPath,
+          bootstrapJs: bootstrapJsPath,
         });
       } else {
 
@@ -143,6 +154,9 @@ router.get('/', function(req, res, next) {
           lunetteStyle: lunetteStylePath,
           fontAwesome: fontAwesomePath,
           lunette: lunettePath,
+          jquery: jqueryPath,
+          bootstrap: bootstrapPath,
+          bootstrapJs: bootstrapJsPath,
         });
       }
     });
@@ -157,6 +171,9 @@ router.get('/', function(req, res, next) {
       lunetteStyle: lunetteStylePath,
       fontAwesome: fontAwesomePath,
       lunette: lunettePath,
+      jquery: jqueryPath,
+      bootstrap: bootstrapPath,
+      bootstrapJs: bootstrapJsPath,
     });
   }
 });
