@@ -78,7 +78,9 @@ function setFontSize(variant) {
       window.getComputedStyle(elements[i], null).getPropertyValue('line-height')
     );
     newSize = currentFontSize + variant;
+    newSize = newSize < 12 ? 12 : newSize;
     newHeight = currentLineHeight + variant;
+    newHeight = newHeight < 12 ? 12 : newHeight;
     elements[i].style.fontSize = newSize + 'px';
     elements[i].style.lineHeight = newHeight + 'px';
   }
