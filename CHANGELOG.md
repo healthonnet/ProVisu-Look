@@ -1,6 +1,13 @@
 HON-Provisu-Extension Changelog
 ===============================
 
+v0.0.13 - 2016-10-27
+--------------------
+
+* make service responsive
+* add bootstrap to service
+* fix toolbar glitch
+
 v0.0.12 - 2016-10-26
 --------------------
 
