@@ -109,7 +109,8 @@
   max-width: 420px;
 }
 
-.tooltip-bk:link {
+.tooltip-bk:link,
+.tooltip-bk:visited {
   color: #ffffff;
   background-color: black;
 }
@@ -121,7 +122,8 @@
   color: yellow;
 }
 
-.tooltip-bl:link {
+.tooltip-bl:link,
+.tooltip-bl:visited {
   color: yellow;
   background-color: blue;
 }
@@ -133,7 +135,8 @@
   color: red;
 }
 
-.tooltip-cy:link {
+.tooltip-cy:link,
+.tooltip-cy:visited {
   color: black;
   background-color: rgb(210, 239, 233);
 }
