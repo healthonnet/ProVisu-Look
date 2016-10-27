@@ -49,10 +49,12 @@ gulp.task('web-assets', () => {
   }).pipe(gulp.dest('web/public'));
 });
 
-gulp.task('web-font-awesome', () => {
+gulp.task('web-bower', () => {
   return gulp.src([
-    'app/bower_components/components-font-awesome/**'
-  ]).pipe(gulp.dest('web/public/bower_components/components-font-awesome'));
+    'app/bower_components/**',
+    '!app/bower_components/chai/**',
+    '!app/bower_components/mocha/',
+  ]).pipe(gulp.dest('web/public/bower_components'));
 });
 
 gulp.task('favicon', () => {
@@ -222,7 +224,7 @@ gulp.task('server', (cb) => {
 
 gulp.task('build-web', (cb) => {
   runSequence('lint-web','jshint-web','web-assets', 'lang-web',
-    'favicon', 'web-font-awesome', cb);
+    'favicon', 'web-bower', cb);
 });
 
 gulp.task('build-toolbar', (cb) => {
