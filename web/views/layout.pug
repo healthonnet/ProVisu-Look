@@ -29,19 +29,19 @@ html
         br
         small.text-muted= i18n.appDescription.message
       .btn-group(role='group', aria-label='...')
-        a.btn.btn-default.tooltip-nm(href=external, data-toggle='tooltip', data-placement='bottom', title='Voir la page optimisée pour les personnes ayant des problèmes de vision - Style Noir sur Blanc')
+        a.btn.btn-default.tooltip-nm(href=external, data-toggle='tooltip', data-placement='bottom', title=i18n.infoDefault.message)
           i.fa.fa-eye.fa-2x(aria-hidden='true')
-        a.btn.btn-default.tooltip-nm(href='javascript: alter(document, {style: \'normal\'});', data-toggle='tooltip', data-placement='bottom', title='Voir la page optimisée pour les personnes ayant des problèmes de vision - Style Noir sur Blanc')
+        a.btn.btn-default.tooltip-nm(href='javascript: alter(document, {style: \'normal\'});', data-toggle='tooltip', data-placement='bottom', title=i18n.infoNormal.message)
           i.fa.fa-low-vision.fa-2x(aria-hidden='true')
-        a.btn.btn-default.tooltip-bk(href='javascript: alter(document, {style: \'black\'});', data-toggle='tooltip', data-placement='bottom', title='Voir la page optimisée pour les personnes ayant des problèmes de vision - Style Blanc sur Noir')
+        a.btn.btn-default.tooltip-bk(href='javascript: alter(document, {style: \'black\'});', data-toggle='tooltip', data-placement='bottom', title=i18n.infoBlack.message)
           i.fa.fa-low-vision.fa-2x(aria-hidden='true')
-        a.btn.btn-default.tooltip-bl(href='javascript: alter(document, {style: \'blue\'});', data-toggle='tooltip', data-placement='bottom', title='Voir la page optimisée pour les personnes ayant des problèmes de vision - Style Jaune sur Bleu')
+        a.btn.btn-default.tooltip-bl(href='javascript: alter(document, {style: \'blue\'});', data-toggle='tooltip', data-placement='bottom', title=i18n.infoBlue.message)
           i.fa.fa-low-vision.fa-2x(aria-hidden='true')
-        a.btn.btn-default.tooltip-cy(href='javascript: alter(document, {style: \'cyan\'});', data-toggle='tooltip', data-placement='bottom', title='Voir la page optimisée pour les personnes ayant des problèmes de vision - Style Noir sur Bleu clair')
+        a.btn.btn-default.tooltip-cy(href='javascript: alter(document, {style: \'cyan\'});', data-toggle='tooltip', data-placement='bottom', title=i18n.infoCyan.message)
           i.fa.fa-low-vision.fa-2x(aria-hidden='true')
-        a.btn.btn-default.tooltip-nm(href='javascript: alter(document, {font: \'smaller\'});', data-toggle='tooltip', data-placement='bottom', title='Diminuer la taille du texte')
+        a.btn.btn-default.tooltip-nm(href='javascript: alter(document, {font: \'smaller\'});', data-toggle='tooltip', data-placement='bottom', title=i18n.infoSmaller.message)
           i.fa.fa-minus.fa-2x(aria-hidden='true')
-        a.btn.btn-default.tooltip-nm(href='javascript: alter(document, {font: \'bigger\'});', data-toggle='tooltip', data-placement='bottom', title='Augmenter la taille du texte')
+        a.btn.btn-default.tooltip-nm(href='javascript: alter(document, {font: \'bigger\'});', data-toggle='tooltip', data-placement='bottom', title=i18n.infoBigger.message)
           i.fa.fa-plus.fa-2x(aria-hidden='true')
 
     #ext-provisu-inner
