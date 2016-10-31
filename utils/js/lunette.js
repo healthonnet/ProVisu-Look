@@ -60,7 +60,6 @@ function unalter(document, url) {
   window.localStorage.removeItem(OPTIONS);
 
   if (url) {
-    console.log(url);
     window.location = url;
   }
 }
