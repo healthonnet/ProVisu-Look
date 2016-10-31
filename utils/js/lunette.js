@@ -46,18 +46,23 @@ function alterFont(document, font) {
 /**
  * Return the layout to its original style.
  */
-function unalter(document) {
+function unalter(document, url) {
   // Fetch options
   var options =
     JSON.parse(window.localStorage.getItem(OPTIONS)) || {};
 
   // If hash is defined, we revert to old style.
-  if (options.hash) {
+  if (!url && options.hash) {
     document.documentElement.innerHTML = options.hash;
   }
 
   // Remove options
   window.localStorage.removeItem(OPTIONS);
+
+  if (url) {
+    console.log(url);
+    window.location = url;
+  }
 }
 
 /**
