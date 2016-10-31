@@ -29,8 +29,9 @@ html
         br
         small.text-muted= i18n.appDescription.message
       .btn-group(role='group', aria-label='...')
-        a.btn.btn-default.tooltip-nm(href='javascript: unalter(document, \'' + external + '\');', data-toggle='tooltip', data-placement='bottom', title=i18n.infoDefault.message)
-          i.fa.fa-eye.fa-2x(aria-hidden='true')
+        if external
+          a.btn.btn-default.tooltip-nm(href='javascript: unalter(document, \'' + external + '\');', data-toggle='tooltip', data-placement='bottom', title=i18n.infoDefault.message)
+            i.fa.fa-eye.fa-2x(aria-hidden='true')
         a.btn.btn-default.tooltip-nm(href='javascript: alter(document, {style: \'normal\'});', data-toggle='tooltip', data-placement='bottom', title=i18n.infoNormal.message)
           i.fa.fa-low-vision.fa-2x(aria-hidden='true')
         a.btn.btn-default.tooltip-bk(href='javascript: alter(document, {style: \'black\'});', data-toggle='tooltip', data-placement='bottom', title=i18n.infoBlack.message)
