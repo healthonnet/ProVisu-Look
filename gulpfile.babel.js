@@ -10,6 +10,7 @@ import decompress from 'gulp-decompress';
 import rename from 'gulp-rename';
 import jshint from 'gulp-jshint';
 import webserver from 'gulp-webserver';
+import symlink from 'gulp-sym';
 
 const $ = gulpLoadPlugins();
 
@@ -206,8 +207,9 @@ gulp.task('wiredep', () => {
 gulp.task('package', function() {
   var manifest = require('./dist/manifest.json');
   return gulp.src('dist/**')
-      .pipe($.zip('look-provisu-' + manifest.version + '.zip'))
-      .pipe(gulp.dest('package'));
+      .pipe($.zip('provisu-look-' + manifest.version + '.zip'))
+      .pipe(gulp.dest('package'))
+      .pipe(symlink('package/provisu-look-latest.zip'));
 });
 
 gulp.task('build', (cb) => {

@@ -40,6 +40,7 @@
     "gulp-server": "^0.1.0",
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-sym": "0.0.14",
     "gulp-uglify": "^1.5.3",
     "gulp-useref": "^3.0.8",
     "gulp-webserver": "^0.9.1",

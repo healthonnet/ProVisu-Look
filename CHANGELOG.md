@@ -1,6 +1,14 @@
 HON-Provisu-Extension Changelog
 ===============================
 
+v1.0.0 - 2016-10-31
+-------------------
+
+* feature toolbar minimum font-size is now 12 px
+* fix service tooltip is no longer only in French
+* fix https://github.com/healthonnet/hon-provisu-extension/issues/13
+* fix service remove link to default when asking for url
+
 v0.0.13 - 2016-10-27
 --------------------
 
