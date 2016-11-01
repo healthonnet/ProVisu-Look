@@ -87,6 +87,7 @@ function setFontSize(variant) {
 }
 
 function generateHTML(element, url, i18n, extra) {
+  url = encodeURIComponent(url);
   var html = '<ul id="sidebox">' +
     '<li>' +
     '<a href="/service?url=' + url + '"><div class="item-normal low-vision">' +
