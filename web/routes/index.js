@@ -31,6 +31,7 @@ router.get('/', function(req, res, next) {
   if (req.query.url) {
     var base = url.parse(req.query.url, false, true);
     var filter = req.query.filter;
+    base.path = base.path.replace(/%20/gi, ' ');
     var cleanUrl =
       base.protocol + '//' + base.host + encodeURI(base.path);
     request(cleanUrl, function(error, response, body) {

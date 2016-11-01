@@ -87,7 +87,7 @@ function setFontSize(variant) {
 }
 
 function decodeSpace(url) {
-  return url.replace(/%20/, ' ');
+  return url.replace(/%20/gi, ' ');
 }
 
 function generateHTML(element, url, i18n, extra) {
