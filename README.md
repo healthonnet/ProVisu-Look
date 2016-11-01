@@ -68,9 +68,9 @@ $ gulp doc
 Developers
 ----------
 
-* Cédric Frossard - <cedric.frossard@healthonnet.org>
+* Cédric Frossard — <cedric.frossard@healthonnet.org>
 * Pierre Repetto-Andipatin — <pierre.repetto@healthonnet.org>
-* William Belle - <william.belle@gmail.com>
+* William Belle — <william.belle@gmail.com>
 
 License
 -------
