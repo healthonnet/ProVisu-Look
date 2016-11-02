@@ -51,7 +51,7 @@ router.get('/', function(req, res, next) {
             'form',
           ],
           allowedAttributes: {
-            a: [ 'href' ],
+            a: [ 'href', 'name', 'id' ],
             img: [ 'src', 'alt' ],
             input: [
               'type', 'value', 'name', 'id', 'placeholder',
@@ -67,17 +67,26 @@ router.get('/', function(req, res, next) {
 
           transformTags: {
             a: function(tagName, attribs) {
+              if (!attribs.href) {
+                return {
+                  tagName: 'a',
+                  attribs: attribs,
+                };
+              }
               var href = {};
               if (attribs.href) {
                 href = url.parse(attribs.href, false, true);
               }
               var mProtocol = href.protocol || base.protocol;
               var mHost = href.host || base.host;
+              var mUrl = '?url=' + mProtocol + '//' + mHost + href.path;
+              if (!href.path && href.hash) {
+                mUrl = href.hash;
+              }
+              attribs.href = mUrl;
               return {
                 tagName: 'a',
-                attribs: {
-                  href: '?url=' + mProtocol + '//' + mHost + href.path,
-                },
+                attribs: attribs,
               };
             },
             img: function(tagName, attribs) {

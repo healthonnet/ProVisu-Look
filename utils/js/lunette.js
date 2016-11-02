@@ -189,7 +189,7 @@ function parse(options) {
       'form',
     ],
     allowedAttributes: {
-      a: [ 'href' ],
+      a: [ 'href', 'name', 'id' ],
       img: [ 'src', 'alt' ],
       input: [
         'type', 'value', 'name', 'id', 'placeholder',
