@@ -86,12 +86,8 @@ function setFontSize(variant) {
   }
 }
 
-function decodeSpace(url) {
-  return url.replace(/%20/gi, ' ');
-}
-
 function generateHTML(element, url, i18n, extra) {
-  url = encodeURIComponent(decodeSpace(url));
+  url = encodeURIComponent(decodeURIComponent(url));
   var html = '<ul id="sidebox">' +
     '<li>' +
     '<a href="/service?url=' + url + '"><div class="item-normal low-vision">' +
