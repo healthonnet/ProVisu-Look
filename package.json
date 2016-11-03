@@ -37,6 +37,7 @@
     "gulp-load-plugins": "^1.2.0",
     "gulp-markdown-pdf": "^4.0.0",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
     "gulp-server": "^0.1.0",
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",

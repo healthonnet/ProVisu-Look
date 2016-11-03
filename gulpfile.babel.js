@@ -11,6 +11,7 @@ import rename from 'gulp-rename';
 import jshint from 'gulp-jshint';
 import webserver from 'gulp-webserver';
 import symlink from 'gulp-sym';
+import replace from 'gulp-replace';
 
 const $ = gulpLoadPlugins();
 
@@ -38,7 +39,9 @@ gulp.task('assets', () => {
     'utils/**/*.css',
   ], {
     dot: true,
-  }).pipe(gulp.dest('app/utils'));
+  })
+  .pipe(replace('hon-provisu-options', 'hon-provisu-options-extension'))
+  .pipe(gulp.dest('app/utils'));
 });
 
 gulp.task('web-assets', () => {
@@ -47,7 +50,9 @@ gulp.task('web-assets', () => {
     'utils/**/*.css',
   ], {
     dot: true,
-  }).pipe(gulp.dest('web/public'));
+  })
+  .pipe(replace('hon-provisu-options', 'hon-provisu-options-service'))
+  .pipe(gulp.dest('web/public'));
 });
 
 gulp.task('web-bower', () => {
