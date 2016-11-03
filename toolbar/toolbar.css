@@ -101,11 +101,11 @@
   visibility: visible;
 }
 
-.tooltip {
+#provisu-toolbar .tooltip {
   font-size: 30px;
 }
 
-.tooltip-inner {
+#provisu-toolbar .tooltip-inner {
   max-width: 420px;
 }
 
