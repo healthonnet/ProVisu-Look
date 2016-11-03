@@ -214,7 +214,7 @@ gulp.task('package', function() {
   return gulp.src('dist/**')
       .pipe($.zip('provisu-look-' + manifest.version + '.zip'))
       .pipe(gulp.dest('package'))
-      .pipe(symlink('package/provisu-look-latest.zip'));
+      .pipe(symlink('package/provisu-look-latest.zip', { force: true }));
 });
 
 gulp.task('build', (cb) => {
