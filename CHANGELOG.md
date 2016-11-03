@@ -1,6 +1,15 @@
 HON-Provisu-Extension Changelog
 ===============================
 
+v1.0.1 - 2016-11-03
+-------------------
+
+* fix toolbar glitches
+* fix conflicts between extension and service
+* fix tooltip conflicts
+* fix intern link navigation
+* fix toolbar url-encode characters
+
 v1.0.0 - 2016-10-31
 -------------------
 
