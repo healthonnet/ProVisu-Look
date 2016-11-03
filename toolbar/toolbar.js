@@ -44,14 +44,14 @@ function loadProvisuToolbar(element, url, file, extra) {
       $('#toolbar-bigger').click(function() {
         setFontSize(4);
       });
-      $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip({
-          container: 'body',
-          template: '<div class="tooltip tooltip-big" role="tooltip">' +
-            '<div class="tooltip-arrow"></div>' +
-            '<div class="tooltip-inner tooltip-wide"></div></div>',
-        });
-      });
+      // $(document).ready(function() {
+      //   $('[data-toggle="tooltip"]').tooltip({
+      //     container: 'body',
+      //     template: '<div class="tooltip tooltip-big" role="tooltip">' +
+      //       '<div class="tooltip-arrow"></div>' +
+      //       '<div class="tooltip-inner tooltip-wide"></div></div>',
+      //   });
+      // });
     });
   }
 }
@@ -86,98 +86,41 @@ function setFontSize(variant) {
   }
 }
 
-function generateHTML(element, url, i18n, extra) {
+function generateHTML(element, url, i18n) {
   url = encodeURIComponent(decodeURIComponent(url));
-  var html = '<ul id="sidebox">' +
-    '<li>' +
-    '<a href="/service?url=' + url + '"><div class="item-normal low-vision">' +
-    '</div>' +
-    '<span class="provisu-tooltip tool-normal">' + i18n.infoNormal.message +
-    '</span></a>' +
-    '</li>' +
-
-    '<li class="hidden-xs">' +
-    '<a href="/service?url=' + url + '&filter=black">' +
-    '<div class="item-black low-vision">' +
-    '</div>' +
-    '<span class="provisu-tooltip tool-black">' + i18n.infoBlack.message +
-    '</span></a>' +
-    '</li>' +
-
-    '<li class="hidden-xs">' +
-    '<a href="/service?url=' + url + '&filter=blue">' +
-    '<div class="item-blue low-vision">' +
-    '</div>' +
-    '<span class="provisu-tooltip tool-blue">' + i18n.infoBlue.message +
-    '</span></a>' +
-    '</li>' +
-
-    '<li class="hidden-xs">' +
-    '<a href="/service?url=' + url + '&filter=cyan">' +
-    '<div class="item-cyan low-vision">' +
-    '</div>' +
-    '<span class="provisu-tooltip tool-cyan">' + i18n.infoCyan.message +
-    '</span></a>' +
-    '</li>' +
-
-    '<li class="hidden-xs">' +
-    '<a href="/service?url=' + url + '&filter=smaller">' +
-    '<div class="item-smaller">A-' +
-    '</div>' +
-    '<span class="provisu-tooltip tool-normal">' + i18n.infoSmaller.message +
-    '</span></a>' +
-    '</li>' +
-
-    '<li>' +
-    '<a href="/service?url=' + url + '&filter=bigger">' +
-    '<div class="item-bigger">A+' +
-    '</div>' +
-    '<span class="provisu-tooltip tool-normal">' + i18n.infoBigger.message +
-    '</span></a>' +
-    '</li>' +
-
-    '</ul>';
-
-  if (extra) {
-    html = '<div class="btn-group" role="group" aria-label="...">' +
-      '<a href="/service?url=' + url + '&filter=normal" ' +
-      'class="btn btn-default" data-toggle="tooltip" data-placement="bottom" ' +
-      'title="' + i18n.toolbarDescription.message + ' - ' +
-      i18n.infoNormal.message + '">' +
-      '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
-      '</a>' +
-      '<a href="/service?url=' + url + '&filter=black" ' +
-      'class="btn btn-default tooltip-bk hidden-xs" ' +
-      'data-toggle="tooltip" data-placement="bottom" ' +
-      'title="' + i18n.toolbarDescription.message + ' - ' +
-      i18n.infoBlack.message + '">' +
-      '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
-      '</a>' +
-      '<a href="/service?url=' + url + '&filter=blue" ' +
-      'class="btn btn-default tooltip-bl hidden-xs" ' +
-      'data-toggle="tooltip" data-placement="bottom" ' +
-      'title="' + i18n.toolbarDescription.message + ' - ' +
-      i18n.infoBlue.message + '">' +
-      '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
-      '</a>' +
-      '<a href="/service?url=' + url + '&filter=cyan" ' +
-      'class="btn btn-default tooltip-cy hidden-xs" ' +
-      'data-toggle="tooltip" data-placement="bottom" ' +
-      'title="' + i18n.toolbarDescription.message + ' - ' +
-      i18n.infoCyan.message + '">' +
-      '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
-      '</a>' +
-      '<button type="button" class="btn btn-default" id="toolbar-smaller" ' +
-      'data-toggle="tooltip" data-placement="bottom" ' +
-      'title="' + i18n.infoSmaller.message + '">' +
-      '<i class="fa fa-minus fa-2x" aria-hidden="true"></i>' +
-      '</button>' +
-      '<button type="button" class="btn btn-default" id="toolbar-bigger" ' +
-      'data-toggle="tooltip" data-placement="bottom" ' +
-      'title="' + i18n.infoBigger.message + '">' +
-      '<i class="fa fa-plus fa-2x" aria-hidden="true"></i>' +
-      '</button>' +
-      '</div>';
-  }
+  var html = '<div class="btn-group" role="group" aria-label="...">' +
+    '<a href="/service?url=' + url + '&filter=normal" ' +
+    'class="btn btn-default provisu-tooltip">' +
+    '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
+    '<span>' + i18n.toolbarDescription.message + ' - ' +
+    i18n.infoNormal.message + '</span>' +
+    '</a>' +
+    '<a href="/service?url=' + url + '&filter=black" ' +
+    'class="btn btn-default tooltip-bk provisu-tooltip hidden-xs">' +
+    '<span>' + i18n.toolbarDescription.message + ' - ' +
+    i18n.infoBlack.message + '</span>' +
+    '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
+    '</a>' +
+    '<a href="/service?url=' + url + '&filter=blue" ' +
+    'class="btn btn-default tooltip-bl provisu-tooltip hidden-xs">' +
+    '<span>' + i18n.toolbarDescription.message + ' - ' +
+    i18n.infoBlue.message + '</span>' +
+    '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
+    '</a>' +
+    '<a href="/service?url=' + url + '&filter=cyan" ' +
+    'class="btn btn-default tooltip-cy provisu-tooltip hidden-xs">' +
+    '<span>' + i18n.toolbarDescription.message + ' - ' +
+    i18n.infoCyan.message + '</span>' +
+    '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
+    '</a>' +
+    '<button type="button" class="btn btn-default provisu-tooltip" ' +
+    'id="toolbar-smaller"><span>' + i18n.infoSmaller.message + '</span>' +
+    '<i class="fa fa-minus fa-2x" aria-hidden="true"></i>' +
+    '</button>' +
+    '<button type="button" class="btn btn-default provisu-tooltip" ' +
+    'id="toolbar-bigger"><span>' + i18n.infoBigger.message + '</span>' +
+    '<i class="fa fa-plus fa-2x" aria-hidden="true"></i>' +
+    '</button>' +
+    '</div>';
   document.getElementById(element).innerHTML = html;
 }
