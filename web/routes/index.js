@@ -79,7 +79,8 @@ router.get('/', function(req, res, next) {
               }
               var mProtocol = href.protocol || base.protocol;
               var mHost = href.host || base.host;
-              var mUrl = '?url=' + mProtocol + '//' + mHost + href.path;
+              var mUrl = '?url=' + mProtocol + '//' + mHost +
+                encodeURIComponent(decodeURIComponent(href.path));
               if (!href.path && href.hash) {
                 mUrl = href.hash;
               }
