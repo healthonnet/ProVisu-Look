@@ -1,7 +1,12 @@
 hon-provisu-extension
 =====================
 
-**Pro Visu Look**: Background, text color and font size change.
+[![Build Status](https://travis-ci.org/healthonnet/hon-provisu-extension.svg?branch=master)](https://travis-ci.org/healthonnet/hon-provisu-extension)
+
+**Pro Visu Look** – Background, text color and font size change.
+
+Currently available on the
+[Chrome Store](https://chrome.google.com/webstore/detail/pro-visu-look/aclahhnnigljilaknnbjbjeopdcfhoad).
 
 Install
 -------
