@@ -1,57 +1,40 @@
 'use strict';
 
-function loadProvisuToolbar(element, url, file, extra) {
+function loadProvisuToolbar(element, url, file) {
+  if (element && typeof (element) !== 'object') {
+    // Legacy mode
+    element = {
+      container: element,
+      url: url,
+      i18n: file.substring(10,12),
+      responsive: true,
+      fontSize: true,
+    };
+  }
+  element.url = element.url || '#';
+  element.i18n = element.i18n || 'en';
+
   var xobj = new XMLHttpRequest();
   xobj.overrideMimeType('application/json');
-  xobj.open('GET', file, true);
+  xobj.open('GET', '_locales/' + element.i18n + '/messages.json', true);
   xobj.addEventListener('load', complete);
   xobj.addEventListener('error', failed);
   xobj.send(null);
 
   function failed(evt) {
-    generateHTML(element, url, {
-      infoNormal: {
-        message: 'normal',
-      },
-      infoBlack: {
-        message: 'black',
-      },
-      infoBlue: {
-        message: 'blue',
-      },
-      infoCyan: {
-        message: 'cyan',
-      },
-      infoSmaller: {
-        message: 'smaller',
-      },
-      infoBigger: {
-        message: 'bigger',
-      },
-      toolbarDescription: {
-        message: 'visually impaired persons',
-      },
-    }, extra);
+    generateHTML(new Error('No language file loaded.'));
   }
 
   function complete(evt) {
-    var json = JSON.parse(evt.target.responseText);
-    generateHTML(element, url, json, extra);
+    element.json = JSON.parse(evt.target.responseText);
+    generateHTML(null, element);
     $(function() {
-      $('#toolbar-smaller').click(function() {
+      $('#provisu-toolbar-smaller').click(function() {
         setFontSize(-4);
       });
-      $('#toolbar-bigger').click(function() {
+      $('#provisu-toolbar-bigger').click(function() {
         setFontSize(4);
       });
-      // $(document).ready(function() {
-      //   $('[data-toggle="tooltip"]').tooltip({
-      //     container: 'body',
-      //     template: '<div class="tooltip tooltip-big" role="tooltip">' +
-      //       '<div class="tooltip-arrow"></div>' +
-      //       '<div class="tooltip-inner tooltip-wide"></div></div>',
-      //   });
-      // });
     });
   }
 }
@@ -86,41 +69,60 @@ function setFontSize(variant) {
   }
 }
 
-function generateHTML(element, url, i18n) {
-  url = encodeURIComponent(decodeURIComponent(url));
-  var html = '<div class="btn-group" role="group" aria-label="...">' +
-    '<a href="/service?url=' + url + '&filter=normal" ' +
+function generateHTML(err, element) {
+  if (err) {
+    document.getElementById(element.container).innerHTML = err;
+    return;
+  }
+  element.responsive = element.responsive || false;
+  element.fontSize = element.fontSize || false;
+  element.icon = element.icon || false;
+  var hidden = element.responsive ? 'hidden-xs' : '';
+  element.url = encodeURIComponent(decodeURIComponent(element.url));
+  var html = '<div class="btn-group" role="group" aria-label="...">';
+  if (!element.icon || element.icon === 'white') {
+    html +=
+    '<a href="/service?url=' + element.url + '&filter=normal" ' +
     'class="btn btn-default provisu-tooltip">' +
     '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
-    '<span>' + i18n.toolbarDescription.message + ' - ' +
-    i18n.infoNormal.message + '</span>' +
-    '</a>' +
-    '<a href="/service?url=' + url + '&filter=black" ' +
-    'class="btn btn-default tooltip-bk provisu-tooltip hidden-xs">' +
-    '<span>' + i18n.toolbarDescription.message + ' - ' +
-    i18n.infoBlack.message + '</span>' +
+    '<span>' + element.json.toolbarDescription.message + ' - ' +
+    element.json.infoNormal.message + '</span>' +
+    '</a>';
+  }
+  if (!element.icon || element.icon === 'black') {
+    html += '<a href="/service?url=' + element.url + '&filter=black" ' +
+    'class="btn btn-default tooltip-bk provisu-tooltip ' + hidden + '">' +
+    '<span>' + element.json.toolbarDescription.message + ' - ' +
+    element.json.infoBlack.message + '</span>' +
     '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
-    '</a>' +
-    '<a href="/service?url=' + url + '&filter=blue" ' +
-    'class="btn btn-default tooltip-bl provisu-tooltip hidden-xs">' +
-    '<span>' + i18n.toolbarDescription.message + ' - ' +
-    i18n.infoBlue.message + '</span>' +
+    '</a>';
+  }
+  if (!element.icon || element.icon === 'blue') {
+    html += '<a href="/service?url=' + element.url + '&filter=blue" ' +
+    'class="btn btn-default tooltip-bl provisu-tooltip ' + hidden + '">' +
+    '<span>' + element.json.toolbarDescription.message + ' - ' +
+    element.json.infoBlue.message + '</span>' +
     '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
-    '</a>' +
-    '<a href="/service?url=' + url + '&filter=cyan" ' +
-    'class="btn btn-default tooltip-cy provisu-tooltip hidden-xs">' +
-    '<span>' + i18n.toolbarDescription.message + ' - ' +
-    i18n.infoCyan.message + '</span>' +
+    '</a>';
+  }
+  if (!element.icon || element.icon === 'cyan') {
+    html += '<a href="/service?url=' + element.url + '&filter=cyan" ' +
+    'class="btn btn-default tooltip-cy provisu-tooltip ' + hidden + '">' +
+    '<span>' + element.json.toolbarDescription.message + ' - ' +
+    element.json.infoCyan.message + '</span>' +
     '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
-    '</a>' +
-    '<button type="button" class="btn btn-default provisu-tooltip" ' +
-    'id="toolbar-smaller"><span>' + i18n.infoSmaller.message + '</span>' +
-    '<i class="fa fa-minus fa-2x" aria-hidden="true"></i>' +
-    '</button>' +
-    '<button type="button" class="btn btn-default provisu-tooltip" ' +
-    'id="toolbar-bigger"><span>' + i18n.infoBigger.message + '</span>' +
-    '<i class="fa fa-plus fa-2x" aria-hidden="true"></i>' +
-    '</button>' +
-    '</div>';
-  document.getElementById(element).innerHTML = html;
+    '</a>';
+  }
+  if (element.fontSize) {
+    html += '<button type="button" class="btn btn-default provisu-tooltip" ' +
+      'id="provisu-toolbar-smaller"><span>' + element.json.infoSmaller.message +
+      '</span>' + '<i class="fa fa-minus fa-2x" aria-hidden="true"></i>' +
+      '</button>' +
+      '<button type="button" class="btn btn-default provisu-tooltip" ' +
+      'id="provisu-toolbar-bigger"><span>' + element.json.infoBigger.message +
+      '</span>' + '<i class="fa fa-plus fa-2x" aria-hidden="true"></i>' +
+      '</button>';
+  }
+  html += '</div';
+  document.getElementById(element.container).innerHTML = html;
 }

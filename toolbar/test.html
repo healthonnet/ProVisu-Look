@@ -37,7 +37,17 @@
   <div id="provisu-toolbar"></div>
   <h2>Simple buttons</h2>
   <div id="provisu-toolbar-extra"></div>
+  <h2>Tests</h2>
+  <h3>Unresponsive</h3>
+  <div id="test"></div>
+  <h3>One of it</h3>
+  <div id="one"></div>
+  <h3>One with font</h3>
+  <div id="oneB"></div>
   <script>
+    /**
+     * Legacy
+     */
     loadProvisuToolbar(
       'provisu-toolbar',
       document.URL,
@@ -46,8 +56,32 @@
     loadProvisuToolbar(
       'provisu-toolbar-extra',
       document.URL,
-      '/_locales/es/messages.json'
+      '/_locales/es/messages.json',
+      true
     );
+    /**
+     * New design
+     */
+    loadProvisuToolbar({
+      container: 'test',
+      url: document.URL,
+      i18n: 'en',
+      responsive: false,
+      fontSize: false,
+    });
+    loadProvisuToolbar({
+      container: 'one',
+      url: document.URL,
+      i18n: 'es',
+      icon: 'black',
+    });
+    loadProvisuToolbar({
+      container: 'oneB',
+      url: document.URL,
+      i18n: 'fr',
+      icon: 'blue',
+      fontSize: true,
+    });
   </script>
 </body>
 </html>
