@@ -450,3 +450,29 @@
 #hon-provisu-sidebox li a:hover .tooltip {
   visibility: visible;
 }
+
+#ext-provisu-top a.provisu-tooltip {
+  position: relative;
+}
+
+#ext-provisu-top a.provisu-tooltip span,
+#ext-provisu-top button.provisu-tooltip span {
+  display: none;
+}
+
+#ext-provisu-top a.provisu-tooltip:hover span,
+#ext-provisu-top a.provisu-tooltip:focus span,
+#ext-provisu-top button.provisu-tooltip:hover span,
+#ext-provisu-top button.provisu-tooltip:focus span {
+  display: block;
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  padding: 6px;
+  width: 420px;
+  white-space: normal;
+  font-size: 28px;
+}

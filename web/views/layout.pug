@@ -30,20 +30,27 @@ html
         small.text-muted= i18n.appDescription.message
       .btn-group(role='group', aria-label='...')
         if external
-          a.btn.btn-default.tooltip-nm(href='javascript: unalter(document, \'' + external + '\');', data-toggle='tooltip', data-placement='bottom', title=i18n.infoDefault.message)
+          a.btn.btn-default.tooltip-nm.provisu-tooltip(href='javascript: unalter(document, \'' + external + '\');')
             i.fa.fa-eye.fa-2x(aria-hidden='true')
-        a.btn.btn-default.tooltip-nm(href='javascript: alter(document, {style: \'normal\'});', data-toggle='tooltip', data-placement='bottom', title=i18n.infoNormal.message)
+            span= i18n.infoDefault.message
+        a.btn.btn-default.tooltip-nm.provisu-tooltip(href='javascript: alter(document, {style: \'normal\'});')
           i.fa.fa-low-vision.fa-2x(aria-hidden='true')
-        a.btn.btn-default.tooltip-bk(href='javascript: alter(document, {style: \'black\'});', data-toggle='tooltip', data-placement='bottom', title=i18n.infoBlack.message)
+          span= i18n.infoNormal.message
+        a.btn.btn-default.tooltip-bk.provisu-tooltip(href='javascript: alter(document, {style: \'black\'});')
           i.fa.fa-low-vision.fa-2x(aria-hidden='true')
-        a.btn.btn-default.tooltip-bl(href='javascript: alter(document, {style: \'blue\'});', data-toggle='tooltip', data-placement='bottom', title=i18n.infoBlue.message)
+          span= i18n.infoBlack.message
+        a.btn.btn-default.tooltip-bl.provisu-tooltip(href='javascript: alter(document, {style: \'blue\'});')
           i.fa.fa-low-vision.fa-2x(aria-hidden='true')
-        a.btn.btn-default.tooltip-cy(href='javascript: alter(document, {style: \'cyan\'});', data-toggle='tooltip', data-placement='bottom', title=i18n.infoCyan.message)
+          span= i18n.infoBlue.message
+        a.btn.btn-default.tooltip-cy.provisu-tooltip(href='javascript: alter(document, {style: \'cyan\'});')
           i.fa.fa-low-vision.fa-2x(aria-hidden='true')
-        a.btn.btn-default.tooltip-nm(href='javascript: alter(document, {font: \'smaller\'});', data-toggle='tooltip', data-placement='bottom', title=i18n.infoSmaller.message)
+          span= i18n.infoCyan.message
+        a.btn.btn-default.tooltip-nm.provisu-tooltip(href='javascript: alter(document, {font: \'smaller\'});')
           i.fa.fa-minus.fa-2x(aria-hidden='true')
-        a.btn.btn-default.tooltip-nm(href='javascript: alter(document, {font: \'bigger\'});', data-toggle='tooltip', data-placement='bottom', title=i18n.infoBigger.message)
+          span= i18n.infoSmaller.message
+        a.btn.btn-default.tooltip-nm.provisu-tooltip(.provisu-tooltiphref='javascript: alter(document, {font: \'bigger\'});')
           i.fa.fa-plus.fa-2x(aria-hidden='true')
+          span= i18n.infoBigger.message
 
     #ext-provisu-inner
       block content
