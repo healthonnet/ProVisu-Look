@@ -11,6 +11,7 @@
     "env": {
       "NODE_ENV": "prod",
       "PORT": 8088,
+      "LANG": "en",
       "PREFIX": ""
     }
   }]
