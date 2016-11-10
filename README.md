@@ -61,6 +61,30 @@ from google Chrome:
 $ gulp serve-toolbar
 ```
 
+Toolbar usage
+-------------
+
+### Options
+
+* **container** : `<div>` container to put the toolbar.
+* **url** : url to parse.
+* **i18n** : language for tooltip. Values: `en | fr | es`.
+* **responsive** : make toolbar responsive. Optional, default value is `true`.
+* **fontSize** : show fontSize controls. Optional, default value is `true`.
+* **icon** : show only one icon. Optional, default value is `false`, values can be `white | black | blue | cyan`.
+
+### Blue icon with font size controls in French
+
+```bash
+loadProvisuToolbar({
+  container: 'oneB',
+  url: document.URL,
+  i18n: 'fr',
+  icon: 'blue',
+  fontSize: true,
+});
+```
+
 Documentation
 -------------
 

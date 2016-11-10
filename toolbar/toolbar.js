@@ -78,11 +78,12 @@ function generateHTML(err, element) {
   element.fontSize = element.fontSize || false;
   element.icon = element.icon || false;
   var hidden = element.responsive ? 'hidden-xs' : '';
-  element.url = encodeURIComponent(decodeURIComponent(element.url));
+  element.url = 'https://provisu.ch/service?url=' +
+    encodeURIComponent(decodeURIComponent(element.url));
   var html = '<div class="btn-group" role="group" aria-label="...">';
   if (!element.icon || element.icon === 'white') {
     html +=
-    '<a href="/service?url=' + element.url + '&filter=normal" ' +
+    '<a href="' + element.url + '&filter=normal" ' +
     'class="btn btn-default provisu-tooltip">' +
     '<i class="fa fa-low-vision fa-2x" aria-hidden="true"></i>' +
     '<span>' + element.json.toolbarDescription.message + ' - ' +
@@ -90,7 +91,7 @@ function generateHTML(err, element) {
     '</a>';
   }
   if (!element.icon || element.icon === 'black') {
-    html += '<a href="/service?url=' + element.url + '&filter=black" ' +
+    html += '<a href="' + element.url + '&filter=black" ' +
     'class="btn btn-default tooltip-bk provisu-tooltip ' + hidden + '">' +
     '<span>' + element.json.toolbarDescription.message + ' - ' +
     element.json.infoBlack.message + '</span>' +
@@ -98,7 +99,7 @@ function generateHTML(err, element) {
     '</a>';
   }
   if (!element.icon || element.icon === 'blue') {
-    html += '<a href="/service?url=' + element.url + '&filter=blue" ' +
+    html += '<a href="' + element.url + '&filter=blue" ' +
     'class="btn btn-default tooltip-bl provisu-tooltip ' + hidden + '">' +
     '<span>' + element.json.toolbarDescription.message + ' - ' +
     element.json.infoBlue.message + '</span>' +
@@ -106,7 +107,7 @@ function generateHTML(err, element) {
     '</a>';
   }
   if (!element.icon || element.icon === 'cyan') {
-    html += '<a href="/service?url=' + element.url + '&filter=cyan" ' +
+    html += '<a href="' + element.url + '&filter=cyan" ' +
     'class="btn btn-default tooltip-cy provisu-tooltip ' + hidden + '">' +
     '<span>' + element.json.toolbarDescription.message + ' - ' +
     element.json.infoCyan.message + '</span>' +
