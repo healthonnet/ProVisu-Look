@@ -66,12 +66,29 @@ Toolbar usage
 
 ### Options
 
-* **container** : `<div>` container to put the toolbar.
-* **url** : url to parse.
-* **i18n** : language for tooltip. Values: `en | fr | es`.
-* **responsive** : make toolbar responsive. Optional, default value is `true`.
-* **fontSize** : show fontSize controls. Optional, default value is `true`.
-* **icon** : show only one icon. Optional, default value is `false`, values can be `white | black | blue | cyan`.
+* `container` : `String`
+
+  container in which the toolbar is included.
+
+* `url` : `String`
+
+  url to give to the service.
+
+* `i18n` : `en | fr | es`
+
+  language for tooltip.
+
+* `responsive` : `Boolean`
+
+  make toolbar responsive. Optional, default value is `true`.
+
+* `fontSize` : `Boolean`
+
+  show fontSize controls. Optional, default value is `true`.
+
+* `icon` : `white | black | blue | cyan | false`
+
+  show only one icon. Optional, default value is `false`.
 
 ### Blue icon with font size controls in French
 
