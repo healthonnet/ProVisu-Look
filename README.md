@@ -93,13 +93,16 @@ Toolbar usage
 ### Blue icon with font size controls in French
 
 ```bash
-loadProvisuToolbar({
-  container: 'oneB',
-  url: document.URL,
-  i18n: 'fr',
-  icon: 'blue',
-  fontSize: true,
-});
+<script src="https://provisu.ch/toolbar/LATEST_VERSION/toolbar.js" type="text/javascript"></script>
+<script>
+  loadProvisuToolbar({
+    container: 'oneB',
+    url: document.URL,
+    i18n: 'fr',
+    icon: 'blue',
+    fontSize: true,
+  });
+</script>
 ```
 
 Documentation
