@@ -158,7 +158,7 @@ gulp.task('reduce-toolbar', () => {
       'INSERT_TOOLBAR_CSS',
       fs.readFileSync('./toolbar/dist/toolbar.css'
     )))
-    // .pipe(uglify())
+    .pipe(uglify())
     .pipe(gulp.dest('./toolbar/dist'));
 });
 
@@ -169,7 +169,7 @@ gulp.task('clean-toolbar', () => {
 gulp.task('clean-toolbar-dist', () => {
   return del([
     'toolbar/dist/_locales', 'toolbar/dist/README.txt',
-    'toolbar/dist/languages.js',
+    'toolbar/dist/toolbar.css', 'toolbar/dist/languages.js',
   ]);
 });
 
