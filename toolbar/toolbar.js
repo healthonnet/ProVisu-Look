@@ -13,30 +13,17 @@ function loadProvisuToolbar(element, url, file) {
   }
   element.url = element.url || '#';
   element.i18n = element.i18n || 'en';
-
-  var xobj = new XMLHttpRequest();
-  xobj.overrideMimeType('application/json');
-  xobj.open('GET', '_locales/' + element.i18n + '/messages.json', true);
-  xobj.addEventListener('load', complete);
-  xobj.addEventListener('error', failed);
-  xobj.send(null);
-
-  function failed(evt) {
-    generateHTML(new Error('No language file loaded.'));
-  }
-
-  function complete(evt) {
-    element.json = JSON.parse(evt.target.responseText);
-    generateHTML(null, element);
-    $(function() {
-      $('#provisu-toolbar-smaller').click(function() {
-        setFontSize(-4);
-      });
-      $('#provisu-toolbar-bigger').click(function() {
-        setFontSize(4);
-      });
+  element.json = {};
+  element.json = element.json[element.i18n];
+  generateHTML(null, element);
+  $(function() {
+    $('#provisu-toolbar-smaller').click(function() {
+      setFontSize(-4);
     });
-  }
+    $('#provisu-toolbar-bigger').click(function() {
+      setFontSize(4);
+    });
+  });
 }
 
 function setFontSize(variant) {
@@ -80,7 +67,8 @@ function generateHTML(err, element) {
   var hidden = element.responsive ? 'hidden-xs' : '';
   element.url = 'https://provisu.ch/service?url=' +
     encodeURIComponent(decodeURIComponent(element.url));
-  var html = '<div class="btn-group" role="group" aria-label="...">';
+  var html = '<style>INSERT_TOOLBAR_CSS</style>';
+  html += '<div class="btn-group" role="group" aria-label="...">';
   if (!element.icon || element.icon === 'white') {
     html +=
     '<a href="' + element.url + '&filter=normal" ' +
