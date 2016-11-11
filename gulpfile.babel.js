@@ -12,6 +12,11 @@ import jshint from 'gulp-jshint';
 import webserver from 'gulp-webserver';
 import symlink from 'gulp-sym';
 import replace from 'gulp-replace';
+import concat from 'gulp-concat';
+import jsonTransform from 'gulp-json-transform';
+import uglify from 'gulp-uglify';
+import fs from 'fs';
+import cssmin from 'gulp-cssmin';
 
 const $ = gulpLoadPlugins();
 
@@ -123,7 +128,49 @@ gulp.task('lang-toolbar', () => {
   return download('https://localise.biz:443/api/export/archive/json.zip?' +
     'key=dabd2dcd5915b93046701058e3a44a6c&format=chrome')
     .pipe(decompress({strip: 1}))
-    .pipe(gulp.dest('toolbar'));
+    .pipe(gulp.dest('toolbar/dist'));
+});
+
+gulp.task('json-toolbar', () => {
+  return gulp.src('./toolbar/dist/_locales/**/*.json')
+    .pipe(jsonTransform(function(data, file) {
+      return '"' + file.relative.slice(0,2) + '":' +
+        JSON.stringify(data) + ',';
+    }))
+    .pipe(concat('languages.js'))
+    .pipe(replace(/^([^]*)$/gmi, 'element.json = {$1};'))
+    .pipe(gulp.dest('./toolbar/dist'));
+});
+
+gulp.task('minify-css-toolbar', () => {
+  return gulp.src('./toolbar/toolbar.css')
+    .pipe(cssmin())
+    .pipe(gulp.dest('./toolbar/dist'));
+});
+
+gulp.task('reduce-toolbar', () => {
+  return gulp.src('toolbar/toolbar.js')
+    .pipe(replace(
+      'element.json = {}',
+      fs.readFileSync('./toolbar/dist/languages.js'
+    )))
+    .pipe(replace(
+      'INSERT_TOOLBAR_CSS',
+      fs.readFileSync('./toolbar/dist/toolbar.css'
+    )))
+    .pipe(uglify())
+    .pipe(gulp.dest('./toolbar/dist'));
+});
+
+gulp.task('clean-toolbar', () => {
+  return del('toolbar/dist');
+});
+
+gulp.task('clean-toolbar-dist', () => {
+  return del([
+    'toolbar/dist/_locales', 'toolbar/dist/README.txt',
+    'toolbar/dist/toolbar.css', 'toolbar/dist/languages.js',
+  ]);
 });
 
 gulp.task('images', () => {
@@ -235,7 +282,10 @@ gulp.task('build-web', (cb) => {
 });
 
 gulp.task('build-toolbar', (cb) => {
-  runSequence('lang-toolbar');
+  runSequence(
+    'clean-toolbar', 'lang-toolbar', 'json-toolbar',
+    'minify-css-toolbar', 'reduce-toolbar', 'clean-toolbar-dist'
+  );
 });
 
 gulp.task('serve-toolbar', (cb) => {

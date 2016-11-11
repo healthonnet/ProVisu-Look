@@ -6,10 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Test Toolbar</title>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
-<link rel="stylesheet" type="text/css" href="toolbar.css"></link>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="toolbar.js" type="text/javascript"></script>
+<script src="dist/toolbar.js" type="text/javascript"></script>
 <script src="https://use.fontawesome.com/e100ab6618.js"></script>
 </head>
 <body>
@@ -33,21 +32,56 @@
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultrices massa eros, eget sodales dui blandit ac. Praesent quis nisl tincidunt, tristique dolor sit amet, egestas orci. Quisque non felis a diam pretium interdum consectetur ac eros. Nulla facilisi. Curabitur sodales mi tempor, pulvinar eros sed, tempor tortor. Suspendisse viverra dui non dui mollis sodales. Phasellus vel sollicitudin sapien, nec lobortis leo. Nullam et tellus ac neque vulputate semper in quis erat. Sed ac auctor risus. Sed rhoncus dignissim laoreet. Vestibulum mattis rhoncus est ac molestie. Ut eu magna dui. Nulla sed lobortis lectus. Morbi vel accumsan dui. Donec orci risus, eleifend et malesuada nec, feugiat et dui. Quisque aliquet egestas nisi, in vulputate nisi finibus quis.
   </p>
-  <h2>Full buttons</h2>
+  <h2>Full buttons (legacy)</h2>
   <div id="provisu-toolbar"></div>
-  <h2>Simple buttons</h2>
+  <h2>Full buttons (current)</h2>
   <div id="provisu-toolbar-extra"></div>
+  <h2>Tests</h2>
+  <h3>Unresponsive</h3>
+  <div id="test"></div>
+  <h3>One of it</h3>
+  <div id="one"></div>
+  <h3>One with font</h3>
+  <div id="oneB"></div>
   <script>
+    /**
+     * Legacy
+     */
     loadProvisuToolbar(
       'provisu-toolbar',
       document.URL,
       '/_locales/en/messages.json'
     );
-    loadProvisuToolbar(
-      'provisu-toolbar-extra',
-      document.URL,
-      '/_locales/es/messages.json'
-    );
+    loadProvisuToolbar({
+      container: 'provisu-toolbar-extra',
+      i18n: 'fr',
+      url: document.URL,
+      fontSize: true,
+      responsive: true,
+    });
+    /**
+     * New design
+     */
+    loadProvisuToolbar({
+      container: 'test',
+      url: document.URL,
+      i18n: 'en',
+      responsive: false,
+      fontSize: false,
+    });
+    loadProvisuToolbar({
+      container: 'one',
+      url: document.URL,
+      i18n: 'es',
+      icon: 'black',
+    });
+    loadProvisuToolbar({
+      container: 'oneB',
+      url: document.URL,
+      i18n: 'fr',
+      icon: 'blue',
+      fontSize: true,
+    });
   </script>
 </body>
 </html>
