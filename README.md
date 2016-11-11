@@ -1,7 +1,7 @@
 hon-provisu-extension
 =====================
 
-[![Build Status](https://travis-ci.org/healthonnet/hon-provisu-extension.svg?branch=master)](https://travis-ci.org/healthonnet/hon-provisu-extension)
+[![Build Status](https://travis-ci.org/healthonnet/ProVisu-Look.svg?branch=master)](https://travis-ci.org/healthonnet/ProVisu-Look)
 
 **Pro Visu Look** – Background, text color and font size change.
 
