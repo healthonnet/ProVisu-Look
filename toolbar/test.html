@@ -28,21 +28,95 @@
     transition: 300ms;
   }
   </style>
-  <h1>Test Lunette Pro Visu toolbar</h1>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultrices massa eros, eget sodales dui blandit ac. Praesent quis nisl tincidunt, tristique dolor sit amet, egestas orci. Quisque non felis a diam pretium interdum consectetur ac eros. Nulla facilisi. Curabitur sodales mi tempor, pulvinar eros sed, tempor tortor. Suspendisse viverra dui non dui mollis sodales. Phasellus vel sollicitudin sapien, nec lobortis leo. Nullam et tellus ac neque vulputate semper in quis erat. Sed ac auctor risus. Sed rhoncus dignissim laoreet. Vestibulum mattis rhoncus est ac molestie. Ut eu magna dui. Nulla sed lobortis lectus. Morbi vel accumsan dui. Donec orci risus, eleifend et malesuada nec, feugiat et dui. Quisque aliquet egestas nisi, in vulputate nisi finibus quis.
-  </p>
-  <h2>Full buttons (legacy)</h2>
-  <div id="provisu-toolbar"></div>
-  <h2>Full buttons (current)</h2>
-  <div id="provisu-toolbar-extra"></div>
-  <h2>Tests</h2>
-  <h3>Unresponsive</h3>
-  <div id="test"></div>
-  <h3>One of it</h3>
-  <div id="one"></div>
-  <h3>One with font</h3>
-  <div id="oneB"></div>
+  <div class="container">
+    <h1>Test Lunette Pro Visu toolbar</h1>
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>Full buttons (legacy)</h2>
+        <div id="provisu-toolbar"></div>
+        <h3>Code</h3>
+        <pre>
+loadProvisuToolbar(
+  'provisu-toolbar',
+  document.URL,
+  '/_locales/en/messages.json'
+);
+        </pre>
+      </div>
+      <div class="col-lg-6">
+        <h2>Full buttons (current)</h2>
+        <div id="provisu-toolbar-extra"></div>
+        <h3>Code</h3>
+        <pre>
+loadProvisuToolbar({
+  container: 'provisu-toolbar-extra',
+  i18n: 'fr',
+  url: document.URL,
+  fontSize: true,
+  responsive: true,
+});
+        </pre>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>Not responsive</h2>
+        <div id="test"></div>
+        <h3>Code</h3>
+        <pre>
+loadProvisuToolbar({
+  container: 'test',
+  url: document.URL,
+  i18n: 'en',
+  responsive: false,
+  fontSize: false,
+});
+        </pre>
+      </div>
+      <div class="col-lg-6">
+        <h3>One with font</h3>
+        <div id="oneB"></div>
+        <h3>Code</h3>
+        <pre>
+loadProvisuToolbar({
+  container: 'oneB',
+  url: document.URL,
+  i18n: 'fr',
+  icon: 'blue',
+  fontSize: true,
+});
+        </pre>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>One of it</h2>
+        <div id="one"></div>
+        <h3>Code</h3>
+        <pre>
+loadProvisuToolbar({
+  container: 'one',
+  url: document.URL,
+  i18n: 'es',
+  icon: 'black',
+});
+        </pre>
+      </div>
+      <div class="col-lg-6">
+        <h2>One of it</h2>
+        <div id="oneC"></div>
+        <h3>Code</h3>
+        <pre>
+loadProvisuToolbar({
+  container: 'oneC',
+  url: document.URL,
+  i18n: 'fr',
+  icon: 'cyan',
+});
+        </pre>
+      </div>
+    </div>
+  </div>
   <script>
     /**
      * Legacy
@@ -81,6 +155,12 @@
       i18n: 'fr',
       icon: 'blue',
       fontSize: true,
+    });
+    loadProvisuToolbar({
+      container: 'oneC',
+      url: document.URL,
+      i18n: 'fr',
+      icon: 'cyan',
     });
   </script>
 </body>
