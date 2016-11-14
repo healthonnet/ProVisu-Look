@@ -30,6 +30,9 @@
     -webkit-transition: 300ms;
     transition: 300ms;
   }
+  .bg-danger p {
+    padding: 10px;
+  }
   </style>
   <div class="container">
     <h1>Test Lunette Pro Visu toolbar</h1>
@@ -38,12 +41,22 @@
         <h2>Full buttons (legacy)</h2>
         <div id="provisu-toolbar"></div>
         <h3>Code</h3>
+        <div class="bg-danger">
+          <p>
+            <i class="fa fa-exclamation-triangle text-danger" aria-hidden="true"></i>
+            Deprecated.
+            This plugin will fail if the provided file does not exist.
+          </p>
+        </div>
         <pre>
+&lt;div id="toolbar-legacy"&gt;&lt;/div&gt;
+&lt;script&gt;
 loadProvisuToolbar(
-  'provisu-toolbar',
+  'toolbar-legacy',
   document.URL,
   '/_locales/en/messages.json'
 );
+&lt;/script&gt;
         </pre>
       </div>
       <div class="col-lg-6">
@@ -51,13 +64,16 @@ loadProvisuToolbar(
         <div id="provisu-toolbar-extra"></div>
         <h3>Code</h3>
         <pre>
+&lt;div id="toolbar-current"&gt;&lt;/div&gt;
+&lt;script&gt;
 loadProvisuToolbar({
-  container: 'provisu-toolbar-extra',
+  container: 'toolbar-current',
   i18n: 'fr',
   url: document.URL,
   fontSize: true,
   responsive: true,
 });
+&lt;/script&gt;
         </pre>
       </div>
     </div>
@@ -67,13 +83,16 @@ loadProvisuToolbar({
         <div id="test"></div>
         <h3>Code</h3>
         <pre>
+&lt;div id="toolbar-unresponsive"&gt;&lt;/div&gt;
+&lt;script&gt;
 loadProvisuToolbar({
-  container: 'test',
+  container: 'toolbar-unresponsive',
   url: document.URL,
   i18n: 'en',
   responsive: false,
   fontSize: false,
 });
+&lt;/script&gt;
         </pre>
       </div>
       <div class="col-lg-6">
@@ -81,13 +100,16 @@ loadProvisuToolbar({
         <div id="oneB"></div>
         <h3>Code</h3>
         <pre>
+&lt;div id="toolbar-solo-font"&gt;&lt;/div&gt;
+&lt;script&gt;
 loadProvisuToolbar({
-  container: 'oneB',
+  container: 'toolbar-solo-font',
   url: document.URL,
   i18n: 'fr',
   icon: 'blue',
   fontSize: true,
 });
+&lt;/script&gt;
         </pre>
       </div>
     </div>
@@ -97,12 +119,15 @@ loadProvisuToolbar({
         <div id="one"></div>
         <h3>Code</h3>
         <pre>
+&lt;div id="toolbar-solo-black"&gt;&lt;/div&gt;
+&lt;script&gt;
 loadProvisuToolbar({
-  container: 'one',
+  container: 'toolbar-solo-black',
   url: document.URL,
   i18n: 'es',
   icon: 'black',
 });
+&lt;/script&gt;
         </pre>
       </div>
       <div class="col-lg-6">
@@ -110,12 +135,15 @@ loadProvisuToolbar({
         <div id="oneC"></div>
         <h3>Code</h3>
         <pre>
+&lt;div id="toolbar-solo-cyan"&gt;&lt;/div&gt;
+&lt;script&gt;
 loadProvisuToolbar({
-  container: 'oneC',
+  container: 'toolbar-solo-cyan',
   url: document.URL,
   i18n: 'fr',
   icon: 'cyan',
 });
+&lt;/script&gt;
         </pre>
       </div>
     </div>
