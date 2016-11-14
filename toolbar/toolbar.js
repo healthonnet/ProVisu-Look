@@ -1,5 +1,14 @@
 'use strict';
 
+$(function() {
+  $(document).on('click', '#provisu-toolbar-smaller', function() {
+    setFontSize(-4);
+  });
+  $(document).on('click', '#provisu-toolbar-bigger', function() {
+    setFontSize(4);
+  });
+});
+
 function loadProvisuToolbar(element, url, file) {
   if (element && typeof (element) !== 'object') {
     // Legacy mode
@@ -16,14 +25,6 @@ function loadProvisuToolbar(element, url, file) {
   element.json = {};
   element.json = element.json[element.i18n];
   generateHTML(null, element);
-  $(function() {
-    $('#provisu-toolbar-smaller').click(function() {
-      setFontSize(-4);
-    });
-    $('#provisu-toolbar-bigger').click(function() {
-      setFontSize(4);
-    });
-  });
 }
 
 function setFontSize(variant) {
