@@ -1,6 +1,12 @@
 HON-Provisu-Extension Changelog
 ===============================
 
+v1.0.4 - 2016-11-14
+-------------------
+
+* fix - toolbar fontSize change
+* fix - service fontSize change
+
 v1.0.3 - 2016-11-11
 -------------------
 
