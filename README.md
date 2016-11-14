@@ -93,7 +93,7 @@ Toolbar usage
 ### Blue icon with font size controls in French
 
 ```bash
-<script src="https://provisu.ch/toolbar/LATEST_VERSION/toolbar.js" type="text/javascript"></script>
+<script src="https://provisu.ch/toolbar/latest/toolbar.js" type="text/javascript"></script>
 <script>
   loadProvisuToolbar({
     container: 'oneB',
