@@ -66,7 +66,7 @@ function generateHTML(err, element) {
   element.fontSize = element.fontSize || false;
   element.icon = element.icon || false;
   var hidden = element.responsive ? 'hidden-xs' : '';
-  element.url = 'https://provisu.ch/service?url=' +
+  element.url = 'https://www.provisu.ch/service?url=' +
     encodeURIComponent(decodeURIComponent(element.url));
   var html = '<style>INSERT_TOOLBAR_CSS</style>';
   html += '<div class="btn-group" role="group" aria-label="...">';
