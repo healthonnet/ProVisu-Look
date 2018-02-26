@@ -126,7 +126,7 @@ gulp.task('lang-web', () => {
 
 gulp.task('lang-toolbar', () => {
   return download('https://localise.biz:443/api/export/archive/json.zip?' +
-    'key=dabd2dcd5915b93046701058e3a44a6c&format=chrome')
+    'key=eLYewt-IvuincjtB69oOxS8oQ8lRe0bV&format=chrome')
     .pipe(decompress({strip: 1}))
     .pipe(gulp.dest('toolbar/dist'));
 });
