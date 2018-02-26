@@ -64,7 +64,7 @@
 }
 
 #ext-provisu-inner ul,
-#ext-provisu-inner ol, {
+#ext-provisu-inner ol {
   display: block;
   width: 100%;
 }
