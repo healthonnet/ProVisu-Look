@@ -1,6 +1,12 @@
 HON-Provisu-Extension Changelog
 ===============================
 
+v1.0.6 - 2018-02-26
+-------------------
+
+* fix css typo
+* update localize export key
+
 v1.0.5 - 2016-11-21
 -------------------
 
