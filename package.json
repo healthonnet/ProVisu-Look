@@ -6,7 +6,7 @@
   "dependencies": {
     "body-parser": "~1.13.2",
     "cookie-parser": "~1.3.5",
-    "debug": "~2.2.0",
+    "debug": "~2.6.9",
     "express": "~4.13.1",
     "jstransformer-verbatim": "^1.0.0",
     "locale": "^0.1.0",
@@ -14,7 +14,8 @@
     "pug": "^2.0.0-beta5",
     "request": "^2.74.0",
     "sanitize-html": "^1.13.0",
-    "serve-favicon": "^2.3.0"
+    "serve-favicon": "^2.3.0",
+    "graceful-fs": "^4.1.11"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
