@@ -2,6 +2,7 @@
   "name": "hon-provisu-extension",
   "description": "Provisu extension for visually impaired people",
   "private": true,
+  "version": "1.0.7",
   "license": "Apache 2.0",
   "dependencies": {
     "body-parser": "~1.13.2",

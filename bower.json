@@ -1,7 +1,7 @@
 {
   "name": "hon-provisu-extension",
   "private": true,
-  "version": "0.0.1",
+  "version": "1.0.7",
   "dependencies": {
     "components-font-awesome": "^4.6.3",
     "bootstrap": "^3.3.7"
