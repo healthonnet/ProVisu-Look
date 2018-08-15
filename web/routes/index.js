@@ -6,6 +6,7 @@ var sanitizeHtml = require('sanitize-html');
 var url = require('url');
 var router = express.Router();
 var prefix = process.env.PREFIX || '';
+var supportedLocales = ['en','es','fr','pt'];
 
 /**
  * GET /
@@ -15,7 +16,14 @@ var prefix = process.env.PREFIX || '';
  */
 router.get('/', function(req, res, next) {
   var locale = require('locale');
-  var i18n = require('../_locales/' + req.locale + '/messages.json');
+  var reqLocale = 'en';
+
+  // Be sure that req.local is supported.
+  if (supportedLocales.indexOf(req.locale) > 0) {
+    reqLocale = req.locale;
+  }
+
+  var i18n = require('../_locales/' + reqLocale + '/messages.json');
 
   var lunetteStylePath = prefix + '/css/lunette.css';
   var fontAwesomePath = prefix +

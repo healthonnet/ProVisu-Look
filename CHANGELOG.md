@@ -1,6 +1,12 @@
 HON-Provisu-Extension Changelog
 ===============================
 
+v1.0.7 - 2018-08-14
+-------------------
+
+* add portuguese
+* add language fallback
+
 v1.0.6 - 2018-02-26
 -------------------
 
