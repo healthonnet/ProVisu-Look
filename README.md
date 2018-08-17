@@ -2,6 +2,7 @@ hon-provisu-extension
 =====================
 
 [![Build Status](https://travis-ci.org/healthonnet/ProVisu-Look.svg?branch=master)](https://travis-ci.org/healthonnet/ProVisu-Look)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhealthonnet%2FProVisu-Look.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhealthonnet%2FProVisu-Look?ref=badge_shield)
 
 **Pro Visu Look** – Background, text color and font size change.
 
@@ -125,3 +126,7 @@ License
 -------
 
 Apache License 2.0
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhealthonnet%2FProVisu-Look.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhealthonnet%2FProVisu-Look?ref=badge_large)
